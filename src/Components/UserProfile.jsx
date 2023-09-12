@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
-import profileImage from '../Img/foto-perfil1.jpg'
-import { UserModal } from "./UserModal";
+import profileImage from '../Img/img-profile.png'
+import { useAuth } from "./auth";
 
 export const UserProfile = () => {
-    const [openModal, setOpenModal] = useState(false);
+    const auth = useAuth()
     const onHandleClick = () => {
-        setOpenModal(true)
+        auth.ModalOpen()
     }
 
     return(
@@ -21,12 +21,12 @@ export const UserProfile = () => {
             <Wrapperbutton >
                 <Button onClick={onHandleClick}>Edit</Button>
             </Wrapperbutton>
-            {openModal && <UserModal setOpenModal={setOpenModal}/>}
         </Wrapperprofile>
     )
 }
 
 const Wrapperprofile = styled.section`
+    position: relative;
     width: 60%;
     margin: auto;
     margin-top: 50px;
@@ -37,7 +37,6 @@ const Wrapperprofile = styled.section`
     box-shadow: 0px 30px 30px #00000036;
     border-radius: 18px;
     height: 185px;
-    position: relative;
 `;
 const Wrapperimage = styled.div`
     display: flex;

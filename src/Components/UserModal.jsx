@@ -1,28 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+import { useAuth } from "./auth";
 
 
-export const UserModal = ({ setOpenModal }) => {
+export const UserModal = () => {
+    const auth = useAuth()
+
     const onHandleClick = () => {
-        setOpenModal(false)
+        auth.ModalClose();
     }
     return(
         <Wrapper>
         <Formcontainer>
             <Title>Hello!</Title>
-                <Button onClick={onHandleClick}>Cerrar</Button>
+            <input type="file" />
+                <Button onClick={onHandleClick}>Close</Button>
         </Formcontainer>
-    </Wrapper>
+        </Wrapper>
 )
 }
 
 const Wrapper = styled.section`
-background-color: #ffffff;
-width: 400px
-position: absolute;
-top: 50%;
-left: 50%; 
-transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    position: absolute;
+    top: 25%;
+    right: 20%;
+    width: 402px;
 `;
 
 const Formcontainer = styled.section`
@@ -30,9 +33,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-width: 50%;
-max-width: 600px;
-height: 400px;
 margin: auto;
 box-shadow: 13px 3px 40px #00000033;
 background-color: #ffffff;

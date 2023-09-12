@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = React.createContext();
@@ -6,6 +6,7 @@ const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = React.useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
   React.useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -13,7 +14,12 @@ export const AuthProvider = ({ children }) => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-
+  const ModalOpen = () => {
+    setOpenModal(true)
+  }
+  const ModalClose = () => {
+    setOpenModal(false)
+  }
   const login = ({ username }) => {
     setUser({ username });
     localStorage.setItem('user', JSON.stringify({ username }));
@@ -26,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     navigate('/');
   };
   
-  const auth = { user, login, logout };
+  const auth = { user, login, logout, ModalOpen, ModalClose, openModal };
 
   return (
     <AuthContext.Provider value={auth}>

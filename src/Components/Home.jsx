@@ -4,11 +4,11 @@ import { LeftNavLink } from './LeftNavLink';
 import { SupNavLink } from './SupNavLink';
 import { useAuth } from "./auth";
 import { Login } from "./Login";
+import { UserModal } from "./UserModal";
 
 export const Home = () => {
     const auth = useAuth()
-    const [sidebarVisible, setSidebarVisible] = useState('true');
-
+    const [sidebarVisible, setSidebarVisible] = useState(false);
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
   };
@@ -18,9 +18,10 @@ export const Home = () => {
     }
     return(
         <div>
-            <SupNavLink togglesidebar={toggleSidebar} sidebarvisible={sidebarVisible}/>
-            {!sidebarVisible && <LeftNavLink/>} 
+            <SupNavLink togglesidebar={toggleSidebar} sidebarvisible={sidebarVisible.toString()}/>
+            {sidebarVisible && <LeftNavLink/>} 
             <Outlet/>
+            {(auth.openModal) && <UserModal />}
         </div>
     )
 }
