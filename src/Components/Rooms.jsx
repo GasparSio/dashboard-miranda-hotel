@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Bookings = () => {
+export const Rooms = () => {
     return(
         <Wrapperdashboardcontainer>
-            <h1>Bookings page</h1>
+            <h1>Rooms page</h1>
         </Wrapperdashboardcontainer>
     )
 }

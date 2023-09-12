@@ -36,7 +36,7 @@ export const Login = () => {
                     <Button type="submit">Submit</Button>
                 </Form>
                 <Hardpasscontainer>
-                    <Span>User: Gaspar</Span>
+                    <Span>Username: Gaspar</Span>
                     <Span>Password: Sio</Span>
                 </Hardpasscontainer>
             </Formcontainer>
@@ -52,14 +52,15 @@ const Wrapper = styled.section`
 
 const Formcontainer = styled.section`
     position: absolute;
-    top: 30%;
-    left: 30%;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 50%;
-    max-width: 650px;
+    max-width: 600px;
     height: 400px;
     margin: auto;
     box-shadow: 13px 3px 40px #00000033;
@@ -69,6 +70,8 @@ const Formcontainer = styled.section`
 const Title = styled.h1`
     color: #262626;
     font-size: 28px;
+    font-weight: 600;
+    font-family: Poppins;
 
 `;  
 const Form = styled.form`
@@ -95,9 +98,10 @@ const Button = styled.button`
     background-color: #EBF1EF;
     color: #135846;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 400;
     padding: 0;
     border-radius: 4px;
+    font-family: Poppins;
 `;
 const Hardpasscontainer = styled.section`
     display: flex;
@@ -109,4 +113,6 @@ const Hardpasscontainer = styled.section`
 const Span = styled.span`
     color: #135846;
     margin-bottom: 10px;
+    font-weight: 300;
+    font-family: Poppins;
 `;
