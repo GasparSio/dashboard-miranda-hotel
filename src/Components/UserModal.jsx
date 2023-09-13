@@ -1,20 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "./auth";
+import { AvatarProfile } from "./AvatarProfile";
 
 
 export const UserModal = () => {
     const auth = useAuth()
+    const [name, setName] = useState(auth.authName)
+    const [email, setEmail] = useState(auth.authEmail)
+    const [selectedAvatarUrl, setSelectedAvatarUrl] = useState("");
 
-    const onHandleClick = () => {
-        auth.ModalClose();
+    const onSubmitModal = (event) => {
+        event.preventDefault();
+        if (name !== auth.authName || email !== auth.authEmail || selectedAvatarUrl) {
+            if (name !== auth.authName) {
+              auth.ChangeName({ name });
+            }
+            if (email !== auth.authEmail) {
+              auth.ChangeEmail({ email });
+            }
+            if (selectedAvatarUrl) {
+              auth.AvatarImageProfile({ avatarUrl: selectedAvatarUrl });
+            }
+          }
+          auth.ModalClose();
     }
+
     return(
         <Wrapper>
         <Formcontainer>
+            <Form onSubmit={onSubmitModal}>
             <Title>Hello!</Title>
-            <input type="file" />
-                <Button onClick={onHandleClick}>Close</Button>
+            <AvatarProfile setSelectedAvatarUrl={setSelectedAvatarUrl}/>
+            <input 
+                type='text' 
+                placeholder="Name" 
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+            />
+            <input 
+                type='text' 
+                placeholder="Email" 
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+            />
+                <Button type="submit">Edit</Button>
+            </Form>
         </Formcontainer>
         </Wrapper>
 )
@@ -38,6 +69,9 @@ box-shadow: 13px 3px 40px #00000033;
 background-color: #ffffff;
 `;
 
+const Form = styled.form`
+
+`;
 const Title = styled.h1`
 color: #262626;
 font-size: 28px;

@@ -8,7 +8,7 @@ import { UserModal } from "./UserModal";
 
 export const Home = () => {
     const auth = useAuth()
-    const [sidebarVisible, setSidebarVisible] = useState(false);
+    const [sidebarVisible, setSidebarVisible] = useState(true);
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
   };

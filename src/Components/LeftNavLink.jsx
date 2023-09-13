@@ -52,10 +52,10 @@ export const LeftNavLink = () => {
 
 const Wrappersection = styled.section`
     width: 30%;
+    max-width: 340px;
     height: 100vh;
     box-shadow: 13px 3px 40px #00000005;
     background-color: #ffffff;
-
 `;
 
 const Wrappertitlecontainer = styled.section`
@@ -80,6 +80,7 @@ const Wrappertitle = styled.section`
 
 const Logo = styled.img`
     width: 60%;
+    max-width: 40px;
 `;
 
 const Title = styled.span`

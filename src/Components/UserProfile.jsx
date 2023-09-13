@@ -1,22 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import profileImage from '../Img/img-profile.png'
 import { useAuth } from "./auth";
+import profileImage from '../Img/18942381.jpg';
 
 export const UserProfile = () => {
     const auth = useAuth()
+    
     const onHandleClick = () => {
         auth.ModalOpen()
     }
-
     return(
         <Wrapperprofile  >
             <Wrapperimage>
-                <Image src={profileImage} alt="User image" />
+                <Image src={auth.avatarImage || profileImage} alt="User image" />
             </Wrapperimage>
             <Wrapperspan>
-                <Name>Gaspar Sio</Name>
-                <Email>sio.gaspar@gmail.com</Email>
+                <Name>{auth.authName ? auth.authName : 'Name'}</Name>
+                <Email>{auth.authEmail ? auth.authEmail : 'Email'}</Email>
             </Wrapperspan>
             <Wrapperbutton >
                 <Button onClick={onHandleClick}>Edit</Button>
