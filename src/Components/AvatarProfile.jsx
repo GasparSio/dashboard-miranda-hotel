@@ -24,7 +24,6 @@ export const AvatarProfile = ({ setSelectedAvatarUrl }) => {
         src={avatarUrl}
         round
         onClick={() => {
-          // Simplemente puedes abrir el diálogo de selección de archivo al hacer clic en el avatar
           document.getElementById('avatarInput').click();
         }}
       />

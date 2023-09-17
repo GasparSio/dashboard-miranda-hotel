@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Login } from './Components/Login';
 import { Home } from './Components/Home';
-import { Dashboard } from './Components/Dashboard';
+import { Dashboard } from './Components/Dashboard/Dashboard';
 import { Rooms } from './Components/Rooms';
 import { Bookings } from './Components/Bookings';
 import { Users } from './Components/Users';
@@ -14,8 +14,8 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path='/' element={<Login/>} />
-          <Route path='/dashboard-miranda' element={<Login/>} />
+          <Route path='/' element={<Home/>} />
+          <Route path='/dashboard-miranda' element={<Home/>} />
           <Route path='/home' element={<Home/>}>
             <Route path='dashboard' element={<Dashboard/>} />  
             <Route path='bookings' element={<Bookings/>} />  
