@@ -1,0 +1,10 @@
+[{"id":"a2fe1e23-1f41-4b49-8803-b811b97903eb","room_name":"Room 1911","bed_type":"single bed","room_floor":"1nd Floor","facilities":"Wifi - Safety locker - Spa","price":701, "status": "Available"},
+{"id":"03917c7d-0b66-4c09-8217-6f6419191574","room_name":"Room 1831","bed_type":"doble bed","room_floor":"2nd Floor","facilities":"Wifi - Safety locker - Spa","price":2031, "status": "Available"},
+{"id":"a4d59cb2-37ef-48df-aa04-a1b3ab6618f4","room_name":"Room 1911","bed_type":"single bed","room_floor":"3nd Floor","facilities":"Wifi - Safety locker - Spa","price":2124, "status": "Available"},
+{"id":"9262e1fb-c0f9-4e0d-b9aa-3d305a6c1a97","room_name":"Room 2130","bed_type":"doble bed","room_floor":"4nd Floor","facilities":"Wifi - Safety locker - Spa","price":705, "status": "Available"},
+{"id":"d938b577-bb87-4b51-ad9b-971f76251b30","room_name":"Room 2132","bed_type":"doble bed","room_floor":"7th Floor","facilities":"Wifi - Safety locker - Spa","price":2505, "status": "Available"},
+{"id":"1de73150-178b-47c1-89d4-21ee8ce65bb0","room_name":"Room 1912","bed_type":"single bed","room_floor":"1nd Floor","facilities":"Wifi - Safety locker - Spa","price":750, "status": "Available"},
+{"id":"fd2bf6ee-cab1-4026-93b1-e80f4259510d","room_name":"Room 2140","bed_type":"doble bed","room_floor":"6nd Floor","facilities":"Wifi - Safety locker - Spa","price":8, "status": "Available"},
+{"id":"25dbd1c4-eaa6-45a9-8586-966b2fd723a6","room_name":"Room 2150","bed_type":"single bed","room_floor":"6nd Floor","facilities":"Wifi - Safety locker - Spa","price":540, "status": "Available"},
+{"id":"7d0b88af-ebfc-4a4d-84d7-c885e64fe7c2","room_name":"Room 2112","bed_type":"doble bed","room_floor":"5nd Floor","facilities":"Wifi - Safety locker - Spa","price":2748, "status": "Available"},
+{"id":"49bbc2b6-68b6-4aca-8d1e-e3a2cf755e3a","room_name":"Room 1120","bed_type":"single bed","room_floor":"9nd Floor","facilities":"Wifi - Safety locker - Spa","price":1318, "status": "Available"}]
