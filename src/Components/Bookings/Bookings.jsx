@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export const Rooms = ({data}) => {
+export const Bookings = ({data}) => {
   const rowsPerPage = 10; // Número de filas por página
   const totalPages = Math.ceil(data.length / rowsPerPage); // Calcular el número total de páginas
 
@@ -27,23 +27,25 @@ export const Rooms = ({data}) => {
             <StyledTable>
                 <TableHeader>
                     <TableRow>
-                        <TableHeaderCell>Room Name</TableHeaderCell>
-                        <TableHeaderCell>Bed Type</TableHeaderCell>
-                        <TableHeaderCell>Room Floor</TableHeaderCell>
-                        <TableHeaderCell>Facilities</TableHeaderCell>
-                        <TableHeaderCell>Price</TableHeaderCell>
+                        <TableHeaderCell>Guest</TableHeaderCell>
+                        <TableHeaderCell>Order Date</TableHeaderCell>
+                        <TableHeaderCell>Check In</TableHeaderCell>
+                        <TableHeaderCell>Check Out</TableHeaderCell>
+                        <TableHeaderCell>Special Request</TableHeaderCell>
+                        <TableHeaderCell>Room Type</TableHeaderCell>
                         <TableHeaderCell>Status</TableHeaderCell>
                     </TableRow>
                 </TableHeader>
                 <tbody>
                     {currentData.map((item) => (
                     <TableRow key={item.id}>
-                        <TableCell>{item.photo}{item.id}</TableCell>
-                        <TableCell>{item.bedType}</TableCell>
-                        <TableCell>{item.roomNumber}</TableCell>
-                        <TableCell>{item.facilities}</TableCell>
-                        <TableCell>{item.price}</TableCell>
-                        <TableCell>{item.status ? 'Booked' : 'Available'}</TableCell>
+                        <TableCell>`Name: {item.fullname} Id: {item.id}`</TableCell>
+                        <TableCell>{item.orderdate}</TableCell>
+                        <TableCell>{item.checkin}</TableCell>
+                        <TableCell>{item.checkout}</TableCell>
+                        <TableCell>{item.specialrequest}</TableCell>
+                        <TableCell>{item.roomtype}</TableCell>
+                        <TableCell>{item.status ? 'Booked' : 'Refund'}</TableCell>
                     </TableRow>
                     ))}
                 </tbody>

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useAuth } from "./auth";
+import { useAuth } from "./Login-Logout/auth";
 import { AvatarProfile } from "./AvatarProfile";
 
 
 export const UserModal = () => {
     const auth = useAuth()
-    const [name, setName] = useState(auth.authName)
-    const [email, setEmail] = useState(auth.authEmail)
+    const [name, setName] = useState(auth.authState.username)
+    const [email, setEmail] = useState(auth.authState.email)
     const [selectedAvatarUrl, setSelectedAvatarUrl] = useState("");
 
     const onSubmitModal = (event) => {

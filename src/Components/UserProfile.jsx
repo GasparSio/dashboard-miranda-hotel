@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useAuth } from "./auth";
+import { useAuth } from "./Login-Logout/auth";
 import profileImage from '../Img/18942381.jpg';
 
 export const UserProfile = () => {
@@ -15,8 +15,8 @@ export const UserProfile = () => {
                 <Image src={auth.avatarImage || profileImage} alt="User image" />
             </Wrapperimage>
             <Wrapperspan>
-                <Name>{auth.authName ? auth.authName : 'Name'}</Name>
-                <Email>{auth.authEmail ? auth.authEmail : 'Email'}</Email>
+                <Name>{auth.authState.username ? auth.authState.username : 'Name'}</Name>
+                <Email>{auth.authState.email ? auth.authState.email : 'Email'}</Email>
             </Wrapperspan>
             <Wrapperbutton >
                 <Button onClick={onHandleClick}>Edit</Button>

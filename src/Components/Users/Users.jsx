@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export const Rooms = ({data}) => {
+export const Users = ({data}) => {
   const rowsPerPage = 10; // Número de filas por página
   const totalPages = Math.ceil(data.length / rowsPerPage); // Calcular el número total de páginas
 
@@ -27,23 +27,21 @@ export const Rooms = ({data}) => {
             <StyledTable>
                 <TableHeader>
                     <TableRow>
-                        <TableHeaderCell>Room Name</TableHeaderCell>
-                        <TableHeaderCell>Bed Type</TableHeaderCell>
-                        <TableHeaderCell>Room Floor</TableHeaderCell>
-                        <TableHeaderCell>Facilities</TableHeaderCell>
-                        <TableHeaderCell>Price</TableHeaderCell>
+                        <TableHeaderCell>Name</TableHeaderCell>
+                        <TableHeaderCell>Job Desk</TableHeaderCell>
+                        <TableHeaderCell>Schedule</TableHeaderCell>
+                        <TableHeaderCell>Contact</TableHeaderCell>
                         <TableHeaderCell>Status</TableHeaderCell>
                     </TableRow>
                 </TableHeader>
                 <tbody>
                     {currentData.map((item) => (
                     <TableRow key={item.id}>
-                        <TableCell>{item.photo}{item.id}</TableCell>
-                        <TableCell>{item.bedType}</TableCell>
-                        <TableCell>{item.roomNumber}</TableCell>
-                        <TableCell>{item.facilities}</TableCell>
-                        <TableCell>{item.price}</TableCell>
-                        <TableCell>{item.status ? 'Booked' : 'Available'}</TableCell>
+                        <TableCell>{item.photo}{item.fullname}{item.id}{item.startdate}</TableCell>
+                        <TableCell>{item.description}</TableCell>
+                        <TableCell>{item.startdate}</TableCell>
+                        <TableCell>{item.contact}</TableCell>
+                        <TableCell>{item.status ? 'Active' : 'Inactive'}</TableCell>
                     </TableRow>
                     ))}
                 </tbody>

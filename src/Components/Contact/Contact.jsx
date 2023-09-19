@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export const Rooms = ({data}) => {
+export const Contact = ({data}) => {
   const rowsPerPage = 10; // Número de filas por página
   const totalPages = Math.ceil(data.length / rowsPerPage); // Calcular el número total de páginas
 
@@ -27,23 +27,21 @@ export const Rooms = ({data}) => {
             <StyledTable>
                 <TableHeader>
                     <TableRow>
-                        <TableHeaderCell>Room Name</TableHeaderCell>
-                        <TableHeaderCell>Bed Type</TableHeaderCell>
-                        <TableHeaderCell>Room Floor</TableHeaderCell>
-                        <TableHeaderCell>Facilities</TableHeaderCell>
-                        <TableHeaderCell>Price</TableHeaderCell>
-                        <TableHeaderCell>Status</TableHeaderCell>
+                        <TableHeaderCell>Order Id</TableHeaderCell>
+                        <TableHeaderCell>Date</TableHeaderCell>
+                        <TableHeaderCell>Customer</TableHeaderCell>
+                        <TableHeaderCell>Comment</TableHeaderCell>
+                        <TableHeaderCell>Action</TableHeaderCell>
                     </TableRow>
                 </TableHeader>
                 <tbody>
                     {currentData.map((item) => (
                     <TableRow key={item.id}>
-                        <TableCell>{item.photo}{item.id}</TableCell>
-                        <TableCell>{item.bedType}</TableCell>
-                        <TableCell>{item.roomNumber}</TableCell>
-                        <TableCell>{item.facilities}</TableCell>
-                        <TableCell>{item.price}</TableCell>
-                        <TableCell>{item.status ? 'Booked' : 'Available'}</TableCell>
+                        <TableCell>{item.id}</TableCell>
+                        <TableCell>{item.date}</TableCell>
+                        <TableCell>Name: {item.fullname} Email: {item.email} Phone: {item.phone} </TableCell>
+                        <TableCell>Asunto: {item.asunto} Comment: {item.comment} </TableCell>
+                        <TableCell>{item.archived ? 'Archive' : 'Archive'}</TableCell>
                     </TableRow>
                     ))}
                 </tbody>

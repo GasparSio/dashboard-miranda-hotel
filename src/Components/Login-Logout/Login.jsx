@@ -1,43 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { useAuth } from "./auth";
+import { useNavigate } from "react-router-dom";
+// import { useAuthContext } from "../Login-Logout/useReducer";
 
-const userCode = 'Gaspar';
-const passCode = 'Sio';
+const userCode = 'gas';
+const emailCode = 'sio';
 
 export const Login = () => {
-    const auth = useAuth();
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const navigate = useNavigate();
+    const { authState, login } = useAuth();
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
 
-    const login = (e) => {
-        e.preventDefault();
-        if(username === userCode && password === passCode){
-            auth.login({ username });
-        }else{
-            alert('Wrong username or password')
+    useEffect(() => {
+        if (authState.isAuthenticated) {
+            navigate('/home/dashboard');
         }
+      }, [authState.isAuthenticated, navigate]);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (username === userCode && email === emailCode) {
+      login({ username, email });
+      localStorage.setItem("loggedInUser", JSON.stringify({ username }));
+    } else {
+      alert('Wrong username or password');
     }
+  };
     return(
         <Wrapper>
             <Formcontainer>
                 <Title>Hello!</Title>
-                <Form onSubmit={login}>
+                <Form onSubmit={handleLogin}>
                     <Input 
                         value={username}
                         placeholder="Username"
                         onChange={(e) => setUsername(e.target.value)}
                         />
                     <Input
-                        value={password}
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={email}
+                        placeholder="Email"
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <Button type="submit">Submit</Button>
                 </Form>
                 <Hardpasscontainer>
                     <Span>Username: Gaspar</Span>
-                    <Span>Password: Sio</Span>
+                    <Span>Email: Sio</Span>
                 </Hardpasscontainer>
             </Formcontainer>
         </Wrapper>

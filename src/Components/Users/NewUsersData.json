@@ -1,0 +1,338 @@
+[
+    {
+        "photo": "",
+        "full-name": "Charlene Lesch",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Charlene33@gmail.com",
+        "phone": "523-682-5619",
+        "description ": "excepteur magna excepteur magna quis ipsum ullamco id anim proident nostrud",
+        "start-date": "2023-05-30",
+        "funciones": "ut exercitation minim excepteur deserunt laborum fugiat adipisicing in tempor aute consequat commodo ut veniam velit non minim veniam Lorem",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Ada Yost",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Ada.Yost24@yahoo.com",
+        "phone": "313-440-9275",
+        "description ": "labore anim tempor irure aliqua do nostrud ex qui nisi sunt consequat esse",
+        "start-date": "2023-02-24",
+        "funciones": "ut aliquip ea consequat fugiat sint cillum enim reprehenderit id",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Stephanie Hegmann",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Stephanie83@gmail.com",
+        "phone": "261-832-0744",
+        "description ": "et in culpa ea ut reprehenderit",
+        "start-date": "2023-04-24",
+        "funciones": "commodo velit nisi tempor culpa minim dolor sunt aliquip ad ullamco aliquip irure proident anim adipisicing ut",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Joy Reichert",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Joy_Reichert88@hotmail.com",
+        "phone": "892-966-1059",
+        "description ": "eu aute fugiat in excepteur",
+        "start-date": "2022-09-26",
+        "funciones": "exercitation minim pariatur",
+        "status": false,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Manuel Schoen",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Manuel_Schoen19@yahoo.com",
+        "phone": "573-396-5808",
+        "description ": "aute proident duis dolore aute consectetur adipisicing ullamco id ipsum commodo proident dolor ea",
+        "start-date": "2022-11-05",
+        "funciones": "dolor pariatur adipisicing reprehenderit ex incididunt Lorem excepteur tempor aliquip fugiat adipisicing sit in amet elit fugiat",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Roman Corkery",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Roman58@hotmail.com",
+        "phone": "777-612-3735",
+        "description ": "elit aliqua commodo officia voluptate aliqua",
+        "start-date": "2023-03-20",
+        "funciones": "quis culpa culpa duis cillum consectetur aliqua nisi exercitation pariatur ullamco commodo mollit",
+        "status": false,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Lillie Reilly",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Lillie_Reilly90@hotmail.com",
+        "phone": "456-765-1806",
+        "description ": "fugiat est cillum magna aute reprehenderit proident mollit ut minim consequat deserunt consectetur quis laboris ex",
+        "start-date": "2023-07-10",
+        "funciones": "labore sint aute cupidatat Lorem velit exercitation amet consectetur sunt ut aute fugiat consectetur consequat ut voluptate laboris ad",
+        "status": false,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Hector Upton",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Hector_Upton83@yahoo.com",
+        "phone": "685-949-1202",
+        "description ": "mollit ullamco sint deserunt nostrud nostrud in officia Lorem mollit dolor ex",
+        "start-date": "2023-06-07",
+        "funciones": "minim ex fugiat est",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Darren Schmeler",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Darren_Schmeler70@hotmail.com",
+        "phone": "412-052-3512",
+        "description ": "quis ea commodo nisi amet commodo",
+        "start-date": "2022-12-12",
+        "funciones": "amet quis enim cupidatat id",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Marshall Hudson",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Marshall_Hudson@yahoo.com",
+        "phone": "615-704-4413",
+        "description ": "dolore enim magna consectetur adipisicing est officia anim velit ex voluptate duis non ullamco deserunt",
+        "start-date": "2023-03-24",
+        "funciones": "nisi officia qui ea fugiat eiusmod",
+        "status": false,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Brenda Keebler",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Brenda.Keebler7@hotmail.com",
+        "phone": "643-204-0197",
+        "description ": "nostrud officia velit culpa consequat eu dolor",
+        "start-date": "2022-11-18",
+        "funciones": "ex eu nulla nulla exercitation reprehenderit proident enim quis est esse",
+        "status": false,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Shannon Hyatt",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Shannon6@gmail.com",
+        "phone": "820-361-0655",
+        "description ": "culpa reprehenderit ipsum",
+        "start-date": "2023-08-24",
+        "funciones": "officia proident nulla ullamco excepteur aute labore ea et do reprehenderit dolor cupidatat consectetur id velit sint ad",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Stacy Gerlach",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Stacy.Gerlach30@hotmail.com",
+        "phone": "420-564-3584",
+        "description ": "quis ex ex cillum irure culpa nisi minim consequat velit duis et ut exercitation sunt veniam",
+        "start-date": "2023-05-17",
+        "funciones": "eu veniam cillum ut cupidatat aliquip in mollit",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Randall Bradtke",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Randall13@hotmail.com",
+        "phone": "494-956-3307",
+        "description ": "ea nisi adipisicing veniam minim",
+        "start-date": "2023-01-08",
+        "funciones": "eu culpa ex dolore qui consectetur et eiusmod non sit aliquip in ex excepteur mollit qui non laboris mollit",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Antoinette Thiel",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Antoinette.Thiel@yahoo.com",
+        "phone": "081-675-3898",
+        "description ": "labore eu esse mollit sit quis est sint",
+        "start-date": "2022-11-05",
+        "funciones": "magna laboris ullamco",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Wendy Witting",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Wendy_Witting74@yahoo.com",
+        "phone": "927-312-1954",
+        "description ": "quis excepteur sit do esse consequat nulla velit",
+        "start-date": "2023-03-10",
+        "funciones": "consectetur proident culpa ea ad ullamco",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Morris Towne",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Morris_Towne42@hotmail.com",
+        "phone": "358-651-8802",
+        "description ": "eiusmod anim minim ex consectetur tempor tempor occaecat",
+        "start-date": "2022-11-05",
+        "funciones": "ullamco eiusmod anim",
+        "status": false,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Dominick Pfeffer",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Dominick9@yahoo.com",
+        "phone": "096-539-0476",
+        "description ": "laborum incididunt",
+        "start-date": "2023-09-10",
+        "funciones": "in magna sunt ullamco voluptate nisi quis aliqua dolore mollit ut nostrud commodo mollit elit reprehenderit",
+        "status": true,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Roosevelt Bauch",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Roosevelt_Bauch@hotmail.com",
+        "phone": "364-397-6604",
+        "description ": "ut Lorem mollit culpa officia commodo mollit nulla cillum ut et cupidatat dolore elit dolore sint commodo",
+        "start-date": "2023-05-10",
+        "funciones": "ut Lorem pariatur eiusmod aliqua laborum reprehenderit cupidatat",
+        "status": false,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Lucia Spencer",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Lucia23@gmail.com",
+        "phone": "969-332-3566",
+        "description ": "labore duis veniam laborum id aute aliquip reprehenderit sit deserunt non",
+        "start-date": "2023-06-24",
+        "funciones": "ad incididunt elit dolore aliqua officia duis elit occaecat adipisicing laborum ea non",
+        "status": false,
+        "password ": ""
+    },
+    {
+        "photo": "",
+        "full-name": "Ora Yundt",
+        "puesto": {
+            "op1": "Manager",
+            "op2": "Recepción ",
+            "op3": "Servicio de Habitaciones"
+        },
+        "email": "Ora_Yundt@hotmail.com",
+        "phone": "164-642-3848",
+        "description ": "ea minim commodo nostrud amet qui et consectetur sint minim officia voluptate sunt culpa pariatur sint do quis officia",
+        "start-date": "2023-08-18",
+        "funciones": "aute occaecat ex do ullamco est veniam exercitation pariatur ullamco ut duis consequat nostrud laboris aliqua",
+        "status": true,
+        "password ": ""
+    }
+]

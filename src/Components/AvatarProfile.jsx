@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Avatar from 'react-avatar';
 import profileImage from '../Img/18942381.jpg';
-import { useAuth } from './auth';
+import { useAuth } from './Login-Logout/auth';
 
 export const AvatarProfile = ({ setSelectedAvatarUrl }) => {
     const auth = useAuth()

@@ -1,0 +1,233 @@
+[
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 2,
+        "description": "occaecat sit non irure est deserunt sint",
+        "offer ": false,
+        "price ": "474,00 €",
+        "discount ": 18,
+        "cancellation": "in id aliquip labore minim excepteur mollit ex cillum irure duis in duis fugiat",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": false,
+            "spa": true
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 8,
+        "description": "occaecat laboris irure eu sunt voluptate officia labore",
+        "offer ": true,
+        "price ": "629,23 €",
+        "discount ": 46,
+        "cancellation": "consectetur laborum id laborum nulla officia sit dolore officia nostrud",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": true,
+            "spa": false
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 76,
+        "description": "est duis pariatur esse sit",
+        "offer ": false,
+        "price ": "610,22 €",
+        "discount ": 19,
+        "cancellation": "adipisicing qui sunt consequat amet magna eiusmod labore nisi duis pariatur velit pariatur labore aliqua",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": true,
+            "spa": true
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 21,
+        "description": "cupidatat incididunt culpa fugiat eiusmod",
+        "offer ": true,
+        "price ": "352,67 €",
+        "discount ": 38,
+        "cancellation": "dolore sint ad velit eiusmod qui aute proident reprehenderit enim tempor culpa commodo",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": true,
+            "spa": false
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 2,
+        "description": "aute sint ea enim sit consequat eiusmod qui duis qui",
+        "offer ": true,
+        "price ": "131,11 €",
+        "discount ": 30,
+        "cancellation": "in consequat eiusmod adipisicing reprehenderit officia veniam non esse occaecat velit minim sit",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": true,
+            "spa": false
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 73,
+        "description": "aliqua do cillum velit in labore eiusmod",
+        "offer ": false,
+        "price ": "726,43 €",
+        "discount ": 33,
+        "cancellation": "consequat ad incididunt nisi anim velit fugiat ad fugiat reprehenderit ea",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": false,
+            "spa": false
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 6,
+        "description": "pariatur sit anim nostrud mollit tempor eiusmod ad velit esse",
+        "offer ": true,
+        "price ": "603,82 €",
+        "discount ": 23,
+        "cancellation": "mollit fugiat sunt ad nisi exercitation reprehenderit duis cillum officia deserunt",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": true,
+            "spa": false
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 33,
+        "description": "elit id nisi reprehenderit nisi proident reprehenderit veniam",
+        "offer ": true,
+        "price ": "535,51 €",
+        "discount ": 41,
+        "cancellation": "officia eu reprehenderit amet dolore voluptate ullamco magna proident ipsum fugiat labore consectetur Lorem",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": false,
+            "spa": false
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 46,
+        "description": "irure mollit non minim commodo ad eu pariatur sunt sunt",
+        "offer ": false,
+        "price ": "783,99 €",
+        "discount ": 27,
+        "cancellation": "dolor veniam velit sint tempor pariatur excepteur irure in sint magna irure ullamco sint quis",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": false,
+            "spa": false
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 86,
+        "description": "nostrud aute ex aute occaecat dolore nostrud",
+        "offer ": true,
+        "price ": "745,54 €",
+        "discount ": 30,
+        "cancellation": "magna nostrud eu occaecat exercitation reprehenderit laborum in pariatur adipisicing nostrud officia ipsum nostrud ea",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": true,
+            "spa": true
+        }
+    },
+    {
+        "photos": "",
+        "room-type": {
+            "single-bed": "Single Bed",
+            "double-bed": "Double bed",
+            "double-superior": "Double Superior",
+            "suite": "Suite"
+        },
+        "room-number": 94,
+        "description": "commodo aliqua voluptate proident cupidatat",
+        "offer ": false,
+        "price ": "657,41 €",
+        "discount ": 29,
+        "cancellation": "commodo magna nisi adipisicing ullamco adipisicing consequat esse occaecat mollit culpa incididunt aliquip",
+        "amenities ": {
+            "tv": true,
+            "shower": true,
+            "seesight": false,
+            "spa": true
+        }
+    }
+]
