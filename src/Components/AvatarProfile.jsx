@@ -5,8 +5,8 @@ import { useAuth } from './Login-Logout/auth';
 
 export const AvatarProfile = ({ setSelectedAvatarUrl }) => {
     const auth = useAuth()
-    const [avatarUrl, setAvatarUrl] = useState(auth.avatarImage || profileImage); // Ruta de la imagen por defecto
-
+    const [avatarUrl, setAvatarUrl] = useState(localStorage.getItem("avatarImage") || profileImage); // Ruta de la imagen por defecto
+    
     const handleAvatarChange = (e) => {
     const file = e.target.files[0];
 
@@ -15,6 +15,7 @@ export const AvatarProfile = ({ setSelectedAvatarUrl }) => {
         setAvatarUrl(imageUrl);
         setSelectedAvatarUrl(imageUrl);
         localStorage.setItem('avatarImage', imageUrl);
+        console.log("avatar", avatarUrl, "avatar2", imageUrl);
     }
     };
 

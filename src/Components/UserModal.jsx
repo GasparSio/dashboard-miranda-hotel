@@ -8,20 +8,22 @@ export const UserModal = () => {
     const auth = useAuth()
     const [name, setName] = useState(auth.authState.username)
     const [email, setEmail] = useState(auth.authState.email)
-    const [selectedAvatarUrl, setSelectedAvatarUrl] = useState("");
+    const [selectedAvatarUrl, setSelectedAvatarUrl] = useState(auth.authState.image);
+    console.log(name, email);
 
     const onSubmitModal = (event) => {
         event.preventDefault();
-        if (name !== auth.authName) {
-          auth.ChangeName({ name });
+        if (name !== auth.authState.username || email !== auth.authState.email || selectedAvatarUrl !== auth.authState.image) {
+          auth.updateUser(name || "", email || "", selectedAvatarUrl || "");
         }
-        if (email !== auth.authEmail) {
-          auth.ChangeEmail({ email });
-        }
-        if (selectedAvatarUrl) {
-          auth.AvatarImageProfile({ avatarUrl: selectedAvatarUrl });
-        }
+        // if (email !== auth.authState.email) {
+        //   auth.ChangeEmail({ email });
+        // }
+        // if (selectedAvatarUrl) {
+        //   auth.AvatarImageProfile({ avatarUrl: selectedAvatarUrl });
+        // }
         auth.ModalClose();
+        console.log("onsubmitmodal, photo: ", selectedAvatarUrl);
     }
 
     return(
@@ -35,7 +37,7 @@ export const UserModal = () => {
                   id="name"
                   type='text' 
                   placeholder="Write your name" 
-                  value={name}
+                  value={name || ""}
                   onChange={(event) => setName(event.target.value)}
               />
               <Label htmlFor='email'>Email</Label>
@@ -43,11 +45,11 @@ export const UserModal = () => {
                   id='email'
                   type='text' 
                   placeholder="Write your email" 
-                  value={email}
+                  value={email || ""}
                   onChange={(event) => setEmail(event.target.value)}
               />
             </InputContainer>
-                <Button type="submit">Edit</Button>
+                <Button type="submit">Edit and Close</Button>
             </Form>
         </Wrapper>
 )

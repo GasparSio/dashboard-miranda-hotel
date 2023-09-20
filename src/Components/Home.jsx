@@ -7,14 +7,16 @@ import { Login } from "./Login-Logout/Login";
 import { UserModal } from "./UserModal";
 
 export const Home = () => {
-    const auth = useAuth()
+    const { authState, openModal } = useAuth();
+
     const [sidebarVisible, setSidebarVisible] = useState(true);
+    
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
 
-    if (!auth.authState.isAuthenticated) {
+    if (!authState.isAuthenticated) {
         return <Login />;
     }
     return(
@@ -22,7 +24,7 @@ export const Home = () => {
             <SupNavLink togglesidebar={toggleSidebar} sidebarvisible={sidebarVisible.toString()}/>
             {sidebarVisible && <LeftNavLink/>} 
             <Outlet/>
-            {(auth.openModal) && <UserModal />}
+            {(openModal) && <UserModal />}
         </div>
     )
 }

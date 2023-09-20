@@ -23,7 +23,8 @@ export const Login = () => {
     e.preventDefault();
     if (username === userCode && email === emailCode) {
       login({ username, email });
-      localStorage.setItem("loggedInUser", JSON.stringify({ username }));
+      localStorage.setItem("loggedInUser", JSON.stringify({ username, email }));
+      console.log('Datos guardados en localstorage al hace rlogin', username, email);
     } else {
       alert('Wrong username or password');
     }

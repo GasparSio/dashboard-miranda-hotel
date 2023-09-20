@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import profileImage from '../../Img/18942381.jpg'
+import profileImage from '../../Img/18942381.jpg'
 
 const AuthContext = React.createContext();
 
@@ -8,7 +8,7 @@ const initialState = {
   isAuthenticated: false,
   username: null,
   email: null,
-  image: null,
+  image: profileImage,
 }
 
 const authReducer = (state, action) => {
@@ -17,12 +17,16 @@ const authReducer = (state, action) => {
       return { isAuthenticated: true, username: action.payload.username, email: action.payload.email };
     case 'logout':
       return { isAuthenticated: false, username: null, email: null };
+    case 'updateuser':
+      console.log("updateuser Reducer, estados: ", state.username, state.email, state.image);
+      return {isAuthenticated: true,  username: action.payload.username, email: action.payload.email, image: action.payload.image };
     default:
       return state;
   }
 };
 
 export const AuthProvider = ({ children }) => {
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const [authState, dispatch] = useReducer(authReducer, initialState);
 
@@ -31,8 +35,9 @@ export const AuthProvider = ({ children }) => {
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (loggedInUser) {
       const user = JSON.parse(loggedInUser);
-      dispatch({ type: 'login', payload: { username: user.username } });
+      dispatch({ type: 'login', payload: { username: user.username, email: user.email } });
     }
+
   }, []);
 
   //funcion de login
@@ -49,8 +54,24 @@ export const AuthProvider = ({ children }) => {
     navigate('/');
     localStorage.removeItem("loggedInUser");
   };
+  const ModalOpen = () => {
+    setOpenModal(true)
+  };
+  const ModalClose = () => {
+    setOpenModal(false)
+  };
+  const updateUser = (username, email, image) => {
+    dispatch({type: 'updateuser', payload: { username, email, image }})
+    localStorage.setItem("loggedInUser", JSON.stringify({ 
+      username: username || authState.username, 
+      email: email || authState.email,
+    }));
+    localStorage.getItem("avatarImage")
+    console.log("localstorage in updateusers:", localStorage.getItem("avatarImage"));
+  };
 
-  const auth = { authState, login, logout };
+
+  const auth = { authState, login, logout, ModalOpen, ModalClose, updateUser, openModal };
 
   return (
     <AuthContext.Provider value={auth}>

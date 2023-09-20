@@ -43,7 +43,6 @@ export const LeftNavLink = () => {
                     </Wrapperlink>
                 </Wrappernavlinks>
                 <UserProfile/>
-                
             </Wrappersection>
 
         </>
