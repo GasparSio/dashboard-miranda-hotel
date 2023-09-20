@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useAuth } from "./Login-Logout/auth";
-import profileImage from '../Img/18942381.jpg';
+import { useAuth } from "../Login-Logout/auth";
+import profileImage from '../../Img/18942381.jpg';
 
 export const UserProfile = () => {
     const auth = useAuth()

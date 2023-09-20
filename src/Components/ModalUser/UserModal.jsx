@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useAuth } from "./Login-Logout/auth";
+import { useAuth } from "../Login-Logout/auth";
 import { AvatarProfile } from "./AvatarProfile";
 
 

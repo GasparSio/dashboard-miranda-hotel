@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Avatar from 'react-avatar';
-import profileImage from '../Img/18942381.jpg';
-import { useAuth } from './Login-Logout/auth';
+import profileImage from '../../Img/18942381.jpg';
+// import { useAuth } from '../Login-Logout/auth';
 
 export const AvatarProfile = ({ setSelectedAvatarUrl }) => {
-    const auth = useAuth()
+    // const auth = useAuth()
     const [avatarUrl, setAvatarUrl] = useState(localStorage.getItem("avatarImage") || profileImage); // Ruta de la imagen por defecto
     
     const handleAvatarChange = (e) => {

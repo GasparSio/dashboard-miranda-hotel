@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { LeftNavLink } from './LeftNavLink';
-import { SupNavLink } from './SupNavLink';
-import { useAuth } from "./Login-Logout/auth";
-import { Login } from "./Login-Logout/Login";
-import { UserModal } from "./UserModal";
+import { LeftNavLink } from '../LeftNavLink/LeftNavLink';
+import { SupNavLink } from '../SupNavLink/SupNavLink';
+import { useAuth } from "../Login-Logout/auth";
+import { Login } from "../Login-Logout/Login";
+import { UserModal } from "../ModalUser/UserModal";
 
 export const Home = () => {
     const { authState, openModal } = useAuth();
