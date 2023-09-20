@@ -19,7 +19,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/dashboard-miranda' element={<Home/>} />
+          <Route path='/dashboard-miranda-hotel' element={<Home/>} />
           <Route path='/home' element={<Home/>}>
             <Route path='dashboard' element={<Dashboard/>} />  
             <Route path='bookings' element={<Bookings data={bookingdata}/>} />  
