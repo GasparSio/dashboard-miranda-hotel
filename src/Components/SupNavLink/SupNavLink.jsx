@@ -5,9 +5,12 @@ import { PiArrowsLeftRightFill } from 'react-icons/pi';
 import styled from 'styled-components';
 import { useAuth } from '../Login-Logout/auth';
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementWidthSupNav, decrementWidthSupNav } from '../../features/visual/visualSlice'
 
-
-export const SupNavLink = ({ togglesidebar, sidebarvisible }) => {
+export const SupNavLink = () => {
+    const dispatch = useDispatch();
+    const width = useSelector((state) => state.visual.width);
     const location = useLocation(); // Obtiene la ubicación actual
     const sectionName = location.pathname.split('/').pop(); // Obtiene el último segmento de la ruta
     const { logout } = useAuth();
@@ -15,10 +18,19 @@ export const SupNavLink = ({ togglesidebar, sidebarvisible }) => {
     const onlogoutUser = () => {
         logout();
     }
+    const handleWidthChange = () => {
+        if (width === '75%'){
+            dispatch(incrementWidthSupNav())
+            console.log('increment');
+        }else{
+            dispatch(decrementWidthSupNav())
+            console.log('decrement');
+        }
+    }
     return(
-        <Wrappersupnavlink sidebarvisible={sidebarvisible}>
+        <Wrappersupnavlink width={width}>
             <Wrapperhambmenu>
-                <PiArrowsLeftRightFillicon onClick={togglesidebar}/>
+                <PiArrowsLeftRightFillicon onClick={handleWidthChange}/>
                 <Title>{sectionName}</Title>
             </Wrapperhambmenu>
             <Wrappernavicons>
@@ -36,10 +48,11 @@ const Wrappersupnavlink = styled.section`
     position: absolute;
     top: 0;
     right: 0;
+    width: ${(props) => props.width};
     display: flex;
-    width: ${(props) => (props.sidebarvisible === 'false' ? '100%' : '70%')};
     box-shadow: 0px 3px 10px #00000005;
     transition: all 0.2s;
+    background-color: #ffffff;
 `;
 const Wrapperhambmenu = styled.section`
     display: flex;
@@ -63,7 +76,7 @@ const Wrappernavicons = styled.section`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 36%;
+    width: 40%;
 `
 const MdLogouticon = styled(MdLogout)`
     color: #799283;

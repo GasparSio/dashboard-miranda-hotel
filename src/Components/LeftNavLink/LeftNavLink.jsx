@@ -5,12 +5,14 @@ import logo from '../../Img/icon-hotel.png';
 import { MdVpnKey, MdEditCalendar, MdPhone, MdOutlinePermContactCalendar } from 'react-icons/md';
 import { BsFillClipboardDataFill } from 'react-icons/bs';
 import { UserProfile } from "./UserProfile";
+import { useSelector } from "react-redux";
 
 export const LeftNavLink = () => {
+    const width = useSelector((state) => state.visual.width);
 
     return (
         <>
-            <Wrappersection>
+            <Wrappersection width={width}>
                 <Wrappertitlecontainer>
                     <Wrapperimg>
                         <Logo src={logo} alt="Icon hotel" />
@@ -50,11 +52,13 @@ export const LeftNavLink = () => {
 }
 
 const Wrappersection = styled.section`
-    width: 30%;
-    max-width: 340px;
+    position: absolute;
+    top: 0;
+    width: 25%;
     height: 100vh;
     box-shadow: 13px 3px 40px #00000005;
     background-color: #ffffff;
+    display: ${(props) => (props.width === '75%' ? 'block' : 'none')};
 `;
 
 const Wrappertitlecontainer = styled.section`
