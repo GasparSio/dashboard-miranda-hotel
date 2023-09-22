@@ -1,11 +1,13 @@
 import React from "react";
 import { BsCheckCircle } from "react-icons/bs";
 import { RxCrossCircled } from "react-icons/rx";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 export const Reviews = () => {
+    const width = useSelector(state => state.visual.width)
     return(
-        <Wrapperdashboardcontainer>
+        <Wrapperdashboardcontainer width={width}>
             <Title>Latest Review by Customers</Title>
             <CardContainer>
                 <ContentContainer>
@@ -29,9 +31,9 @@ export const Reviews = () => {
 
 const Wrapperdashboardcontainer = styled.section`
     position: absolute;
-    bottom: 150px;
-    left: 25%;
-    width: 77%;
+    bottom: 0;
+    right: 0;
+    width: ${(props) => props.width === '75%' ? '75%' : '100%'};
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

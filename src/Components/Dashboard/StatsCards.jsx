@@ -4,10 +4,13 @@ import { FaBed } from 'react-icons/fa';
 import { BsFillCalendar2CheckFill } from 'react-icons/bs';
 import { TbLogin2 } from 'react-icons/tb';
 import { TbLogout2 } from 'react-icons/tb';
+import { useSelector } from "react-redux";
 
 export const StatsCards = () => {
+    const width = useSelector(state => state.visual.width)
+
     return (
-        <Wrapperdashboardcontainer>
+        <Wrapperdashboardcontainer width={width}>
             <CardContainer>
                 <IconBedContainer>
                     <IconBed />
@@ -48,12 +51,11 @@ export const StatsCards = () => {
     )
 }
 
-
 const Wrapperdashboardcontainer = styled.section`
     position: absolute;
     top: 110px;
-    left: 25%;
-    width: 77%;
+    right: 0%;
+    width: ${(props) => props.width === '75%' ? '75%' : '100%'};
     display: flex;
     justify-content: space-evenly;
 `;
@@ -65,6 +67,7 @@ const CardContainer = styled.div`
     box-shadow: 0px 4px 4px #00000005;
     background-color: #FFFFFF;
     justify-content: space-evenly;
+    border-radius: 10px;
 `;
 const IconBedContainer = styled.div`
     width: 20%;

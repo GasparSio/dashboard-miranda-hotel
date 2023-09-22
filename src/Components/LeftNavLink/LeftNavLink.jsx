@@ -6,6 +6,7 @@ import { MdVpnKey, MdEditCalendar, MdPhone, MdOutlinePermContactCalendar } from 
 import { BsFillClipboardDataFill } from 'react-icons/bs';
 import { UserProfile } from "./UserProfile";
 import { useSelector } from "react-redux";
+import { AllRights } from "./AllRights";
 
 export const LeftNavLink = () => {
     const width = useSelector((state) => state.visual.width);
@@ -45,6 +46,7 @@ export const LeftNavLink = () => {
                     </Wrapperlink>
                 </Wrappernavlinks>
                 <UserProfile/>
+                <AllRights/>
             </Wrappersection>
 
         </>
@@ -54,6 +56,7 @@ export const LeftNavLink = () => {
 const Wrappersection = styled.section`
     position: absolute;
     top: 0;
+    bottom: 0;
     width: 25%;
     height: 100vh;
     box-shadow: 13px 3px 40px #00000005;

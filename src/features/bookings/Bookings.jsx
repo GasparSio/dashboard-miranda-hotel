@@ -44,14 +44,14 @@ export const Bookings = () => {
           <StyledTable>
               <TableHeader>
                 <TableRow>
-                    <TableHeaderCell>Guest</TableHeaderCell>
+                    <TableHeaderCellFirst>Guest</TableHeaderCellFirst>
                     <TableHeaderCell>Order Date</TableHeaderCell>
                     <TableHeaderCell>Check In</TableHeaderCell>
                     <TableHeaderCell>Check Out</TableHeaderCell>
                     <TableHeaderCell>Special Request</TableHeaderCell>
                     <TableHeaderCell>Room Type</TableHeaderCell>
                     <TableHeaderCell>Status</TableHeaderCell>
-                    <TableHeaderCell>Delete</TableHeaderCell>
+                    <TableHeaderCellLast>Delete</TableHeaderCellLast>
                 </TableRow>
 
               </TableHeader>
@@ -152,6 +152,26 @@ const TableHeaderCell = styled.th`
   color: #393939;
   width: 10%;
   padding-left: 20px;
+`;
+const TableHeaderCellFirst = styled.th`
+  text-align: left;
+  font-family: Poppins;
+  font-size: 16px;
+  font-family: 600;
+  color: #393939;
+  width: 10%;
+  padding-left: 20px;
+  border-top-left-radius: 40px;
+`;
+const TableHeaderCellLast = styled.th`
+  text-align: left;
+  font-family: Poppins;
+  font-size: 16px;
+  font-family: 600;
+  color: #393939;
+  width: 10%;
+  padding-left: 20px;
+  border-top-right-radius: 40px;
 `;
 const TableCell = styled.td`
   text-align: left;

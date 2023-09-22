@@ -44,12 +44,12 @@ export const Users = () => {
           <StyledTable>
               <TableHeader>
                   <TableRow>
-                    <TableHeaderCell>Name</TableHeaderCell>
+                    <TableHeaderCellFirst>Name</TableHeaderCellFirst>
                     <TableHeaderCell>Job Desk</TableHeaderCell>
                     <TableHeaderCell>Schedule</TableHeaderCell>
                     <TableHeaderCell>Contact</TableHeaderCell>
                     <TableHeaderCell>Status</TableHeaderCell>
-                    <TableHeaderCell>Delete</TableHeaderCell>
+                    <TableHeaderCellLast>Delete</TableHeaderCellLast>
                   </TableRow>
               </TableHeader>
               <tbody>
@@ -147,6 +147,26 @@ const TableHeaderCell = styled.th`
   color: #393939;
   width: 10%;
   padding-left: 20px;
+`;
+const TableHeaderCellFirst = styled.th`
+  text-align: left;
+  font-family: Poppins;
+  font-size: 16px;
+  font-family: 600;
+  color: #393939;
+  width: 10%;
+  padding-left: 20px;
+  border-top-left-radius: 40px;
+`;
+const TableHeaderCellLast = styled.th`
+  text-align: left;
+  font-family: Poppins;
+  font-size: 16px;
+  font-family: 600;
+  color: #393939;
+  width: 10%;
+  padding-left: 20px;
+  border-top-right-radius: 40px;
 `;
 const TableCell = styled.td`
   text-align: left;

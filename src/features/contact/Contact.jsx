@@ -44,12 +44,12 @@ export const Contact = () => {
           <StyledTable>
               <TableHeader>
                   <TableRow>
-                    <TableHeaderCell>Order Id</TableHeaderCell>
+                    <TableHeaderCellFirst>Order Id</TableHeaderCellFirst>
                     <TableHeaderCell>Date</TableHeaderCell>
                     <TableHeaderCell>Customer</TableHeaderCell>
                     <TableHeaderCell>Comment</TableHeaderCell>
                     <TableHeaderCell>Action</TableHeaderCell>
-                    <TableHeaderCell>Delete</TableHeaderCell>
+                    <TableHeaderCellLast>Delete</TableHeaderCellLast>
                   </TableRow>
               </TableHeader>
               <tbody>
@@ -157,6 +157,26 @@ const TableCell = styled.td`
   color: #799283;
   width: 10%;
   padding-left: 20px;
+`;
+const TableHeaderCellFirst = styled.th`
+  text-align: left;
+  font-family: Poppins;
+  font-size: 16px;
+  font-family: 600;
+  color: #393939;
+  width: 10%;
+  padding-left: 20px;
+  border-top-left-radius: 40px;
+`;
+const TableHeaderCellLast = styled.th`
+  text-align: left;
+  font-family: Poppins;
+  font-size: 16px;
+  font-family: 600;
+  color: #393939;
+  width: 10%;
+  padding-left: 20px;
+  border-top-right-radius: 40px;
 `;
 const PaginationContainer = styled.div`
   width: 100%;
