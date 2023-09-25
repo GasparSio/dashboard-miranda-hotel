@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteBooking, fetchBookings } from './bookingSlice';
-import { NavContainer } from "../rooms/NavContainer";
+import { deleteBooking, fetchBookings } from '../../features/bookings/bookingSlice';
+import { BookingNavContainer } from "./BookingNavContainer";
 
 
 export const Bookings = () => {
@@ -36,51 +36,49 @@ export const Bookings = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+  return(
+      <Wrapperdashboardcontainer width={width}>
+      <BookingNavContainer/>
+        <StyledTable>
+            <TableHeader>
+              <TableRow>
+                  <TableHeaderCellFirst>Guest</TableHeaderCellFirst>
+                  <TableHeaderCell>Order Date</TableHeaderCell>
+                  <TableHeaderCell>Check In</TableHeaderCell>
+                  <TableHeaderCell>Check Out</TableHeaderCell>
+                  <TableHeaderCell>Special Request</TableHeaderCell>
+                  <TableHeaderCell>Room Type</TableHeaderCell>
+                  <TableHeaderCell>Status</TableHeaderCell>
+                  <TableHeaderCellLast>Delete</TableHeaderCellLast>
+              </TableRow>
 
-
-    return(
-        <Wrapperdashboardcontainer width={width}>
-        <NavContainer/>
-          <StyledTable>
-              <TableHeader>
-                <TableRow>
-                    <TableHeaderCellFirst>Guest</TableHeaderCellFirst>
-                    <TableHeaderCell>Order Date</TableHeaderCell>
-                    <TableHeaderCell>Check In</TableHeaderCell>
-                    <TableHeaderCell>Check Out</TableHeaderCell>
-                    <TableHeaderCell>Special Request</TableHeaderCell>
-                    <TableHeaderCell>Room Type</TableHeaderCell>
-                    <TableHeaderCell>Status</TableHeaderCell>
-                    <TableHeaderCellLast>Delete</TableHeaderCellLast>
+            </TableHeader>
+            <tbody>
+                {currentData.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>`Name: {item.fullname} Id: {item.id}`</TableCell>
+                      <TableCell>{item.orderdate}</TableCell>
+                      <TableCell>{item.checkin}</TableCell>
+                      <TableCell>{item.checkout}</TableCell>
+                      <TableCell>{item.specialrequest}</TableCell>
+                      <TableCell>{item.roomtype}</TableCell>
+                      <TableCell>{item.status ? <Refund/> : <Booked/>}</TableCell>
+                      <TableCell onClick={() => onDeleteRoom(item.id)}>Delete</TableCell>
                 </TableRow>
-
-              </TableHeader>
-              <tbody>
-                  {currentData.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell>`Name: {item.fullname} Id: {item.id}`</TableCell>
-                        <TableCell>{item.orderdate}</TableCell>
-                        <TableCell>{item.checkin}</TableCell>
-                        <TableCell>{item.checkout}</TableCell>
-                        <TableCell>{item.specialrequest}</TableCell>
-                        <TableCell>{item.roomtype}</TableCell>
-                        <TableCell>{item.status ? <Refund/> : <Booked/>}</TableCell>
-                        <TableCell onClick={() => onDeleteRoom(item.id)}>Delete</TableCell>
-                  </TableRow>
-                  ))}
-              </tbody>
-          </StyledTable>
-          <PaginationContainer>
-            <PaginationButton onClick={handlePreviousPage} disabled={currentPage === 1}>
-              Prev
-            </PaginationButton>
-            <PaginationText>Page {currentPage} out of {totalPages}</PaginationText>
-            <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
-              Next
-            </PaginationButton>
-          </PaginationContainer>
-        </Wrapperdashboardcontainer>
-    )
+                ))}
+            </tbody>
+        </StyledTable>
+        <PaginationContainer>
+          <PaginationButton onClick={handlePreviousPage} disabled={currentPage === 1}>
+            Prev
+          </PaginationButton>
+          <PaginationText>Page {currentPage} out of {totalPages}</PaginationText>
+          <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
+            Next
+          </PaginationButton>
+        </PaginationContainer>
+      </Wrapperdashboardcontainer>
+  )
 }
 
 export const Refund = () => {

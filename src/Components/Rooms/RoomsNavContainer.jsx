@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
-import { createRoom } from './roomSlice';
+import { createRoom } from '../../features/rooms/roomSlice';
 // import { useDispatch } from 'react-redux';
 
-export function NavContainer() {
+export function RoomsNavContainer() {
     // const dispatch = useDispatch()
     const newRoomHandler = () => {
         // dispatch(createRoom())

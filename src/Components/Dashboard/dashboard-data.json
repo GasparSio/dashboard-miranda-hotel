@@ -1,14 +1,14 @@
 [
     {
-        "full-name": "Dana Wehner",
+        "fullName": "Dana Wehner",
         "email": "Dana52@gmail.com",
         "phone": "423-897-8582",
         "subject": "Lorem voluptate aute ea",
         "need": "irure dolor amet cupidatat",
-        "status": false
+        "status": true
     },
     {
-        "full-name": "Jermaine Jenkins",
+        "fullName": "Jermaine Jenkins",
         "email": "Jermaine.Jenkins@gmail.com",
         "phone": "791-219-6083",
         "subject": "nulla labore ipsum irure",
@@ -16,15 +16,15 @@
         "status": false
     },
     {
-        "full-name": "Bradford Cruickshank",
+        "fullName": "Bradford Cruickshank",
         "email": "Bradford_Cruickshank2@gmail.com",
         "phone": "978-105-0974",
         "subject": "deserunt sit sint non enim",
         "need": "laborum adipisicing amet in dolor laborum ad incididunt officia voluptate mollit incididunt eu est pariatur magna laborum nulla nisi reprehenderit",
-        "status": false
+        "status": true
     },
     {
-        "full-name": "Olive Kihn",
+        "fullName": "Olive Kihn",
         "email": "Olive74@yahoo.com",
         "phone": "555-619-4236",
         "subject": "nulla quis pariatur",
@@ -32,7 +32,7 @@
         "status": false
     },
     {
-        "full-name": "Johnny Volkman",
+        "fullName": "Johnny Volkman",
         "email": "Johnny.Volkman@yahoo.com",
         "phone": "358-415-4031",
         "subject": "sint eiusmod",
@@ -40,7 +40,7 @@
         "status": false
     },
     {
-        "full-name": "Erica Barrows",
+        "fullName": "Erica Barrows",
         "email": "Erica_Barrows@hotmail.com",
         "phone": "383-314-5226",
         "subject": "aute consectetur",
@@ -48,7 +48,7 @@
         "status": false
     },
     {
-        "full-name": "Alberta Funk",
+        "fullName": "Alberta Funk",
         "email": "Alberta.Funk97@hotmail.com",
         "phone": "570-951-3300",
         "subject": "officia",
@@ -56,7 +56,7 @@
         "status": false
     },
     {
-        "full-name": "Randy Hills",
+        "fullName": "Randy Hills",
         "email": "Randy.Hills@gmail.com",
         "phone": "743-251-9617",
         "subject": "incididunt ut commodo eiusmod",
@@ -64,7 +64,7 @@
         "status": false
     },
     {
-        "full-name": "Justin Kovacek",
+        "fullName": "Justin Kovacek",
         "email": "Justin.Kovacek@yahoo.com",
         "phone": "289-191-7411",
         "subject": "laboris",
@@ -72,7 +72,7 @@
         "status": false
     },
     {
-        "full-name": "Alfredo Weissnat",
+        "fullName": "Alfredo Weissnat",
         "email": "Alfredo_Weissnat52@yahoo.com",
         "phone": "535-292-3173",
         "subject": "ad",
@@ -80,7 +80,7 @@
         "status": false
     },
     {
-        "full-name": "Nellie Johnson",
+        "fullName": "Nellie Johnson",
         "email": "Nellie.Johnson36@yahoo.com",
         "phone": "952-368-0141",
         "subject": "culpa tempor ipsum",

@@ -62,6 +62,7 @@ const Wrappersection = styled.section`
     box-shadow: 13px 3px 40px #00000005;
     background-color: #ffffff;
     display: ${(props) => (props.width === '75%' ? 'block' : 'none')};
+    z-index: 1;
 `;
 
 const Wrappertitlecontainer = styled.section`

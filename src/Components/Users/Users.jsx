@@ -2,30 +2,30 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
-import { NavContainer } from "../rooms/NavContainer";
-import { deleteContact, fetchContacts } from "./contactSlice";
+import { deleteUser, fetchUsers} from '../../features/users/userSlice';
+import { UsersNavContainer } from "./UsersNavContainer";
 
 
-export const Contact = () => {
+export const Users = () => {
   const dispatch = useDispatch()
-  const contacts = useSelector(state => state.contact.contacts);
+  const users = useSelector(state => state.users.users);
   const width = useSelector(state => state.visual.width);
 
   useEffect(() => {
-    dispatch(fetchContacts())
+    dispatch(fetchUsers())
   }, [dispatch])
 
-  const onDeleteRoom = (contactId) => {
-    dispatch(deleteContact(contactId))
+  const onDeleteRoom = (userId) => {
+    dispatch(deleteUser(userId))
   }
 
   //Pagination Logic
   const rowsPerPage = 10; // Número de filas por página
-  const totalPages = Math.ceil(contacts.length / rowsPerPage); // Calcular el número total de páginas
+  const totalPages = Math.ceil(users.length / rowsPerPage); // Calcular el número total de páginas
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const currentData = contacts.slice(startIndex, endIndex);
+  const currentData = users.slice(startIndex, endIndex);
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -40,27 +40,26 @@ export const Contact = () => {
 
     return(
         <Wrapperdashboardcontainer width={width}>
-        <NavContainer/>
+        <UsersNavContainer/>
           <StyledTable>
               <TableHeader>
                   <TableRow>
-                    <TableHeaderCellFirst>Order Id</TableHeaderCellFirst>
-                    <TableHeaderCell>Date</TableHeaderCell>
-                    <TableHeaderCell>Customer</TableHeaderCell>
-                    <TableHeaderCell>Comment</TableHeaderCell>
-                    <TableHeaderCell>Action</TableHeaderCell>
+                    <TableHeaderCellFirst>Name</TableHeaderCellFirst>
+                    <TableHeaderCell>Job Desk</TableHeaderCell>
+                    <TableHeaderCell>Schedule</TableHeaderCell>
+                    <TableHeaderCell>Contact</TableHeaderCell>
+                    <TableHeaderCell>Status</TableHeaderCell>
                     <TableHeaderCellLast>Delete</TableHeaderCellLast>
                   </TableRow>
               </TableHeader>
               <tbody>
                   {currentData.map((item) => (
                     <TableRow key={item.id}>
-
-                      <TableCell>{item.id}</TableCell>
-                      <TableCell>{item.date}</TableCell>
-                      <TableCell>Name: {item.fullname} Email: {item.email} Phone: {item.phone} </TableCell>
-                      <TableCell>Asunto: {item.asunto} Comment: {item.comment} </TableCell>
-                      <TableCell>{item.archived ? <Published/> : <Archived/>}</TableCell>
+                      <TableCell>{item.photo}{item.fullname}{item.id}{item.startdate}</TableCell>
+                      <TableCell>{item.description}</TableCell>
+                      <TableCell>{item.startdate}</TableCell>
+                      <TableCell>{item.contact}</TableCell>
+                      <TableCell>{item.status ? <Active/> : <Inactive/>}</TableCell>
                       <TableCell onClick={() => onDeleteRoom(item.id)}>Delete</TableCell>
                   </TableRow>
                   ))}
@@ -79,9 +78,9 @@ export const Contact = () => {
     )
 }
 
-export const Published = () => {
+export const Active = () => {
   return(
-    <SpanBooked>Published</SpanBooked>
+    <SpanBooked>Active</SpanBooked>
   )
 }
 const SpanBooked = styled.span`
@@ -95,9 +94,9 @@ const SpanBooked = styled.span`
   align-items: center;
 `;
 
-export const Archived = () => {
+export const Inactive = () => {
   return(
-    <SpanAvailable>Archived</SpanAvailable>
+    <SpanAvailable>Inactive</SpanAvailable>
   )
 }
 const SpanAvailable = styled.span`
@@ -149,15 +148,6 @@ const TableHeaderCell = styled.th`
   width: 10%;
   padding-left: 20px;
 `;
-const TableCell = styled.td`
-  text-align: left;
-  font-family: Poppins;
-  font-size: 14px;
-  font-family: 400;
-  color: #799283;
-  width: 10%;
-  padding-left: 20px;
-`;
 const TableHeaderCellFirst = styled.th`
   text-align: left;
   font-family: Poppins;
@@ -177,6 +167,15 @@ const TableHeaderCellLast = styled.th`
   width: 10%;
   padding-left: 20px;
   border-top-right-radius: 40px;
+`;
+const TableCell = styled.td`
+  text-align: left;
+  font-family: Poppins;
+  font-size: 14px;
+  font-family: 400;
+  color: #799283;
+  width: 10%;
+  padding-left: 20px;
 `;
 const PaginationContainer = styled.div`
   width: 100%;

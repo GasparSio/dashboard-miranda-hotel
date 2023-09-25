@@ -2,30 +2,30 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, fetchUsers} from './userSlice';
-import { NavContainer } from "../rooms/NavContainer";
+import { deleteRoom, fetchRooms } from '../../features/rooms/roomSlice';
+import { RoomsNavContainer } from "./RoomsNavContainer";
 
 
-export const Users = () => {
+export const Rooms = () => {
   const dispatch = useDispatch()
-  const users = useSelector(state => state.users.users);
+  const rooms = useSelector(state => state.rooms.rooms);
   const width = useSelector(state => state.visual.width);
 
   useEffect(() => {
-    dispatch(fetchUsers())
+    dispatch(fetchRooms())
   }, [dispatch])
 
-  const onDeleteRoom = (userId) => {
-    dispatch(deleteUser(userId))
+  const onDeleteRoom = (roomId) => {
+    dispatch(deleteRoom(roomId))
   }
 
   //Pagination Logic
   const rowsPerPage = 10; // Número de filas por página
-  const totalPages = Math.ceil(users.length / rowsPerPage); // Calcular el número total de páginas
+  const totalPages = Math.ceil(rooms.length / rowsPerPage); // Calcular el número total de páginas
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const currentData = users.slice(startIndex, endIndex);
+  const currentData = rooms.slice(startIndex, endIndex);
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -40,26 +40,28 @@ export const Users = () => {
 
     return(
         <Wrapperdashboardcontainer width={width}>
-        <NavContainer/>
+        <RoomsNavContainer/>
           <StyledTable>
               <TableHeader>
                   <TableRow>
-                    <TableHeaderCellFirst>Name</TableHeaderCellFirst>
-                    <TableHeaderCell>Job Desk</TableHeaderCell>
-                    <TableHeaderCell>Schedule</TableHeaderCell>
-                    <TableHeaderCell>Contact</TableHeaderCell>
-                    <TableHeaderCell>Status</TableHeaderCell>
-                    <TableHeaderCellLast>Delete</TableHeaderCellLast>
+                      <TableHeaderCellFirst>Room Name</TableHeaderCellFirst>
+                      <TableHeaderCell>Bed Type</TableHeaderCell>
+                      <TableHeaderCell>Facilities</TableHeaderCell>
+                      <TableHeaderCell>Price</TableHeaderCell>
+                      <TableHeaderCell>Offer Price</TableHeaderCell>
+                      <TableHeaderCell>Status</TableHeaderCell>
+                      <TableHeaderCell>Delete</TableHeaderCell>
                   </TableRow>
               </TableHeader>
               <tbody>
                   {currentData.map((item) => (
                     <TableRow key={item.id}>
-                      <TableCell>{item.photo}{item.fullname}{item.id}{item.startdate}</TableCell>
-                      <TableCell>{item.description}</TableCell>
-                      <TableCell>{item.startdate}</TableCell>
-                      <TableCell>{item.contact}</TableCell>
-                      <TableCell>{item.status ? <Active/> : <Inactive/>}</TableCell>
+                      <TableCell>Photo: {item.photo},Room Number: {item.roomNumber}, Room Id:{item.id}</TableCell>
+                      <TableCell>{item.bedType}</TableCell>
+                      <TableCell>{item.facilities}</TableCell>
+                      <TableCell>{item.price}</TableCell>
+                      <TableCell>{item.price}</TableCell>
+                      <TableCell>{item.status ? <Booked/> : <Available/>}</TableCell>
                       <TableCell onClick={() => onDeleteRoom(item.id)}>Delete</TableCell>
                   </TableRow>
                   ))}
@@ -78,9 +80,9 @@ export const Users = () => {
     )
 }
 
-export const Active = () => {
+export const Booked = () => {
   return(
-    <SpanBooked>Active</SpanBooked>
+    <SpanBooked>Booked</SpanBooked>
   )
 }
 const SpanBooked = styled.span`
@@ -94,9 +96,9 @@ const SpanBooked = styled.span`
   align-items: center;
 `;
 
-export const Inactive = () => {
+export const Available = () => {
   return(
-    <SpanAvailable>Inactive</SpanAvailable>
+    <SpanAvailable>Available</SpanAvailable>
   )
 }
 const SpanAvailable = styled.span`
@@ -157,16 +159,6 @@ const TableHeaderCellFirst = styled.th`
   width: 10%;
   padding-left: 20px;
   border-top-left-radius: 40px;
-`;
-const TableHeaderCellLast = styled.th`
-  text-align: left;
-  font-family: Poppins;
-  font-size: 16px;
-  font-family: 600;
-  color: #393939;
-  width: 10%;
-  padding-left: 20px;
-  border-top-right-radius: 40px;
 `;
 const TableCell = styled.td`
   text-align: left;
