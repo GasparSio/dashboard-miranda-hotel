@@ -1,0 +1,22 @@
+.swiper-button-next{
+    background-image: url('../Img/next-icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    right: 0px;
+    width: 35px;
+    height: 35px;
+}
+.swiper-button-prev{
+    background-image: url('../Img/prev-icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    left: 1px;
+    width: 35px;
+    height: 35px;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after{
+    display: none;
+}
