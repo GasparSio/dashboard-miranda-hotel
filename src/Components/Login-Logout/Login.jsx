@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
+import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 // import { useAuthContext } from "../Login-Logout/useReducer";
@@ -12,6 +13,7 @@ export const Login = () => {
     const { authState, login } = useAuth();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    const [wrongUser, setwrongUser] = useState(false);
 
     useEffect(() => {
         if (authState.isAuthenticated) {
@@ -26,7 +28,10 @@ export const Login = () => {
       localStorage.setItem("loggedInUser", JSON.stringify({ username, email }));
       console.log('Datos guardados en localstorage al hace rlogin', username, email);
     } else {
-      alert('Wrong username or password');
+        setwrongUser(true)
+        setTimeout(() => {
+            setwrongUser(false)
+        }, 3000)
     }
   };
     return(
@@ -50,6 +55,7 @@ export const Login = () => {
                 <Hardpasscontainer>
                     <Span>Username: Gaspar</Span>
                     <Span>Email: Sio</Span>
+                    {wrongUser ? <SpanWrong>Wrong Username or Email</SpanWrong> : ''}
                 </Hardpasscontainer>
             </Formcontainer>
         </Wrapper>
@@ -100,6 +106,9 @@ const Input = styled.input`
     height: 30px;
     margin-bottom: 15px;
     padding-left: 10px;
+    &:focus {
+        outline: 2px solid ${colors.primaryGreen};
+    }
 `;
 const Button = styled.button`
     width: 50%;
@@ -108,7 +117,7 @@ const Button = styled.button`
     margin-bottom: 15px;
     border: none;
     background-color: #EBF1EF;
-    color: #135846;
+    color: ${colors.primaryGreen};
     font-size: 15px;
     font-weight: 400;
     padding: 0;
@@ -123,8 +132,17 @@ const Hardpasscontainer = styled.section`
     margin: 0 auto;
 `;
 const Span = styled.span`
-    color: #135846;
+color: ${colors.primaryGreen};
     margin-bottom: 10px;
     font-weight: 300;
     font-family: Poppins;
+    margin-top: 10px;
+`;
+const SpanWrong = styled.span`
+    color: ${colors.primaryRed};
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-family: Poppins;
+    text-align: center;
+    margin-top: 25px;
 `;
