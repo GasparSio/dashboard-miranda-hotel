@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { WrapperButton, Button } from '../StyledFilterButtons';
 
-export default function FilterBottons() {
+export const ContactNav = () => {
     const [allContactActive, setallContactActive] = useState(false);
     const [archivedActive, setarchivedActive] = useState(false);
 
@@ -35,17 +36,17 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
-const WrapperButton = styled.div`
-    border-bottom: ${(props) => props.isActive ? '3px solid #135846' : 'none'};
-    height: 42px;
-    width: 130px;
-    display: flex;
-    justify-content: center;
-`;
-const Button = styled.button`
-    border: none;
-    background-color: transparent;
-    color: ${(props) => props.isActive ? '#135846' : '#6E6E6E'};
-    font-family: Poppins;
-    font-size: 16px;
-`;
+// const WrapperButton = styled.div`
+//     border-bottom: ${(props) => props.isActive ? '3px solid #135846' : 'none'};
+//     height: 42px;
+//     width: 130px;
+//     display: flex;
+//     justify-content: center;
+// `;
+// const Button = styled.button`
+//     border: none;
+//     background-color: transparent;
+//     color: ${(props) => props.isActive ? '#135846' : '#6E6E6E'};
+//     font-family: Poppins;
+//     font-size: 16px;
+// `;

@@ -3,8 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBooking, fetchBookings } from '../../features/bookings/bookingSlice';
-import { BookingNavContainer } from "./BookingNavContainer";
-
+import { BookingNav } from './BookingNav';
 
 export const Bookings = () => {
   const dispatch = useDispatch()
@@ -38,7 +37,7 @@ export const Bookings = () => {
   };
   return(
       <Wrapperdashboardcontainer width={width}>
-      <BookingNavContainer/>
+      <BookingNav/>
         <StyledTable>
             <TableHeader>
               <TableRow>

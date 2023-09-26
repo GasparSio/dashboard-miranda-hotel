@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from 'styled-components';
 import logo from '../../Img/icon-hotel.png';
+import { colors } from '../theme';
 import { MdVpnKey, MdEditCalendar, MdPhone, MdOutlinePermContactCalendar } from 'react-icons/md';
 import { BsFillClipboardDataFill } from 'react-icons/bs';
 import { UserProfile } from "./UserProfile";
@@ -122,10 +123,10 @@ const Link = styled(NavLink)`
     font-weight: 400;
     font-family: Poppins;
     &.active {
-        color: #E23428;
+        color: ${colors.primaryRed};
     }
     &:not(.active) {
-        color: #799283;
+        color: ${colors.primaryGreen};
     }
 `;
 

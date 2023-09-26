@@ -3,8 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, fetchUsers} from '../../features/users/userSlice';
-import { UsersNavContainer } from "./UsersNavContainer";
-
+import { UsersNav } from "./UsersNav";
 
 export const Users = () => {
   const dispatch = useDispatch()
@@ -37,10 +36,9 @@ export const Users = () => {
     }
   };
 
-
     return(
         <Wrapperdashboardcontainer width={width}>
-        <UsersNavContainer/>
+        <UsersNav/>
           <StyledTable>
               <TableHeader>
                   <TableRow>
@@ -109,8 +107,6 @@ const SpanAvailable = styled.span`
   justify-content: center;
   align-items: center;
 `;
-
-
 
 const Wrapperdashboardcontainer = styled.section`
   position: absolute;

@@ -1,8 +1,9 @@
 import React from "react";
+import styled from 'styled-components';
+import {colors} from '../theme';
 import { MdMarkEmailUnread, MdLogout } from 'react-icons/md';
 import { LuBellRing } from 'react-icons/lu';
 import { PiArrowsLeftRightFill } from 'react-icons/pi';
-import styled from 'styled-components';
 import { useAuth } from '../Login-Logout/auth';
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,8 +62,9 @@ const Wrapperhambmenu = styled.section`
     justify-content: space-evenly;
 `;
 const PiArrowsLeftRightFillicon = styled(PiArrowsLeftRightFill)`
-    width: 11%;
     cursor: pointer;
+    width: 25px;
+    height: 25px;
     &:hover {
         transform: scale(1.2);
     }
@@ -79,22 +81,28 @@ const Wrappernavicons = styled.section`
     width: 40%;
 `
 const MdLogouticon = styled(MdLogout)`
-    color: #799283;
+    color: ${colors.primaryGreen};
     cursor: pointer;
+    width: 25px;
+    height: 25px;
     &:hover{
         transform: scale(1.1);
     }
 `;
 const LuBellRingicon = styled(LuBellRing)`
-    color: #799283;
+    color: ${colors.primaryGreen};
     cursor: pointer;
+    width: 25px;
+    height: 25px;
     &:hover{
         transform: scale(1.1);
     }
 `;
 const MdMarkEmailUnreadicon = styled(MdMarkEmailUnread)`
-    color: #799283;
+    color: ${colors.primaryGreen};
     cursor: pointer;
+    width: 25px;
+    height: 25px;
     &:hover{
         transform: scale(1.1);
     }

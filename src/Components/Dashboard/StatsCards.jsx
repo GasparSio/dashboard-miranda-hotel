@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { colors } from '../theme';
 import { FaBed } from 'react-icons/fa';
 import { BsFillCalendar2CheckFill } from 'react-icons/bs';
 import { TbLogin2 } from 'react-icons/tb';
@@ -79,7 +80,7 @@ const IconBedContainer = styled.div`
     align-items: center;
 `;
 const IconBed = styled(FaBed)`
-    color: #E23428;
+    color: ${colors.primaryRed};
     width: 20px;
 `;
 const StatsContainer = styled.div`
@@ -97,44 +98,44 @@ const TextDetail = styled.span`
     font-family: Poppins;
     font-weight: 300;
     font-size: 14px;
-    color: #787878;
+    color: ${colors.textGrey};
 `;
 const IconCalendarContainer = styled.div`
     width: 20%;
     height: 61px;
-    background-color: #E23428;
+    background-color: ${colors.primaryRed};
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 const IconCalendar = styled(BsFillCalendar2CheckFill)`
-    color: #ffffff;
+    color: ${colors.backgroundWhite};
     width: 20px;
 `;
 const IconCheckInContainer = styled.div`
     width: 20%;
     height: 61px;
-    background-color: #FFEDEC;
+    background-color: ${colors.backgroundPinkButton};
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 const IconCkeckIn = styled(TbLogin2)`
-    color: #E23428;
+    color: ${colors.primaryRed};
     width: 20px;
 `;
 const IconCheckOutContainer = styled.div`
     width: 20%;
     height: 61px;
-    background-color: #E23428;
+    background-color: ${colors.primaryRed};
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 const IconCkeckOut = styled(TbLogout2)`
-    color: #ffffff;
+    color: ${colors.backgroundWhite};
     width: 20px;
 `;

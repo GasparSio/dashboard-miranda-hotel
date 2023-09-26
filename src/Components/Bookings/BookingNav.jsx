@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import { createRoom } from '../../features/rooms/roomSlice';
+import { Button, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
 // import { useDispatch } from 'react-redux';
-import { AiOutlineSearch } from 'react-icons/ai'
 
-export function BookingNavContainer() {
+export function BookingNav() {
   // const dispatch = useDispatch()
   const [activeButton, setActiveButton] = useState(null);
 
@@ -64,39 +63,6 @@ const LeftNavContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
-const WrapperButton = styled.div`
-    border-bottom: ${(props) => props.isActive ? '3px solid #135846' : 'none'};
-    height: 42px;
-    width: 130px;
-    display: flex;
-    justify-content: center;
-`;
-const WrapperInput = styled.div`
-  display: flex;
-  position: relative;
-  height: 35px;
-`
-const SearchIcon = styled(AiOutlineSearch)`
-  position: absolute;
-  left: 8px;
-  top: 8px;
-`
-const Input = styled.input`
-  border-radius: 12px;
-  border: 1px solid #135846;
-  color: #6E6E6E;
-  font-family: Poppins;
-  font-size: 13px;
-  padding-left: 30px;
-`
-const Button = styled.button`
-    border: none;
-    background-color: transparent;
-    color: ${(props) => props.isActive ? '#135846' : '#6E6E6E'};
-    font-family: Poppins;
-    font-size: 16px;
-`;
-
 
 const RightNavContainer = styled.div`
   display: flex;
@@ -105,29 +71,3 @@ const RightNavContainer = styled.div`
   align-items: center;
 `;
 
-const Select = styled.select`
-  color: #135846;
-  border-radius: 12px;
-  background-color:  #FFFFFF;
-  text-align: center;
-  border: 1px solid #135846;
-  width: 143px;
-  height: 35px;
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 14px;
-  margin-left: 30px;
-`;
-const Option = styled.option`
-  color: #135846;
-  border-radius: 12px;
-  background-color:  #FFFFFF;
-  text-align: center;
-  border: 1px solid #135846;
-  width: 143px;
-  height: 35px;
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 16px;
-  margin-left: 25px;
-`;

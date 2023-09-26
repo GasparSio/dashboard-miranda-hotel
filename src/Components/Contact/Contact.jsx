@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-// import { useState } from "react";
+import React from "react";
+// import { useState, useEffect} from "react";
+// import { useDispatch } from 'react-redux';
 import styled from "styled-components";
-import { useDispatch, useSelector } from 'react-redux';
-// import { ContactNavContainer } from "./ContactNavContainer";
-// import { deleteContact, fetchContacts } from "../../features/contact/contactSlice";
+import { useSelector } from 'react-redux';
 import { Reviews } from "../Dashboard/Reviews";
-import FilterBottons from "./FilterBottons";
+import { ContactNav } from "./ContactNav";
 import { Table } from '../Table';
 import data from '../../features/contact/ContactReviews.json';
+// import { deleteContact, fetchContacts } from "../../features/contact/contactSlice";
 
 
 export const Contact = () => {
@@ -48,7 +48,7 @@ export const Contact = () => {
       <CustomWrapperStyles width={width}>
         <Reviews />
       </CustomWrapperStyles>
-      <FilterBottons/>
+      <ContactNav/>
       <Table columnas={columnas} datos={datos}/>
         {/* <Wrapperdashboardcontainer width={width}>
         <ContactNavContainer/>
