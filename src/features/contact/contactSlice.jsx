@@ -55,6 +55,7 @@ export const roomSlice = createSlice({
     isloading: false,
     haserror: false,
     sortorder: 'none',
+    active: false,
     },
     extraReducers:{
         [fetchContacts.pending] : (state, action) => {
@@ -98,13 +99,11 @@ export const roomSlice = createSlice({
             state.status = 'loading'
             state.isloading = true
         },
-        [updateContact.fulfilled] : (state, {payload}) => {
-            const index = state.contacts.findIndex(contact => contact.id === payload.id);
-            if (index !== -1) {
-                state.contacts[index] = payload;
-            }
+        [updateContact.fulfilled] : (state, action) => {
+            
             state.status = 'success'
             state.isloading = false
+            state.active = true
         },
         [updateContact.rejected] : (state, action) => {
             state.haserror = true

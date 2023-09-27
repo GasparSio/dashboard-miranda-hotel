@@ -4,22 +4,21 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import styled from "styled-components";
 import { Reviews } from "../Dashboard/Reviews";
-import { ContactNav } from "./ContactNav";
+import { WrapperButton, Button } from '../StyledFilterButtons';
 import Table from '../Table';
-import { colors } from "../theme";
-import usersData from '../../features/contact/ContactReviews.json';
-import { deleteContact, fetchContacts } from "../../features/contact/contactSlice";
-
+import { fetchContacts, updateContact } from "../../features/contact/contactSlice";
+import { CustomWrapperStyles, CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText, Archived } from '../StyledTable';
 
 export const Contact = (props) => {
   const dispatch = useDispatch()
   const contacts = useSelector(state => state.contact.contacts);
   const width = useSelector(state => state.visual.width);
 
-  const [ users, setUsers ] = useState()
   useEffect(() => {
     dispatch(fetchContacts())
+
   }, [dispatch])
+
 
   const cols = [
     {
@@ -58,76 +57,60 @@ export const Contact = (props) => {
       label: 'Action',
       display: (row) => (
         <CellContainer>
-          <LineContainer><Archived>Archive</Archived></LineContainer>
+          <LineContainer><Archived >Archive</Archived></LineContainer>
         </CellContainer>
       ),
     },
   ]
 
+  const [allContactActive, setallContactActive] = useState(false);
+  const [archivedActive, setarchivedActive] = useState(false);
 
-  // const onDeleteRoom = (contactId) => {
-  //   dispatch(deleteContact(contactId))
-  // }
+  const handleAllContact = () => {
+      setallContactActive(true)
+      setarchivedActive(false)
+      dispatch(updateContact())
+  }
+  const handleArchived = () => {
+      setallContactActive(false)
+      setarchivedActive(true)
+  }
 
   return(
     <>
       <CustomWrapperStyles width={width}>
         <Reviews />
       </CustomWrapperStyles>
-      <ContactNav/>
-      <Table cols={cols} data={usersData}/>
+      <WrapperContactNav>
+        <WrapperButton isActive={allContactActive}>
+            <Button onClick={handleAllContact}>All Contacts</Button>
+        </WrapperButton>
+        <WrapperButton isActive={archivedActive}>
+            <Button onClick={handleArchived}>Archived</Button>
+        </WrapperButton>
+      </WrapperContactNav>
+      <Wrapperdashboardcontainer width={width}>
+       <Table cols={cols} data={contacts}/>
+      </Wrapperdashboardcontainer>
     </>
   )
 }
-const CustomWrapperStyles = styled.section`
-  height: 275px;
-  top: 84px;
-  right: 0;
-  position: relative;
-  // width: ${(props) => (props.width === '75%' ? '70%' : '96%')} 
+const Wrapperdashboardcontainer = styled.section`
+  position: absolute;
+  top: 53%;
+  right: 2%;
+  width: ${(props) => (props.width === '75%' ? '70%' : '96%')};
+  z-index: 999;
+  background-color: #F8F8F8;
 `;
-const CellContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+const WrapperContactNav = styled.div`
+    position: absolute;
+    top: 46%;
+    right: 47%;
+    display: flex;
+    flex-direction: row;
+    width: 280px;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
 `;
-const LineContainer = styled.div`
-  display: flex;
-`;
-const LineContainerComment = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const ValueText = styled.span`
-  font-size: 14px;
-  font-weight: 600;
-  font-family: Poppins;
-  color: #393939;
-  margin-right: 6px;
-`;
-const PropertyText = styled.span`
-  font-size: 14px;
-  font-weight: 400;
-  font-family: Poppins;
-  color: #393939;
-`;
-
-const Archived = styled.button`
-  background-color: ${colors.primaryRed};
-  color: white;
-  font-family: Poppins;
-  font-weight: 500;
-  letter-spacing: 1px;
-  border-radius: 10px;
-  width: 80px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  transition: transform;
-  &:hover {
-    transform: scale(1.05);
-  }
-`;
-

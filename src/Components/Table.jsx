@@ -15,7 +15,7 @@ import styled from 'styled-components';
   )
 
   return (
-    <Wrapperdashboardcontainer width={width}>
+    <div width={width}>
       <StyledTable>
         <TableHeader>
           <TableRow>
@@ -26,21 +26,12 @@ import styled from 'styled-components';
           {props.data.map(displayRow)}
         </TableBody>
       </StyledTable>
-    </Wrapperdashboardcontainer>
+    </div>
 
   );
 };
 export default Table;
 
-
-const Wrapperdashboardcontainer = styled.section`
-  position: absolute;
-  top: 53%;
-  right: 2%;
-  width: ${(props) => (props.width === '75%' ? '70%' : '96%')};
-  z-index: 999;
-  background-color: #F8F8F8;
-`;
 const StyledTable = styled.table`
 width: 100%;
 border-spacing: 0;

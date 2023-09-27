@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
-import styled from "styled-components";
+// import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRoom, fetchRooms } from '../../features/rooms/roomSlice';
 import { RoomsNavContainer } from "./RoomsNavContainer";
+import { CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText } from '../StyledTable';
+import { Wrapperdashboardcontainer } from '../StyledComponent';
+import Table from "../Table";
 
 
 export const Rooms = () => {
@@ -15,184 +17,102 @@ export const Rooms = () => {
     dispatch(fetchRooms())
   }, [dispatch])
 
-  const onDeleteRoom = (roomId) => {
-    dispatch(deleteRoom(roomId))
-  }
-
-  //Pagination Logic
-  const rowsPerPage = 10; // Número de filas por página
-  const totalPages = Math.ceil(rooms.length / rowsPerPage); // Calcular el número total de páginas
-  const [currentPage, setCurrentPage] = useState(1);
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
-  const currentData = rooms.slice(startIndex, endIndex);
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-
+  // const onDeleteRoom = (roomId) => {
+  //   dispatch(deleteRoom(roomId))
+  // }
+  const cols = [
+    {
+      property: 'roomname',
+      label: 'Room Name',
+      display: (row) => (
+        <CellContainer>
+          <LineContainer><ValueText>Number Room: </ValueText><PropertyText>{row.roomNumber}</PropertyText></LineContainer>
+          <LineContainer><ValueText>Id: </ValueText><PropertyText>{row.id}</PropertyText></LineContainer>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'bedtype',
+      label: 'Bed Type',
+      display: (row) => (
+        <CellContainer>
+          <LineContainer><ValueText>Bed Type: </ValueText><PropertyText>{row.bedType}</PropertyText></LineContainer>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'facilities',
+      label: 'Facilities',
+      display: (row) => (
+        <CellContainer>
+          <LineContainerComment><ValueText>Facilities: </ValueText><PropertyText>{row.facilities}</PropertyText></LineContainerComment>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'price',
+      label: 'Price',
+      display: (row) => (
+        <CellContainer>
+          <LineContainerComment><ValueText>Price: </ValueText><PropertyText>{row.price}</PropertyText></LineContainerComment>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'offerprice',
+      label: 'Offer Price',
+      display: (row) => (
+        <CellContainer>
+          <LineContainerComment><ValueText>Offer Price: </ValueText><PropertyText>{row.offerprice}</PropertyText></LineContainerComment>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'status',
+      label: 'Status',
+      display: (row) => (
+        <CellContainer>
+          <LineContainerComment><ValueText>Status: </ValueText><PropertyText>{row.status}</PropertyText></LineContainerComment>
+        </CellContainer>
+      ),
+    },
+]
     return(
         <Wrapperdashboardcontainer width={width}>
         <RoomsNavContainer/>
-          <StyledTable>
-              <TableHeader>
-                  <TableRow>
-                      <TableHeaderCellFirst>Room Name</TableHeaderCellFirst>
-                      <TableHeaderCell>Bed Type</TableHeaderCell>
-                      <TableHeaderCell>Facilities</TableHeaderCell>
-                      <TableHeaderCell>Price</TableHeaderCell>
-                      <TableHeaderCell>Offer Price</TableHeaderCell>
-                      <TableHeaderCell>Status</TableHeaderCell>
-                      <TableHeaderCell>Delete</TableHeaderCell>
-                  </TableRow>
-              </TableHeader>
-              <tbody>
-                  {currentData.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell>Photo: {item.photo},Room Number: {item.roomNumber}, Room Id:{item.id}</TableCell>
-                      <TableCell>{item.bedType}</TableCell>
-                      <TableCell>{item.facilities}</TableCell>
-                      <TableCell>{item.price}</TableCell>
-                      <TableCell>{item.price}</TableCell>
-                      <TableCell>{item.status ? <Booked/> : <Available/>}</TableCell>
-                      <TableCell onClick={() => onDeleteRoom(item.id)}>Delete</TableCell>
-                  </TableRow>
-                  ))}
-              </tbody>
-          </StyledTable>
-          <PaginationContainer>
-            <PaginationButton onClick={handlePreviousPage} disabled={currentPage === 1}>
-              Prev
-            </PaginationButton>
-            <PaginationText>Page {currentPage} out of {totalPages}</PaginationText>
-            <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
-              Next
-            </PaginationButton>
-          </PaginationContainer>
+        <Table cols={cols} data={rooms}/>
         </Wrapperdashboardcontainer>
     )
 }
 
-export const Booked = () => {
-  return(
-    <SpanBooked>Booked</SpanBooked>
-  )
-}
-const SpanBooked = styled.span`
-  background-color: red;
-  color: white;
-  border-radius: 10px;
-  width: 80px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+// export const Booked = () => {
+//   return(
+//     <SpanBooked>Booked</SpanBooked>
+//   )
+// }
+// const SpanBooked = styled.span`
+//   background-color: red;
+//   color: white;
+//   border-radius: 10px;
+//   width: 80px;
+//   height: 30px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
-export const Available = () => {
-  return(
-    <SpanAvailable>Available</SpanAvailable>
-  )
-}
-const SpanAvailable = styled.span`
-  background-color: #3cae43;
-  color: white;
-  border-radius: 10px;
-  width: 80px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-
-
-const Wrapperdashboardcontainer = styled.section`
-  position: absolute;
-  top: 66px;
-  right: 2%;
-  width: ${(props) => (props.width === '75%' ? '70%' : '96%')};
-  z-index: 999;
-  background-color: #F8F8F8;
-`;
-
-const TableHeader = styled.thead`
-  height: 65px;
-  background-color: #FFFFFF;
-`;
-
-const StyledTable = styled.table`
-  width: 100%;
-  border-spacing: 0;
-`;
-const TableRow = styled.tr`
-    background-color: #FFFFFF;
-    height: 90px;
-    transition: transform 0.2s;
-  &:hover {
-    transform: scale(1.02); 
-    background-color: #effff0;
-  }
-`;
-const TableHeaderCell = styled.th`
-  text-align: left;
-  font-family: Poppins;
-  font-size: 16px;
-  font-family: 600;
-  color: #393939;
-  width: 10%;
-  padding-left: 20px;
-`;
-const TableHeaderCellFirst = styled.th`
-  text-align: left;
-  font-family: Poppins;
-  font-size: 16px;
-  font-family: 600;
-  color: #393939;
-  width: 10%;
-  padding-left: 20px;
-  border-top-left-radius: 40px;
-`;
-const TableCell = styled.td`
-  text-align: left;
-  font-family: Poppins;
-  font-size: 14px;
-  font-family: 400;
-  color: #799283;
-  width: 10%;
-  padding-left: 20px;
-`;
-const PaginationContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  height: 55px;
-  align-items: center;
-  margin-top: 20px;
-`;
-const PaginationButton = styled.button`
-  width: 91px;
-  height: 53px;
-  border: 1px solid #799283;
-  border-radius: 12px;
-  background-color: #ffffff;
-  font-family: Poppins;
-  font-size: 16px;
-  color: #799283;
-  font-family: 400;
-  margin-right: 30px;
-`;
-const PaginationText = styled.span`
-  font-family: Poppins;
-  font-size: 16px;
-  color: #393939;
-  font-family: 600;
-  margin-right: 30px;
-`;
+// export const Available = () => {
+//   return(
+//     <SpanAvailable>Available</SpanAvailable>
+//   )
+// }
+// const SpanAvailable = styled.span`
+//   background-color: #3cae43;
+//   color: white;
+//   border-radius: 10px;
+//   width: 80px;
+//   height: 30px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;

@@ -6,7 +6,7 @@
         "bedType": "ex",
         "facilities": "eiusmod aliquip",
         "price": "307,29 €",
-        "offer-price": "$229.44",
+        "offerprice": "$229.44",
         "status": false
     },
     {
@@ -16,7 +16,7 @@
         "bedType": "non laboris",
         "facilities": "dolore velit ut et laboris ea do nisi",
         "price": "90,93 €",
-        "offer-price": "$247.22",
+        "offerprice": "$247.22",
         "status": false
     },
     {
@@ -26,7 +26,7 @@
         "bedType": "excepteur",
         "facilities": "in dolore incididunt elit",
         "price": "331,00 €",
-        "offer-price": "$158.15",
+        "offerprice": "$158.15",
         "status": false
     },
     {
@@ -36,7 +36,7 @@
         "bedType": "officia",
         "facilities": "Lorem",
         "price": "228,80 €",
-        "offer-price": "$308.40",
+        "offerprice": "$308.40",
         "status": true
     },
     {
@@ -46,7 +46,7 @@
         "bedType": "sint laborum",
         "facilities": "est in proident enim",
         "price": "233,57 €",
-        "offer-price": "$152.41",
+        "offerprice": "$152.41",
         "status": false
     },
     {
@@ -56,7 +56,7 @@
         "bedType": "exercitation culpa",
         "facilities": "nostrud",
         "price": "128,66 €",
-        "offer-price": "$75.28",
+        "offerprice": "$75.28",
         "status": false
     },
     {
@@ -66,7 +66,7 @@
         "bedType": "sunt",
         "facilities": "dolor minim anim commodo laboris id",
         "price": "227,09 €",
-        "offer-price": "$295.51",
+        "offerprice": "$295.51",
         "status": true
     },
     {
@@ -76,7 +76,7 @@
         "bedType": "officia ad",
         "facilities": "laborum nulla fugiat cupidatat aute labore cillum",
         "price": "178,38 €",
-        "offer-price": "$94.04",
+        "offerprice": "$94.04",
         "status": false
     },
     {
@@ -86,267 +86,7 @@
         "bedType": "ipsum",
         "facilities": "pariatur in sit eu",
         "price": "75,22 €",
-        "offer-price": "$236.46",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 151,
-        "id": 10,
-        "bedType": "proident esse",
-        "facilities": "sint dolore laborum aute laboris labore veniam sit sunt",
-        "price": "152,55 €",
-        "offer-price": "$225.87",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 171,
-        "id": 11,
-        "bedType": "ut",
-        "facilities": "labore elit tempor elit voluptate qui mollit tempor consectetur amet",
-        "price": "393,46 €",
-        "offer-price": "$254.71",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 10,
-        "id": 12,
-        "bedType": "tempor veniam",
-        "facilities": "veniam in amet nostrud sunt",
-        "price": "243,76 €",
-        "offer-price": "$142.67",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 59,
-        "id": 13,
-        "bedType": "id",
-        "facilities": "esse ipsum labore tempor et ea anim eiusmod non esse",
-        "price": "197,18 €",
-        "offer-price": "$251.86",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 164,
-        "id": 14,
-        "bedType": "nisi mollit",
-        "facilities": "laborum mollit quis id in exercitation consequat",
-        "price": "76,63 €",
-        "offer-price": "$267.85",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 357,
-        "id": 15,
-        "bedType": "qui",
-        "facilities": "nulla qui deserunt dolore ea",
-        "price": "267,34 €",
-        "offer-price": "$306.85",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 17,
-        "id": 16,
-        "bedType": "exercitation quis",
-        "facilities": "et mollit magna incididunt magna do qui ea ipsum laboris",
-        "price": "268,77 €",
-        "offer-price": "$114.27",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 42,
-        "id": 17,
-        "bedType": "laborum",
-        "facilities": "est veniam culpa fugiat laborum anim",
-        "price": "148,21 €",
-        "offer-price": "$171.28",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 310,
-        "id": 18,
-        "bedType": "adipisicing pariatur",
-        "facilities": "ullamco duis ut esse aute dolore",
-        "price": "68,74 €",
-        "offer-price": "$286.74",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 266,
-        "id": 19,
-        "bedType": "velit",
-        "facilities": "proident",
-        "price": "157,17 €",
-        "offer-price": "$297.07",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 299,
-        "id": 20,
-        "bedType": "id",
-        "facilities": "ipsum amet non qui commodo sint excepteur incididunt",
-        "price": "379,09 €",
-        "offer-price": "$321.99",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 74,
-        "id": 21,
-        "bedType": "reprehenderit duis",
-        "facilities": "officia",
-        "price": "266,18 €",
-        "offer-price": "$117.81",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 390,
-        "id": 22,
-        "bedType": "esse tempor",
-        "facilities": "qui",
-        "price": "258,53 €",
-        "offer-price": "$339.85",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 208,
-        "id": 23,
-        "bedType": "et",
-        "facilities": "occaecat fugiat nulla tempor officia commodo",
-        "price": "231,22 €",
-        "offer-price": "$256.53",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 307,
-        "id": 24,
-        "bedType": "minim",
-        "facilities": "consequat fugiat incididunt ea",
-        "price": "204,77 €",
-        "offer-price": "$254.97",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 327,
-        "id": 25,
-        "bedType": "anim",
-        "facilities": "aliquip cupidatat adipisicing esse id ipsum dolor",
-        "price": "291,30 €",
-        "offer-price": "$192.15",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 296,
-        "id": 26,
-        "bedType": "occaecat exercitation",
-        "facilities": "id minim",
-        "price": "324,76 €",
-        "offer-price": "$192.74",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 51,
-        "id": 27,
-        "bedType": "est",
-        "facilities": "minim exercitation enim",
-        "price": "78,36 €",
-        "offer-price": "$222.09",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 285,
-        "id": 28,
-        "bedType": "magna",
-        "facilities": "ad cupidatat",
-        "price": "111,32 €",
-        "offer-price": "$179.22",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 175,
-        "id": 29,
-        "bedType": "do",
-        "facilities": "adipisicing et ea reprehenderit labore eu aute nostrud non",
-        "price": "398,45 €",
-        "offer-price": "$242.48",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 120,
-        "id": 30,
-        "bedType": "ut excepteur",
-        "facilities": "officia consectetur in sit id irure deserunt laboris nostrud",
-        "price": "346,76 €",
-        "offer-price": "$301.11",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 177,
-        "id": 31,
-        "bedType": "laborum",
-        "facilities": "minim esse officia nostrud aliqua",
-        "price": "47,03 €",
-        "offer-price": "$226.84",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 360,
-        "id": 32,
-        "bedType": "ipsum",
-        "facilities": "mollit ullamco voluptate adipisicing exercitation aute aliquip ullamco",
-        "price": "334,82 €",
-        "offer-price": "$223.46",
-        "status": true
-    },
-    {
-        "photo": "",
-        "roomNumber": 203,
-        "id": 33,
-        "bedType": "consectetur",
-        "facilities": "velit ad eu tempor tempor laboris",
-        "price": "278,87 €",
-        "offer-price": "$287.97",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 65,
-        "id": 34,
-        "bedType": "eiusmod qui",
-        "facilities": "pariatur sunt duis dolore officia id nulla eu",
-        "price": "210,56 €",
-        "offer-price": "$286.29",
-        "status": false
-    },
-    {
-        "photo": "",
-        "roomNumber": 176,
-        "id": 35,
-        "bedType": "nostrud",
-        "facilities": "occaecat",
-        "price": "54,23 €",
-        "offer-price": "$84.76",
+        "offerprice": "$236.46",
         "status": true
     }
 ]
