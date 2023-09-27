@@ -2,32 +2,35 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-export const Table = ({ columnas, datos }) => {
+ const Table = (props) => {
   const width = useSelector(state => state.visual.width);
+
+  const displayRow = row => (
+    <TableRow>
+      {props.cols.map(col => 
+        <TableCell>
+          {col.display ? col.display(row) : row[col.property]}
+        </TableCell>)}
+    </TableRow>
+  )
+
   return (
     <Wrapperdashboardcontainer width={width}>
       <StyledTable>
         <TableHeader>
           <TableRow>
-            {columnas.map((columna, index) => (
-              <TableHeaderCell key={index}>{columna}</TableHeaderCell>
-            ))}
+            {props.cols.map(col => <TableHeaderCell>{col.label}</TableHeaderCell>)}
           </TableRow>
         </TableHeader>
-        <tbody>
-          {datos.map((fila, index) => (
-            <TableRow key={index}>
-              {columnas.map((columna, columnIndex) => (
-                <TableCell key={columnIndex}>{fila[columna]}</TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </tbody>
+        <TableBody>
+          {props.data.map(displayRow)}
+        </TableBody>
       </StyledTable>
     </Wrapperdashboardcontainer>
+
   );
 };
-
+export default Table;
 
 
 const Wrapperdashboardcontainer = styled.section`
@@ -38,15 +41,17 @@ const Wrapperdashboardcontainer = styled.section`
   z-index: 999;
   background-color: #F8F8F8;
 `;
-
+const StyledTable = styled.table`
+width: 100%;
+border-spacing: 0;
+`;
 const TableHeader = styled.thead`
   height: 65px;
   background-color: #FFFFFF;
 `;
-
-const StyledTable = styled.table`
-  width: 100%;
-  border-spacing: 0;
+const TableBody = styled.tbody`
+  height: 65px;
+  background-color: #FFFFFF;
 `;
 const TableRow = styled.tr`
     background-color: #FFFFFF;

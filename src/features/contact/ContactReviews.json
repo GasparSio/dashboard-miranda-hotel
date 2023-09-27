@@ -98,25 +98,5 @@
         "asunto": "nostrud incididunt et occaecat ut in non pariatur",
         "comment": "consectetur",
         "archived": false
-    },
-    {
-        "date": "2023-08-10",
-        "id": 296,
-        "fullname": "Danielle Schmeler",
-        "email": "Danielle_Schmeler@yahoo.com",
-        "phone": "865-830-0580",
-        "asunto": "in adipisicing duis",
-        "comment": "consectetur cillum commodo minim officia exercitation",
-        "archived": false
-    },
-    {
-        "date": "2023-02-10",
-        "id": 322,
-        "fullname": "Patricia Carter",
-        "email": "Patricia_Carter36@hotmail.com",
-        "phone": "924-378-3804",
-        "asunto": "consequat magna mollit non",
-        "comment": "reprehenderit consequat sit nulla in voluptate do amet labore in aliquip occaecat qui et occaecat culpa",
-        "archived": false
     }
 ]

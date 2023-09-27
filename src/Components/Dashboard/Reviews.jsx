@@ -3,49 +3,32 @@ import styled from "styled-components";
 import reviewsData from './dashboard-data.json';
 import '../../styles/StyleSwiperButton.css';
 import { useSelector } from "react-redux";
-import { BsCheckCircle } from "react-icons/bs";
-import { RxCrossCircled } from "react-icons/rx";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
+import { ReviewCard } from "./ReviewCard";
 
 export const Reviews = () => {
     const width = useSelector(state => state.visual.width)
     const data = reviewsData;
-    console.log(data);
+
     return(
         <Wrapperdashboardcontainer width={width} >
             <Title>Latest Review by Customers</Title>
             <SwiperWrap
-                modules={[Navigation, Autoplay]}
+                modules={[Navigation]}
                 slidesPerView={width === '75%' ? 2 : 3} // Número de tarjetas visibles por vez
                 spaceBetween={1} // Espacio entre las tarjetas
                 navigation
-                autoplay
             >
-            {data.map(item => (
-                <SwiperSlideContent key={item.email} >
-                <CardContainer >
-                    <ContentContainer>
-                        <ContentText>{item.subject} </ContentText>
-                        <ContentText>{item.need} </ContentText>
-                    </ContentContainer>
-                    <ProfileContainer>
-                        <NameContainer>
-                            <NameText>{item.fullName}</NameText>
-                            <EmailText>{item.email}</EmailText>
-                            <Phone>{item.phone}</Phone>
-                        </NameContainer>
-                        <IconsContainer>
-                            {item.status === true ? <CheckCircle/> : <CrossCircled/>}
-                        </IconsContainer>
-                    </ProfileContainer>
-                </CardContainer>
-                </SwiperSlideContent>
-            ))}
+            {data.map((item) => (
+            <SwiperSlideContent key={item.email} >
+                <ReviewCard item={item} />
+            </SwiperSlideContent>
+        ))}
             </SwiperWrap >
         </Wrapperdashboardcontainer>
     )
@@ -81,68 +64,4 @@ const SwiperSlideContent = styled(SwiperSlide)`
     flex-direction: row;
     width: ${(props) => props.width === '75%' ? '450px' : '500px'};
 `;
-const CardContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    border-radius: 20px;
-    border: 1px solid #EBEBEB;
-    height: 200px;
-    justify-content: space-evenly;
-    margin-left: 25px;
-`;
-const ContentContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    border-radius: 20px;
-    height: 75%;
-    margin: auto;
-`;
-const ContentText = styled.span`
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 400;
-    color: #4E4E4E;
-`;
-const ProfileContainer = styled.div`
-    display: flex;
-    height: 35%;
-    align-items: center;
-    justify-content: space-evenly;
-`;
-const NameContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    align-items: center;
-`;
-const NameText = styled.span`
-    font-family: Poppins;
-    font-size: 16px;
-    font-weight: 600;
-    color: #262626;
-`;
-const EmailText = styled.span`
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 400;
-    color: #799283;
-`;
-const Phone = styled.span`
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 400;
-    color: #799283;
-`;
-const IconsContainer = styled.div`
-    display: flex;
-    justify-content: space-around;
-    width: 17%;
-`;
-const CheckCircle = styled(BsCheckCircle)`
-    color: #5AD07A;
-`;
-const CrossCircled = styled(RxCrossCircled)`
-    color: #E23428;
-`;
+

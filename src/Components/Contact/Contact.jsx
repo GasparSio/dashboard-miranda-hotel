@@ -1,94 +1,83 @@
 import React from "react";
-// import { useState, useEffect} from "react";
-// import { useDispatch } from 'react-redux';
-import styled from "styled-components";
+import { useState, useEffect} from "react";
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import styled from "styled-components";
 import { Reviews } from "../Dashboard/Reviews";
 import { ContactNav } from "./ContactNav";
-import { Table } from '../Table';
-import data from '../../features/contact/ContactReviews.json';
-// import { deleteContact, fetchContacts } from "../../features/contact/contactSlice";
+import Table from '../Table';
+import { colors } from "../theme";
+import usersData from '../../features/contact/ContactReviews.json';
+import { deleteContact, fetchContacts } from "../../features/contact/contactSlice";
 
 
-export const Contact = () => {
-  // const dispatch = useDispatch()
-  // const contacts = useSelector(state => state.contact.contacts);
+export const Contact = (props) => {
+  const dispatch = useDispatch()
+  const contacts = useSelector(state => state.contact.contacts);
   const width = useSelector(state => state.visual.width);
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts())
-  // }, [dispatch])
+  const [ users, setUsers ] = useState()
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch])
+
+  const cols = [
+    {
+      property: 'date',
+      label: 'Date',
+      display: (row) => (
+        <CellContainer>
+          <LineContainer><ValueText>Date: </ValueText><PropertyText>{row.date}</PropertyText></LineContainer>
+          <LineContainer><ValueText>Id: </ValueText><PropertyText>{row.id}</PropertyText></LineContainer>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'customers',
+      label: 'Customers',
+      display: (row) => (
+        <CellContainer>
+          <LineContainer><ValueText>Full Name: </ValueText><PropertyText>{row.fullname}</PropertyText></LineContainer>
+          <LineContainer><ValueText>Email: </ValueText><PropertyText>{row.email}</PropertyText></LineContainer>
+          <LineContainer><ValueText>Phone: </ValueText><PropertyText>{row.phone}</PropertyText></LineContainer>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'comment',
+      label: 'Comment',
+      display: (row) => (
+        <CellContainer>
+          <LineContainerComment><ValueText>Subject: </ValueText><PropertyText>{row.asunto}</PropertyText></LineContainerComment>
+          <LineContainerComment><ValueText>Comment: </ValueText><PropertyText>{row.comment}</PropertyText></LineContainerComment>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'status',
+      label: 'Action',
+      display: (row) => (
+        <CellContainer>
+          <LineContainer><Archived>Archive</Archived></LineContainer>
+        </CellContainer>
+      ),
+    },
+  ]
+
 
   // const onDeleteRoom = (contactId) => {
   //   dispatch(deleteContact(contactId))
   // }
 
-  //Pagination Logic
-  // const rowsPerPage = 10; // Número de filas por página
-  // const totalPages = Math.ceil(contacts.length / rowsPerPage); // Calcular el número total de páginas
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const startIndex = (currentPage - 1) * rowsPerPage;
-  // const endIndex = startIndex + rowsPerPage;
-  // const currentData = contacts.slice(startIndex, endIndex);
-  // const handlePreviousPage = () => {
-  //   if (currentPage > 1) {
-  //     setCurrentPage(currentPage - 1);
-  //   }
-  // };
-  // const handleNextPage = () => {
-  //   if (currentPage < totalPages) {
-  //     setCurrentPage(currentPage + 1);
-  //   }
-  // };
-
-    const columnas = ['id', 'fullname', 'asunto'];
-    const datos = data;
-    return(
-      <>
+  return(
+    <>
       <CustomWrapperStyles width={width}>
         <Reviews />
       </CustomWrapperStyles>
       <ContactNav/>
-      <Table columnas={columnas} datos={datos}/>
-        {/* <Wrapperdashboardcontainer width={width}>
-        <ContactNavContainer/>
-          <StyledTable>
-              <TableHeader>
-                  <TableRow>
-                    <TableHeaderCellFirst>Order Id</TableHeaderCellFirst>
-                    <TableHeaderCell>Date</TableHeaderCell>
-                    <TableHeaderCell>Customer</TableHeaderCell>
-                    <TableHeaderCell>Comment</TableHeaderCell>
-                    <TableHeaderCell>Action</TableHeaderCell>
-                    <TableHeaderCellLast>Delete</TableHeaderCellLast>
-                  </TableRow>
-              </TableHeader>
-              <tbody>
-                  {currentData.map((item) => (
-                    <TableRow key={item.id}>
-
-                      <TableCell>{item.id}</TableCell>
-                      <TableCell>{item.date}</TableCell>
-                      <TableCell>Name: {item.fullname} Email: {item.email} Phone: {item.phone} </TableCell>
-                      <TableCell>Asunto: {item.asunto} Comment: {item.comment} </TableCell>
-                      <TableCell>{item.archived ? <Published/> : <Archived/>}</TableCell>
-                      <TableCell onClick={() => onDeleteRoom(item.id)}>Delete</TableCell>
-                  </TableRow>
-                  ))}
-              </tbody>
-          </StyledTable>
-          <PaginationContainer>
-            <PaginationButton onClick={handlePreviousPage} disabled={currentPage === 1}>
-              Prev
-            </PaginationButton>
-            <PaginationText>Page {currentPage} out of {totalPages}</PaginationText>
-            <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
-              Next
-            </PaginationButton>
-          </PaginationContainer>
-        </Wrapperdashboardcontainer> */}
-      </>
-    )
+      <Table cols={cols} data={usersData}/>
+    </>
+  )
 }
 const CustomWrapperStyles = styled.section`
   height: 275px;
@@ -97,128 +86,48 @@ const CustomWrapperStyles = styled.section`
   position: relative;
   // width: ${(props) => (props.width === '75%' ? '70%' : '96%')} 
 `;
+const CellContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const LineContainer = styled.div`
+  display: flex;
+`;
+const LineContainerComment = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const ValueText = styled.span`
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Poppins;
+  color: #393939;
+  margin-right: 6px;
+`;
+const PropertyText = styled.span`
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Poppins;
+  color: #393939;
+`;
 
-// export const Published = () => {
-//   return(
-//     <SpanBooked>Published</SpanBooked>
-//   )
-// }
-// const SpanBooked = styled.span`
-//   background-color: red;
-//   color: white;
-//   border-radius: 10px;
-//   width: 80px;
-//   height: 30px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
+const Archived = styled.button`
+  background-color: ${colors.primaryRed};
+  color: white;
+  font-family: Poppins;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  width: 80px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: transform;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
 
-// export const Archived = () => {
-//   return(
-//     <SpanAvailable>Archived</SpanAvailable>
-//   )
-// }
-// const SpanAvailable = styled.span`
-//   background-color: #3cae43;
-//   color: white;
-//   border-radius: 10px;
-//   width: 80px;
-//   height: 30px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
-
-// const Wrapperdashboardcontainer = styled.section`
-//   position: absolute;
-//   top: 66px;
-//   right: 2%;
-//   width: ${(props) => (props.width === '75%' ? '70%' : '96%')};
-//   z-index: 999;
-//   background-color: #F8F8F8;
-// `;
-
-// const TableHeader = styled.thead`
-//   height: 65px;
-//   background-color: #FFFFFF;
-// `;
-
-// const StyledTable = styled.table`
-//   width: 100%;
-//   border-spacing: 0;
-// `;
-// const TableRow = styled.tr`
-//     background-color: #FFFFFF;
-//     height: 90px;
-//     transition: transform 0.2s;
-//   &:hover {
-//     transform: scale(1.02); 
-//     background-color: #effff0;
-//   }
-// `;
-// const TableHeaderCell = styled.th`
-//   text-align: left;
-//   font-family: Poppins;
-//   font-size: 16px;
-//   font-family: 600;
-//   color: #393939;
-//   width: 10%;
-//   padding-left: 20px;
-// `;
-// const TableCell = styled.td`
-//   text-align: left;
-//   font-family: Poppins;
-//   font-size: 14px;
-//   font-family: 400;
-//   color: #799283;
-//   width: 10%;
-//   padding-left: 20px;
-// `;
-// const TableHeaderCellFirst = styled.th`
-//   text-align: left;
-//   font-family: Poppins;
-//   font-size: 16px;
-//   font-family: 600;
-//   color: #393939;
-//   width: 10%;
-//   padding-left: 20px;
-//   border-top-left-radius: 40px;
-// `;
-// const TableHeaderCellLast = styled.th`
-//   text-align: left;
-//   font-family: Poppins;
-//   font-size: 16px;
-//   font-family: 600;
-//   color: #393939;
-//   width: 10%;
-//   padding-left: 20px;
-//   border-top-right-radius: 40px;
-// `;
-// const PaginationContainer = styled.div`
-//   width: 100%;
-//   display: flex;
-//   justify-content: flex-end;
-//   height: 55px;
-//   align-items: center;
-//   margin-top: 20px;
-// `;
-// const PaginationButton = styled.button`
-//   width: 91px;
-//   height: 53px;
-//   border: 1px solid #799283;
-//   border-radius: 12px;
-//   background-color: #ffffff;
-//   font-family: Poppins;
-//   font-size: 16px;
-//   color: #799283;
-//   font-family: 400;
-//   margin-right: 30px;
-// `;
-// const PaginationText = styled.span`
-//   font-family: Poppins;
-//   font-size: 16px;
-//   color: #393939;
-//   font-family: 600;
-//   margin-right: 30px;
-// `;
