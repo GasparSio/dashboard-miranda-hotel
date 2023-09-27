@@ -53,7 +53,6 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: 'logout' });
     navigate('/');
     localStorage.removeItem("loggedInUser");
-    localStorage.removeItem("avatarImage");
   };
   const ModalOpen = () => {
     setOpenModal(true)

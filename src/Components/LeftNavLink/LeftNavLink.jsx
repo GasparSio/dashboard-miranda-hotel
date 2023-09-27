@@ -25,31 +25,40 @@ export const LeftNavLink = () => {
                     </Wrappertitle>
                 </Wrappertitlecontainer>
                 <Wrappernavlinks>
-                    <Wrapperlink>
-                        <BsFillClipboardDataFillIcon />
-                        <Link to='/home/dashboard' >Dashboard</Link>
-                    </Wrapperlink>
-                    <Wrapperlink>
-                        <MdEditCalendarIcon />
-                        <Link to='/home/bookings' >Bookings</Link>
-                    </Wrapperlink>
-                    <Wrapperlink>
-                        <MdVpnKeyIcon />
-                        <Link to='/home/rooms' >Rooms</Link>
-                    </Wrapperlink>
-                    <Wrapperlink>
-                        <MdPhoneIcon />
-                        <Link to='/home/contact' >Contact</Link>
-                    </Wrapperlink>
-                    <Wrapperlink>
-                        <MdOutlinePermContactCalendarIcon />
-                        <Link to='/home/users' >Users</Link>
-                    </Wrapperlink>
+                    <Link
+                        to='/home/dashboard'
+                    >
+                        <IconDashboard />
+                        <Text>Dashboard</Text>
+                    </Link>
+                    <Link
+                        to='/home/bookings'
+                    >
+                        <IconBooking />
+                        <Text>Bookings</Text>
+                    </Link>
+                    <Link
+                        to='/home/rooms'
+                    >
+                        <IconRooms />
+                        <Text>Rooms</Text>
+                    </Link>
+                    <Link
+                        to='/home/contact'
+                    >
+                        <IconContact />
+                        <Text>Contact</Text>
+                    </Link>
+                    <Link
+                        to='/home/users'
+                    >
+                        <IconUsers />
+                        <Text >Users</Text>
+                    </Link>
                 </Wrappernavlinks>
                 <UserProfile/>
                 <AllRights/>
             </Wrappersection>
-
         </>
     )
 }
@@ -107,55 +116,51 @@ const Wrappernavlinks = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    
+    margin-bottom: 110px;
 `;
-
-const Wrapperlink = styled.div`
-    height: 75px;
-    display: flex;
-    align-items: center;
-    width: 100%;
+const IconDashboard = styled(BsFillClipboardDataFill)`
+    color: inherit;
+    width: 30%;
+    height: 30px;
+`;
+const IconBooking = styled(MdEditCalendar)`
+    color: inherit;
+    width: 30%;
+    height: 30px;
+`;
+const IconRooms = styled(MdVpnKey)`
+    color: inherit;
+    width: 30%;
+    height: 30px;
+`;
+const IconContact = styled(MdPhone)`
+    color: inherit;
+    width: 30%;
+    height: 30px;
+`;
+const IconUsers = styled(MdOutlinePermContactCalendar)`
+    color: inherit;
+    width: 30%;
+    height: 30px;
 `;
 
 const Link = styled(NavLink)`
+    display: flex;
+    height: 70px;
+    flex-direction: row;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 400;
-    font-family: Poppins;
+    align-items: center;
     &.active {
         color: ${colors.primaryRed};
+        border-left: 4px solid red;
     }
     &:not(.active) {
         color: ${colors.primaryGreen};
     }
 `;
-
-const MdOutlinePermContactCalendarIcon = styled(MdOutlinePermContactCalendar)`
-    height: 24px;
-    width: 30%;
-    color: green;
-`;
-
-const MdPhoneIcon = styled(MdPhone)`
-    height: 24px;
-    width: 30%;
-    color: green;
-`;
-
-const MdVpnKeyIcon = styled(MdVpnKey)`
-    height: 24px;
-    width: 30%;
-    color: green;
-`;
-
-const MdEditCalendarIcon = styled(MdEditCalendar)`
-    height: 24px;
-    width: 30%;
-    color: green;
-`;
-
-const BsFillClipboardDataFillIcon = styled(BsFillClipboardDataFill)`
-    height: 24px;
-    width: 30%;
-    color: green;
+const Text = styled.span`
+    color: inherit;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Poppins;
 `;

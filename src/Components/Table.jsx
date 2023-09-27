@@ -27,7 +27,6 @@ import styled from 'styled-components';
         </TableBody>
       </StyledTable>
     </div>
-
   );
 };
 export default Table;

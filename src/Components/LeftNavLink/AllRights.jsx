@@ -17,7 +17,7 @@ const AllRightsWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 275px;
+    height: 215px;
 `;
 const Title = styled.h1`
     font-family: Poppins;

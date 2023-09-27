@@ -4,6 +4,7 @@ import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 // import { useAuthContext } from "../Login-Logout/useReducer";
+import logo from '../../Img/icon-hotel.png';
 
 const userCode = 'gas';
 const emailCode = 'sio';
@@ -37,6 +38,9 @@ export const Login = () => {
     return(
         <Wrapper>
             <Formcontainer>
+                <Wrapperimg>
+                    <Logo src={logo} alt="Icon hotel" />
+                </Wrapperimg>
                 <Title>Hello!</Title>
                 <Form onSubmit={handleLogin}>
                     <Input 
@@ -55,13 +59,22 @@ export const Login = () => {
                 <Hardpasscontainer>
                     <Span>Username: Gaspar</Span>
                     <Span>Email: Sio</Span>
-                    {wrongUser ? <SpanWrong>Wrong Username or Email</SpanWrong> : ''}
                 </Hardpasscontainer>
+                    {wrongUser ? <SpanWrong>Wrong Username or Email</SpanWrong> : ''}
             </Formcontainer>
         </Wrapper>
     )
 }
-
+const Wrapperimg = styled.section`
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+const Logo = styled.img`
+    width: 60%;
+    max-width: 40px;
+`;
 const Wrapper = styled.section`
     background-color: #ffffff;
     width: 100%;
@@ -71,18 +84,19 @@ const Wrapper = styled.section`
 const Formcontainer = styled.section`
     position: absolute;
     top: 50%;
-    left: 50%; 
+    left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 40%;
     max-width: 600px;
-    height: 400px;
+    height: 550px;
     margin: auto;
     box-shadow: 13px 3px 40px #00000033;
     background-color: #ffffff;
+    border-radius: 15px;
 `;
 
 const Title = styled.h1`
@@ -145,4 +159,6 @@ const SpanWrong = styled.span`
     font-family: Poppins;
     text-align: center;
     margin-top: 25px;
+    position: absolute;
+    bottom: 7%;
 `;
