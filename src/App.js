@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path='/' element={<Home/>} />
+          <Route path='/' element={<Login/>} />
           <Route path='/dashboard-miranda-hotel' element={<Home/>} />
           <Route path='/home' element={<Home/>}>
             <Route path='dashboard' element={<Dashboard/>} />  

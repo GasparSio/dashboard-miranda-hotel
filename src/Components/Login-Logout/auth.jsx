@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
   //funcion de logout
   const logout = () => {
     dispatch({ type: 'logout' });
-    navigate('/');
+    navigate('/login');
     localStorage.removeItem("loggedInUser");
   };
   const ModalOpen = () => {

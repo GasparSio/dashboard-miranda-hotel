@@ -19,6 +19,8 @@ export const Login = () => {
     useEffect(() => {
         if (authState.isAuthenticated) {
             navigate('/home/dashboard');
+        }else{
+            navigate('/login')
         }
       }, [authState.isAuthenticated, navigate]);
 
@@ -120,6 +122,7 @@ const Input = styled.input`
     height: 30px;
     margin-bottom: 15px;
     padding-left: 10px;
+    font-size: 20px;
     &:focus {
         outline: 2px solid ${colors.primaryGreen};
     }

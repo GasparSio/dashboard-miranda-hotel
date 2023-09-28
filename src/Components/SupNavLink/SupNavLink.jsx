@@ -13,7 +13,7 @@ export const SupNavLink = () => {
     const dispatch = useDispatch();
     const width = useSelector((state) => state.visual.width);
     const location = useLocation(); // Obtiene la ubicación actual
-    const sectionName = location.pathname.split('/').pop().toUpperCase(); // Obtiene el último segmento de la ruta
+    const sectionName = location.pathname.split('/').pop().toUpperCase().replace(/-/g, ' ');
     const { logout } = useAuth();
     
     const onlogoutUser = () => {

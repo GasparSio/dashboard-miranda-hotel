@@ -3,19 +3,22 @@ import { colors } from './theme';
 import { AiOutlineSearch } from "react-icons/ai";
 
 export const WrapperButton = styled.div`
-    border-bottom: ${(props) => props.isActive ? `3px solid ${colors.filterGreenButton}` : 'none'};
-    height: 42px;
-    width: 180px;
-    display: flex;
-    justify-content: center;
-`;
-
+  border-bottom: ${(props) => props.isActive ? `3px solid ${colors.filterGreenButton}` : 'none'};
+  height: 42px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  color: ${(props) => props.isActive ? `${colors.filterGreenButton}` : 'none'};
+  font-weight: ${(props) => props.isActive ? '600' : '400'};
+  `;
+    
 export const Button = styled.button`
-    border: none;
-    background-color: transparent;
-    color: ${(props) => props.isActive ? `${colors.filterGreenButton}` : `${colors.filterGreyButton}`};
-    font-family: Poppins;
-    font-size: 16px;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: inherit;
 `;
 
 export const WrapperInput = styled.div`

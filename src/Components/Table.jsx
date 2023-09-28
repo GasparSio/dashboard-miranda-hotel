@@ -32,8 +32,12 @@ import styled from 'styled-components';
 export default Table;
 
 const StyledTable = styled.table`
-width: 100%;
-border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+  border-spacing: 0;
+  max-height: 786px;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 const TableHeader = styled.thead`
   height: 65px;
@@ -47,9 +51,10 @@ const TableRow = styled.tr`
     background-color: #FFFFFF;
     height: 90px;
     transition: transform 0.2s;
-  &:hover {
-    transform: scale(1.02); 
-    background-color: #effff0;
+    &:hover {
+    transform: scale(1.01); 
+    border-top: 1px solid #80808033;
+    border-bottom: 1px solid #80808033;
   }
 `;
 const TableHeaderCell = styled.th`
@@ -60,6 +65,10 @@ const TableHeaderCell = styled.th`
   color: #393939;
   width: 10%;
   padding-left: 20px;
+  transition: transform 0.2s;
+    &:hover {
+    transform: scale(1.02); 
+    background-color: #effff094;
 `;
 const TableCell = styled.td`
   text-align: left;
@@ -69,4 +78,8 @@ const TableCell = styled.td`
   color: #799283;
   width: 10%;
   padding-left: 20px;
+  transition: transform 0.2s;
+    &:hover {
+    transform: scale(1.02); 
+    background-color: #effff0;
 `;

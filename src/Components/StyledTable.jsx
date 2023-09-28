@@ -7,6 +7,9 @@ export const CustomWrapperStyles = styled.section`
   right: 0;
   position: relative;
   // width: ${(props) => (props.width === '75%' ? '70%' : '96%')} 
+  max-height: 786px;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 export const CellContainer = styled.div`
   display: flex;
