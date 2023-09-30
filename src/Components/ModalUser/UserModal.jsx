@@ -63,6 +63,7 @@ const Wrapper = styled.section`
     transform: translate(-50%, -50%);
     width: 402px;
     box-shadow: 13px 3px 40px #00000033;
+    z-index: 999;
 `;
 const InputContainer = styled.div`
     display: flex;

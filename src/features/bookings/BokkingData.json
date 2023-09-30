@@ -7,8 +7,8 @@
         "checkout": "2023-05-03",
         "specialrequest": "velit deserunt consequat amet excepteur sunt duis",
         "roominfo": "1",
-        "roomtype": "laborum sint nisi",
-        "status": false
+        "roomtype": "Single Bed",
+        "status": "in progress"
     },
     {
         "fullname": "Vernon Mitchell",
@@ -18,8 +18,8 @@
         "checkout": "2023-03-29",
         "specialrequest": "eiusmod et laborum cillum reprehenderit cillum Lorem fugiat",
         "roominfo": "1",
-        "roomtype": "amet proident aute",
-        "status": true
+        "roomtype": "Single Bed",
+        "status": "check in"
     },
     {
         "fullname": "Dwayne Flatley",
@@ -29,8 +29,8 @@
         "checkout": "2023-07-03",
         "specialrequest": "laboris ex et id excepteur exercitation ea cupidatat",
         "roominfo": "1",
-        "roomtype": "enim culpa id",
-        "status": false
+        "roomtype": "Single Bed",
+        "status": "check out"
     },
     {
         "fullname": "Charlotte Steuber",
@@ -40,8 +40,8 @@
         "checkout": "2023-04-04",
         "specialrequest": "ipsum dolore est ut laboris incididunt ut",
         "roominfo": "1",
-        "roomtype": "do magna ut",
-        "status": true
+        "roomtype": "Single Bed",
+        "status": "check in"
     },
     {
         "fullname": "Kenneth Koch",
@@ -51,8 +51,8 @@
         "checkout": "2022-12-03",
         "specialrequest": "id et culpa velit minim eiusmod eiusmod",
         "roominfo": "1",
-        "roomtype": "ex nostrud consequat",
-        "status": true
+        "roomtype": "Single Bed",
+        "status": "in progress"
     },
     {
         "fullname": "Oliver Spencer",
@@ -62,8 +62,8 @@
         "checkout": "2023-08-19",
         "specialrequest": "eiusmod elit dolor veniam et",
         "roominfo": "1",
-        "roomtype": "dolore est minim",
-        "status": true
+        "roomtype": "Single Bed",
+        "status": "check out"
     },
     {
         "fullname": "Delia Predovic",
@@ -73,8 +73,8 @@
         "checkout": "2023-04-27",
         "specialrequest": "quis sit",
         "roominfo": "1",
-        "roomtype": "labore nulla tempor",
-        "status": false
+        "roomtype": "Single Bed",
+        "status": "check in"
     },
     {
         "fullname": "Jeffery Walter",
@@ -84,8 +84,8 @@
         "checkout": "2023-05-19",
         "specialrequest": "ullamco est reprehenderit do",
         "roominfo": "1",
-        "roomtype": "nisi exercitation consectetur",
-        "status": true
+        "roomtype": "Single Bed",
+        "status": "in progress"
     },
     {
         "fullname": "Bethany Anderson",
@@ -95,8 +95,8 @@
         "checkout": "2023-08-25",
         "specialrequest": "ex nisi enim ullamco",
         "roominfo": "1",
-        "roomtype": "eu do laboris",
-        "status": false
+        "roomtype": "Single Bed",
+        "status": "in progress"
     },
     {
         "fullname": "Ethel Bernier",
@@ -106,117 +106,7 @@
         "checkout": "2023-08-14",
         "specialrequest": "elit ad esse ipsum esse magna",
         "roominfo": "1",
-        "roomtype": "ea enim irure",
-        "status": false
-    },
-    {
-        "fullname": "Pamela Kris",
-        "id": 1111,
-        "orderdate": "2023-04-01",
-        "checkin": "2023-02-16",
-        "checkout": "2022-09-24",
-        "specialrequest": "commodo officia nostrud anim ullamco tempor laborum cillum",
-        "roominfo": "1",
-        "roomtype": "enim non aliqua",
-        "status": false
-    },
-    {
-        "fullname": "Ralph Douglas",
-        "id": 456,
-        "orderdate": "2023-06-24",
-        "checkin": "2023-08-19",
-        "checkout": "2022-10-24",
-        "specialrequest": "aliquip ex Lorem eu Lorem",
-        "roominfo": "1",
-        "roomtype": "amet sunt officia",
-        "status": false
-    },
-    {
-        "fullname": "Julio Zboncak",
-        "id": 346,
-        "orderdate": "2023-06-22",
-        "checkin": "2023-02-13",
-        "checkout": "2022-11-28",
-        "specialrequest": "velit sint est enim",
-        "roominfo": "1",
-        "roomtype": "consequat ex excepteur",
-        "status": false
-    },
-    {
-        "fullname": "Gerard Blanda",
-        "id": 567,
-        "orderdate": "2023-04-06",
-        "checkin": "2023-01-15",
-        "checkout": "2023-03-29",
-        "specialrequest": "esse anim sit dolor laboris culpa",
-        "roominfo": "1",
-        "roomtype": "sint dolore dolor",
-        "status": false
-    },
-    {
-        "fullname": "Bobbie Koepp",
-        "id": 5567,
-        "orderdate": "2023-08-27",
-        "checkin": "2023-06-09",
-        "checkout": "2023-04-16",
-        "specialrequest": "velit consequat",
-        "roominfo": "1",
-        "roomtype": "commodo fugiat deserunt",
-        "status": true
-    },
-    {
-        "fullname": "Joseph Lemke",
-        "id": 4572,
-        "orderdate": "2023-03-21",
-        "checkin": "2023-07-14",
-        "checkout": "2023-09-13",
-        "specialrequest": "anim id magna id",
-        "roominfo": "1",
-        "roomtype": "dolore quis consequat",
-        "status": false
-    },
-    {
-        "fullname": "Clara Langworth",
-        "id": 87645,
-        "orderdate": "2023-07-08",
-        "checkin": "2022-12-31",
-        "checkout": "2023-01-15",
-        "specialrequest": "elit veniam id qui cupidatat qui",
-        "roominfo": "1",
-        "roomtype": "id nisi consectetur",
-        "status": false
-    },
-    {
-        "fullname": "Henry Cassin",
-        "id": 876,
-        "orderdate": "2023-07-30",
-        "checkin": "2023-03-07",
-        "checkout": "2023-07-10",
-        "specialrequest": "nisi ex in veniam minim sit pariatur et",
-        "roominfo": "1",
-        "roomtype": "ut deserunt ad",
-        "status": true
-    },
-    {
-        "fullname": "Byron Haley",
-        "id": 567,
-        "orderdate": "2022-12-23",
-        "checkin": "2022-11-29",
-        "checkout": "2023-06-16",
-        "specialrequest": "non aliqua",
-        "roominfo": "1",
-        "roomtype": "do velit magna",
-        "status": false
-    },
-    {
-        "fullname": "Kayla Crona",
-        "id": 2,
-        "orderdate": "2022-11-06",
-        "checkin": "2023-02-03",
-        "checkout": "2023-07-31",
-        "specialrequest": "reprehenderit mollit excepteur commodo et ea tempor",
-        "roominfo": "1",
-        "roomtype": "commodo quis magna",
-        "status": false
+        "roomtype": "Single Bed",
+        "status": "check in"
     }
 ]

@@ -17,6 +17,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Login/>} />
+          <Route path='/login' element={<Login/>} />
           <Route path='/dashboard-miranda-hotel' element={<Home/>} />
           <Route path='/home' element={<Home/>}>
             <Route path='dashboard' element={<Dashboard/>} />  
@@ -26,7 +27,7 @@ function App() {
             <Route path='contact' element={<Contact />} />  
             <Route path='users' element={<Users />} />  
           </Route>
-          <Route path='*' element={<Login/>} />
+          {/* <Route path='*' element={<Login/>} /> */}
         </Routes>
       </AuthProvider>
     </BrowserRouter>

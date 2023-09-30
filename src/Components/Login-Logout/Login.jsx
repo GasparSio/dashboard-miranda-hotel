@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
-// import { useAuthContext } from "../Login-Logout/useReducer";
 import logo from '../../Img/icon-hotel.png';
 
 const userCode = 'gas';

@@ -2,84 +2,93 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
- const Table = (props) => {
+const Table = (props) => {
   const width = useSelector(state => state.visual.width);
 
   const displayRow = row => (
     <TableRow>
       {props.cols.map(col => 
-        <TableCell>
+        <TableCell key={col.property}>
           {col.display ? col.display(row) : row[col.property]}
         </TableCell>)}
     </TableRow>
-  )
+  );
 
   return (
-    <div width={width}>
+    <TableContainer width={width}>
       <StyledTable>
         <TableHeader>
           <TableRow>
-            {props.cols.map(col => <TableHeaderCell>{col.label}</TableHeaderCell>)}
+            {props.cols.map(col => <TableHeaderCell key={col.property}>{col.label}</TableHeaderCell>)}
           </TableRow>
         </TableHeader>
         <TableBody>
           {props.data.map(displayRow)}
         </TableBody>
       </StyledTable>
-    </div>
+    </TableContainer>
   );
 };
+
 export default Table;
 
-const StyledTable = styled.table`
-  border-collapse: collapse;
+const TableContainer = styled.div`
+  width: ${({ width }) => width}px;
+`;
+
+const StyledTable = styled.div`
+  display: table;
   width: 100%;
-  border-spacing: 0;
-  max-height: 786px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  table-layout: fixed;
 `;
-const TableHeader = styled.thead`
-  height: 65px;
+
+const TableHeader = styled.div`
+  display: table-header-group;
   background-color: #FFFFFF;
 `;
-const TableBody = styled.tbody`
-  height: 65px;
+
+const TableBody = styled.div`
+  display: table-row-group;
   background-color: #FFFFFF;
 `;
-const TableRow = styled.tr`
-    background-color: #FFFFFF;
-    height: 90px;
-    transition: transform 0.2s;
-    &:hover {
-    transform: scale(1.01); 
-    border-top: 1px solid #80808033;
-    border-bottom: 1px solid #80808033;
+
+const TableRow = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  height: 90px;
+  transition: transform 0.2s;
+  &:hover {
+    background-color: #effff0;
   }
 `;
-const TableHeaderCell = styled.th`
-  text-align: left;
+
+const TableHeaderCell = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
   font-family: Poppins;
   font-size: 16px;
-  font-family: 600;
+  font-weight: 600;
   color: #393939;
   width: 10%;
   padding-left: 20px;
-  transition: transform 0.2s;
-    &:hover {
-    transform: scale(1.02); 
-    background-color: #effff094;
 `;
-const TableCell = styled.td`
+
+const TableCell = styled.div`
+  display: flex;  
+  flex: 1;
+  flex-direction: column;
   text-align: left;
   font-family: Poppins;
   font-size: 14px;
-  font-family: 400;
+  font-weight: 400;
   color: #799283;
   width: 10%;
   padding-left: 20px;
   transition: transform 0.2s;
-    &:hover {
-    transform: scale(1.02); 
+  &:hover {
     background-color: #effff0;
+  }
 `;
