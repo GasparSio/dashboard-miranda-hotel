@@ -7,7 +7,7 @@
         "facilities": "eiusmod aliquip",
         "price": "307,29 €",
         "offerprice": "$229.44",
-        "status": false
+        "status": "booked"
     },
     {
         "photo": "",
@@ -17,7 +17,7 @@
         "facilities": "dolore velit ut et laboris ea do nisi",
         "price": "90,93 €",
         "offerprice": "$247.22",
-        "status": false
+        "status": "available"
     },
     {
         "photo": "",
@@ -27,7 +27,7 @@
         "facilities": "in dolore incididunt elit",
         "price": "331,00 €",
         "offerprice": "$158.15",
-        "status": false
+        "status": "booked"
     },
     {
         "photo": "",
@@ -37,7 +37,7 @@
         "facilities": "Lorem",
         "price": "228,80 €",
         "offerprice": "$308.40",
-        "status": true
+        "status": "available"
     },
     {
         "photo": "",
@@ -47,7 +47,7 @@
         "facilities": "est in proident enim",
         "price": "233,57 €",
         "offerprice": "$152.41",
-        "status": false
+        "status": "booked"
     },
     {
         "photo": "",
@@ -57,7 +57,7 @@
         "facilities": "nostrud",
         "price": "128,66 €",
         "offerprice": "$75.28",
-        "status": false
+        "status": "available"
     },
     {
         "photo": "",
@@ -67,7 +67,7 @@
         "facilities": "dolor minim anim commodo laboris id",
         "price": "227,09 €",
         "offerprice": "$295.51",
-        "status": true
+        "status": "booked"
     },
     {
         "photo": "",
@@ -77,7 +77,7 @@
         "facilities": "laborum nulla fugiat cupidatat aute labore cillum",
         "price": "178,38 €",
         "offerprice": "$94.04",
-        "status": false
+        "status": "booked"
     },
     {
         "photo": "",
@@ -87,6 +87,6 @@
         "facilities": "pariatur in sit eu",
         "price": "75,22 €",
         "offerprice": "$236.46",
-        "status": true
+        "status": "available"
     }
 ]

@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const CheckIn = () => {
+export const Active = () => {
   return (
-    <CheckInButton>Check In</CheckInButton>
+    <ActiveButton>Active</ActiveButton>
   )
 }
 
-const CheckInButton = styled.button`
+const ActiveButton = styled.button`
     border-radius: 7px;
     height: auto;
     border: 1px solid #E8FFEE;
@@ -22,13 +22,13 @@ const CheckInButton = styled.button`
     transform: scale(1.03);
 }
 `
-export const CheckOut = () => {
+export const Inactive = () => {
   return (
-    <CheckOutButton>Check In</CheckOutButton>
+    <InactiveButton>Inactive</InactiveButton>
   )
 }
 
-const CheckOutButton = styled.button`
+const InactiveButton = styled.button`
     border-radius: 7px;
     height: auto;
     border: 1px solid #FFEDEC;

@@ -6,7 +6,10 @@ import { RoomsNavContainer } from "./RoomsNavContainer";
 import { CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
 import Table from "../Table";
-
+import roomImage from '../../Img/room-1.avif';
+import styled from "styled-components";
+import { Available, Booked } from "./StatusButton";
+import { MdDelete } from "react-icons/md";
 
 export const Rooms = () => {
   const dispatch = useDispatch()
@@ -17,18 +20,29 @@ export const Rooms = () => {
     dispatch(fetchRooms())
   }, [dispatch])
 
-  // const onDeleteRoom = (roomId) => {
-  //   dispatch(deleteRoom(roomId))
-  // }
+  const statusHandler = (row) => {
+    if(row.status === 'booked'){
+      return <Booked/> 
+    }else{
+      return <Available/>
+    }
+  }
+  const onDeleteRoom = (roomId) => {
+    dispatch(deleteRoom(roomId))
+  }
+
   const cols = [
     {
       property: 'roomname',
       label: 'Room Name',
       display: (row) => (
-        <CellContainer>
-          <LineContainer><ValueText>Number Room: </ValueText><PropertyText>{row.roomNumber}</PropertyText></LineContainer>
-          <LineContainer><ValueText>Id: </ValueText><PropertyText>{row.id}</PropertyText></LineContainer>
-        </CellContainer>
+        <ImageContainer>
+          <img src={roomImage} alt="Room" />
+          <TextContainer>
+            <PropertyText>{row.roomNumber}</PropertyText>
+            <PropertyText>Id: {row.id}</PropertyText>
+          </TextContainer>
+        </ImageContainer>
       ),
     },
     {
@@ -36,7 +50,7 @@ export const Rooms = () => {
       label: 'Bed Type',
       display: (row) => (
         <CellContainer>
-          <LineContainer><ValueText>Bed Type: </ValueText><PropertyText>{row.bedType}</PropertyText></LineContainer>
+          <PropertyText>{row.bedType}</PropertyText>
         </CellContainer>
       ),
     },
@@ -45,7 +59,7 @@ export const Rooms = () => {
       label: 'Facilities',
       display: (row) => (
         <CellContainer>
-          <LineContainerComment><ValueText>Facilities: </ValueText><PropertyText>{row.facilities}</PropertyText></LineContainerComment>
+          <PropertyText>{row.facilities}</PropertyText>
         </CellContainer>
       ),
     },
@@ -54,7 +68,7 @@ export const Rooms = () => {
       label: 'Price',
       display: (row) => (
         <CellContainer>
-          <LineContainerComment><ValueText>Price: </ValueText><PropertyText>{row.price}</PropertyText></LineContainerComment>
+          <PropertyText>{row.price}</PropertyText>
         </CellContainer>
       ),
     },
@@ -63,7 +77,7 @@ export const Rooms = () => {
       label: 'Offer Price',
       display: (row) => (
         <CellContainer>
-          <LineContainerComment><ValueText>Offer Price: </ValueText><PropertyText>{row.offerprice}</PropertyText></LineContainerComment>
+          <PropertyText>{row.offerprice}</PropertyText>
         </CellContainer>
       ),
     },
@@ -72,7 +86,16 @@ export const Rooms = () => {
       label: 'Status',
       display: (row) => (
         <CellContainer>
-          <LineContainerComment><ValueText>Status: </ValueText><PropertyText>{row.status}</PropertyText></LineContainerComment>
+          <LineContainerComment><PropertyText>{statusHandler(row)}</PropertyText></LineContainerComment>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'delete',
+      label: '',
+      display: (row) => (
+        <CellContainer>
+          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteRoom(row.id)}/></DeleteIconContainer>
         </CellContainer>
       ),
     },
@@ -84,35 +107,28 @@ export const Rooms = () => {
         </Wrapperdashboardcontainer>
     )
 }
+const DeleteIconContainer = styled.span`
+  text-align: center;
+`;
+const DeleteIcon = styled(MdDelete)`
+  cursor: pointer;
+  color: #bd2929;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+`;
 
-// export const Booked = () => {
-//   return(
-//     <SpanBooked>Booked</SpanBooked>
-//   )
-// }
-// const SpanBooked = styled.span`
-//   background-color: red;
-//   color: white;
-//   border-radius: 10px;
-//   width: 80px;
-//   height: 30px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  img{
+    width: 50%;
+  }
+`;
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+`;
 
-// export const Available = () => {
-//   return(
-//     <SpanAvailable>Available</SpanAvailable>
-//   )
-// }
-// const SpanAvailable = styled.span`
-//   background-color: #3cae43;
-//   color: white;
-//   border-radius: 10px;
-//   width: 80px;
-//   height: 30px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
+

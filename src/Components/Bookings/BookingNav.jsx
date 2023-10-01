@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { Button, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
-// import { useDispatch } from 'react-redux';
 
-export function BookingNav() {
-  // const dispatch = useDispatch()
-  const [activeButton, setActiveButton] = useState(null);
-
+export function BookingNav({ onClientNameChange }) {
+  const [activeButton, setActiveButton] = useState('allBookings');
+  const [clientName, setClientName] = useState('');
+  
   const toggle = (activeState) => {
     setActiveButton(activeState);
+  };
+
+  const handleClientNameChange = (event) => {
+    const newValue = event.target.value;
+    setClientName(newValue);
+    onClientNameChange(newValue);
   };
 
   const isAllBookingsActive = activeButton === 'allBookings';
@@ -18,22 +23,25 @@ export function BookingNav() {
     return (
       <WrapperBookingNavContainer>
         <LeftNavContainer>
-          <WrapperButton isActive={isAllBookingsActive}>
+          <WrapperButton isactive={isAllBookingsActive }>
             <Button onClick={() => toggle('allBookings')}>All Bookings</Button>
           </WrapperButton>
-          <WrapperButton isActive={isCheckInActive}>
+          <WrapperButton isactive={isCheckInActive }>
             <Button onClick={() => toggle('checkIn')}>Check In</Button>
           </WrapperButton>
-          <WrapperButton isActive={isCheckOutActive}>
+          <WrapperButton isactive={isCheckOutActive }>
             <Button onClick={() => toggle('checkOut')}>Check Out</Button>
           </WrapperButton>
-          <WrapperButton isActive={isProgressActive}>
+          <WrapperButton isactive={isProgressActive }>
             <Button onClick={() => toggle('progress')}>In Progress</Button>
           </WrapperButton>
             <WrapperInput>
               <SearchIcon/>
               <Input 
-                placeholder='Client Name'/>
+                placeholder='Search Client Name'
+                value={clientName}
+                onChange={handleClientNameChange}
+              />
             </WrapperInput>
         </LeftNavContainer>
         <RightNavContainer>

@@ -89,6 +89,11 @@ const ButtonBack = styled(RxCrossCircled)`
   color: ${colors.primaryRed};
   width: 20px;
   height: 20px;
+  cursor: pointer;
+  transition: transform;
+  &:hover{
+    transform: scale(1.1);
+  }
 `;
 const NameContainer = styled.div`
   display: flex;

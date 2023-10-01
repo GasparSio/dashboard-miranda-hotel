@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const Table = (props) => {
   const width = useSelector(state => state.visual.width);
 
-  const displayRow = row => (
-    <TableRow>
+  const displayRow = (row, rowIndex) => (
+    <TableRow key={rowIndex}>
       {props.cols.map(col => 
         <TableCell key={col.property}>
           {col.display ? col.display(row) : row[col.property]}
@@ -23,7 +23,7 @@ const Table = (props) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {props.data.map(displayRow)}
+          {props.data.map((row, rowIndex) => displayRow(row, rowIndex))}
         </TableBody>
       </StyledTable>
     </TableContainer>
@@ -67,12 +67,11 @@ const TableHeaderCell = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  align-items: center;
   font-family: Poppins;
   font-size: 16px;
   font-weight: 600;
   color: #393939;
-  width: 10%;
+  width: 12%;
   padding-left: 20px;
 `;
 

@@ -8,6 +8,7 @@ import { Wrapperdashboardcontainer } from '../StyledComponent';
 import styled from "styled-components";
 import { RequestPopUp } from "./RequestPopUp";
 import { CheckIn, CheckOut, InProgress } from "./StatusButton";
+import { MdDelete } from 'react-icons/md';
 import { NavLink } from "react-router-dom";
 
 export const Bookings = () => {
@@ -20,15 +21,18 @@ export const Bookings = () => {
     dispatch(fetchBookings())
   }, [dispatch])
 
-  const onDeleteRoom = (bookingId) => {
+  const onDeleteBooking = (bookingId) => {
     dispatch(deleteBooking(bookingId))
   }
+
   const handleOpenPopUp = () => {
     setOpenPopUp(true)
   }
+
   const handleClosePopUp = () => {
     setOpenPopUp(false)
   }
+
   const statusHandler = (row) => {
     if(row.status === 'check in'){
       return <CheckIn/> 
@@ -38,6 +42,16 @@ export const Bookings = () => {
       return <InProgress/>
     }
   }
+  
+  const [clientName, setClientName] = useState('');
+  const handleClientNameChange = (newClientName) => {
+    setClientName(newClientName);
+  };
+
+  const filteredBookings = bookings.filter((booking) =>
+    booking.fullname.toLowerCase().includes(clientName.toLowerCase())
+  );
+  
   const cols = [
     {
       property: 'guest',
@@ -108,12 +122,21 @@ export const Bookings = () => {
         </CellContainer>
       ),
     },
+    {
+      property: 'delete',
+      label: '',
+      display: (row) => (
+        <CellContainer>
+          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteBooking(row.id)}/></DeleteIconContainer>
+        </CellContainer>
+      ),
+    },
 ]
 
   return(
       <Wrapperdashboardcontainer width={width}>
-        <BookingNav/>
-        <Table cols={cols} data={bookings}/>
+        <BookingNav onClientNameChange={handleClientNameChange}/>
+        <Table cols={cols} data={filteredBookings}/>
       </Wrapperdashboardcontainer>
   )
 }
@@ -127,9 +150,19 @@ const Link = styled(NavLink)`
   font-weight: 400;
   font-family: 'Poppins';
 `;
+const DeleteIconContainer = styled.span`
+  text-align: center;
+`;
+const DeleteIcon = styled(MdDelete)`
+  cursor: pointer;
+  color: #bd2929;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+`;
 const Button = styled.button`
   border-radius: 7px;
-  height: 35px;
+  height: auto;
   border: 1px solid #799283;
   background-color: white;
   color: #799283;

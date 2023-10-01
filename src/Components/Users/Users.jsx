@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, fetchUsers} from '../../features/users/userSlice';
 import { UsersNav } from "./UsersNav";
 import Table from "../Table";
 import { CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
+import { MdDelete } from "react-icons/md";
+import { Active, Inactive } from "./StatusButton";
+import styled from "styled-components";
 
 export const Users = () => {
   const dispatch = useDispatch()
@@ -15,18 +18,36 @@ export const Users = () => {
     dispatch(fetchUsers())
   }, [dispatch])
 
-  // const onDeleteRoom = (userId) => {
-  //   dispatch(deleteUser(userId))
-  // }
+  const onDeleteUser = (userId) => {
+    dispatch(deleteUser(userId))
+  }
+
+  const statusHandler = (row) => {
+    if(row.status === 'active'){
+      return <Active/> 
+    }else {
+      return <Inactive/>
+    }
+  }
+
+  const [userName, setuserName] = useState('');
+  const handleUserNameChange = (newUserName) => {
+    setuserName(newUserName);
+  };
+
+  const filteredBookings = users.filter((user) =>
+    user.fullname.toLowerCase().includes(userName.toLowerCase())
+  );
+
   const cols = [
     {
       property: 'name',
       label: 'Full Name',
       display: (row) => (
         <CellContainer>
-          <LineContainer><ValueText>Name: </ValueText><PropertyText>{row.fullname}</PropertyText></LineContainer>
-          <LineContainer><ValueText>Id: </ValueText><PropertyText>{row.id}</PropertyText></LineContainer>
-          <LineContainer><ValueText>Email: </ValueText><PropertyText>{row.email}</PropertyText></LineContainer>
+          <PropertyText>{row.fullname}</PropertyText>
+          <PropertyText>Id: {row.id}</PropertyText>
+          <PropertyText>{row.email}</PropertyText>
         </CellContainer>
       ),
     },
@@ -35,7 +56,7 @@ export const Users = () => {
       label: 'Start Date',
       display: (row) => (
         <CellContainer>
-          <LineContainer><ValueText>Start Date: </ValueText><PropertyText>{row.startdate}</PropertyText></LineContainer>
+          <PropertyText>{row.startdate}</PropertyText>
         </CellContainer>
       ),
     },
@@ -44,7 +65,7 @@ export const Users = () => {
       label: 'Description',
       display: (row) => (
         <CellContainer>
-          <LineContainerComment><ValueText>Description: </ValueText><PropertyText>{row.description}</PropertyText></LineContainerComment>
+          <PropertyText>{row.description}</PropertyText>
         </CellContainer>
       ),
     },
@@ -53,7 +74,7 @@ export const Users = () => {
       label: 'Contact',
       display: (row) => (
         <CellContainer>
-          <LineContainerComment><ValueText>Phone: </ValueText><PropertyText>{row.contact}</PropertyText></LineContainerComment>
+          <PropertyText>{row.contact}</PropertyText>
         </CellContainer>
       ),
     },
@@ -62,7 +83,16 @@ export const Users = () => {
       label: 'Status',
       display: (row) => (
         <CellContainer>
-          <LineContainerComment><ValueText>Status: </ValueText><PropertyText>{row.status}</PropertyText></LineContainerComment>
+          <LineContainerComment><PropertyText>{statusHandler(row)}</PropertyText></LineContainerComment>
+        </CellContainer>
+      ),
+    },
+    {
+      property: 'status',
+      label: '',
+      display: (row) => (
+        <CellContainer>
+          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteUser(row.id)}/></DeleteIconContainer>
         </CellContainer>
       ),
     },
@@ -70,9 +100,21 @@ export const Users = () => {
     return(
       <>
         <Wrapperdashboardcontainer width={width}>
-          <UsersNav/>
-          <Table cols={cols} data={users}/>
+          <UsersNav onUserNameChange={handleUserNameChange}/>
+          <Table cols={cols} data={filteredBookings}/>
         </Wrapperdashboardcontainer>
       </>
     )
 }
+
+const DeleteIcon = styled(MdDelete)`
+  cursor: pointer;
+  color: #bd2929;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+`;
+const DeleteIconContainer = styled.span`
+  text-align: center;
+`;
+

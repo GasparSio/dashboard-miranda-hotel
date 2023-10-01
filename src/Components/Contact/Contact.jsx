@@ -26,8 +26,8 @@ export const Contact = (props) => {
       label: 'Date',
       display: (row) => (
         <CellContainer>
-          <LineContainer><ValueText>Date: </ValueText><PropertyText>{row.date}</PropertyText></LineContainer>
-          <LineContainer><ValueText>Id: </ValueText><PropertyText>{row.id}</PropertyText></LineContainer>
+          <PropertyText>{row.date}</PropertyText>
+          <PropertyText>Id: {row.id}</PropertyText>
         </CellContainer>
       ),
     },
@@ -36,9 +36,9 @@ export const Contact = (props) => {
       label: 'Customers',
       display: (row) => (
         <CellContainer>
-          <LineContainer><ValueText>Full Name: </ValueText><PropertyText>{row.fullname}</PropertyText></LineContainer>
-          <LineContainer><ValueText>Email: </ValueText><PropertyText>{row.email}</PropertyText></LineContainer>
-          <LineContainer><ValueText>Phone: </ValueText><PropertyText>{row.phone}</PropertyText></LineContainer>
+          <PropertyText>{row.fullname}</PropertyText>
+          <PropertyText>{row.email}</PropertyText>
+          <PropertyText>{row.phone}</PropertyText>
         </CellContainer>
       ),
     },
@@ -46,10 +46,10 @@ export const Contact = (props) => {
       property: 'comment',
       label: 'Comment',
       display: (row) => (
-        <CellContainer>
-          <LineContainerComment><ValueText>Subject: </ValueText><PropertyText>{row.asunto}</PropertyText></LineContainerComment>
-          <LineContainerComment><ValueText>Comment: </ValueText><PropertyText>{row.comment}</PropertyText></LineContainerComment>
-        </CellContainer>
+        <SubjectContainer>
+          <SubjecText>{row.asunto}</SubjecText>
+          <PropertyText>{row.comment}</PropertyText>
+        </SubjectContainer>
       ),
     },
     {
@@ -82,10 +82,10 @@ export const Contact = (props) => {
         <Reviews />
       </CustomWrapperStyles>
       <WrapperContactNav>
-        <WrapperButton isActive={allContactActive}>
+        <WrapperButton isactive={allContactActive}>
             <Button onClick={handleAllContact}>All Contacts</Button>
         </WrapperButton>
-        <WrapperButton isActive={archivedActive}>
+        <WrapperButton isactive={archivedActive}>
             <Button onClick={handleArchived}>Archived</Button>
         </WrapperButton>
       </WrapperContactNav>
@@ -113,4 +113,15 @@ const WrapperContactNav = styled.div`
     height: 40px;
     justify-content: space-between;
     align-items: center;
+`;
+const SubjecText = styled.span`
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+`;
+const SubjectContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: auto
 `;

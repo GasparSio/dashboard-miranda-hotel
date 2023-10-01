@@ -2,11 +2,18 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import { WrapperButton, Button, WrapperInput, SearchIcon, Input, Select, Option } from '../StyledFilterButtons';
 
-export function UsersNav() {
+export function UsersNav({onUserNameChange}) {
   const [activeButton, setActiveButton] = useState(null);
+  const [userName, setuserName] = useState('');
 
   const toggle = (activeState) => {
     setActiveButton(activeState);
+  };
+
+  const handleUserNameChange = (event) => {
+    const newValue = event.target.value;
+    setuserName(newValue);
+    onUserNameChange(newValue);
   };
 
   const allEmployee = activeButton === 'allEmployee';
@@ -15,19 +22,22 @@ export function UsersNav() {
     return (
       <WrapperBookingNavContainer>
         <LeftNavContainer>
-          <WrapperButton isActive={allEmployee}>
+          <WrapperButton isactive={allEmployee}>
             <Button onClick={() => toggle('allEmployee')}>All Employee</Button>
           </WrapperButton>
-          <WrapperButton isActive={isActiveEmployee}>
+          <WrapperButton isactive={isActiveEmployee}>
             <Button onClick={() => toggle('activeEmployee')}>Active Employee</Button>
           </WrapperButton>
-          <WrapperButton isActive={isInactiveEmployee}>
+          <WrapperButton isactive={isInactiveEmployee}>
             <Button onClick={() => toggle('inactiveEmployee')}>Inactive Employee</Button>
           </WrapperButton>
           <WrapperInput>
             <SearchIcon/>
             <Input 
-              placeholder='Employee Name'/>
+              placeholder='Search Employee Name'
+              value={userName}
+              onChange={handleUserNameChange}
+            />
           </WrapperInput>
         </LeftNavContainer>
         <RightNavContainer>
