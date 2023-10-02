@@ -72,7 +72,7 @@ const Wrapperbutton = styled.div`
     margin-top: 10px;
     width: 50%;
 `;
-const Button = styled.button`
+export const Button = styled.button`
     width: 158px;
     height: 47px;
     background-color: #EBF1EF;

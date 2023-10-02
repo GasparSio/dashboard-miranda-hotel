@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profileImage from '../../Img/18942381.jpg'
 
-const AuthContext = React.createContext();
+const AuthContext = React.createContext(null);
 
 const initialState = {
   isAuthenticated: false,

@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import reviewsData from './dashboard-data.json';
-import '../../styles/StyleSwiperButton.css';
+import { ReviewCard } from "./ReviewCard";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import '../../styles/StyleSwiperButton.css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
-import { ReviewCard } from "./ReviewCard";
 
 export const Reviews = () => {
     const width = useSelector(state => state.visual.width)
@@ -20,7 +20,7 @@ export const Reviews = () => {
             <Title>Latest Review by Customers</Title>
             <SwiperWrap
                 modules={[Navigation]}
-                slidesPerView={width === '75%' ? 2 : 3} // Número de tarjetas visibles por vez
+                slidesPerView={width === '75%' ? 3 : 4} // Número de tarjetas visibles por vez
                 spaceBetween={1} // Espacio entre las tarjetas
                 navigation
             >

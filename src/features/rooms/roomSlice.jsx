@@ -115,16 +115,9 @@ export const roomSlice = createSlice({
             state.isloading = true
         },
         [deleteRoom.fulfilled] : (state, {payload}) => {
-            // Encuentra el índice de la habitación a eliminar por su ID
-            const index = state.rooms.findIndex(room => room.id === payload);
-
-            if (index !== -1) {
-            // Elimina la habitación del array de habitaciones
-            state.rooms.splice(index, 1);
-            }
-
             state.status = 'success';
             state.isloading = false;
+            state.rooms = state.rooms.filter(room => room.id !== payload)
         },
         [deleteRoom.rejected] : (state, action) => {
             state.haserror = true

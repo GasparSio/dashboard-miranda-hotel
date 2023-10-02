@@ -115,16 +115,9 @@ export const bookingSlice = createSlice({
             state.isloading = true
         },
         [deleteBooking.fulfilled] : (state, {payload}) => {
-            // Encuentra el índice de la habitación a eliminar por su ID
-            const index = state.bookings.findIndex(booking => booking.id === payload);
-
-            if (index !== -1) {
-            // Elimina la habitación del array de habitaciones
-            state.bookings.splice(index, 1);
-            }
-
             state.status = 'success';
             state.isloading = false;
+            state.bookings = state.bookings.filter(booking => booking.id !== payload);
         },
         [deleteBooking.rejected] : (state, action) => {
             state.haserror = true

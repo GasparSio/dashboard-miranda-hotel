@@ -56,7 +56,8 @@ const TableRow = styled.div`
   display: flex;
   align-items: center;
   background-color: #FFFFFF;
-  height: 90px;
+  height: auto;
+  min-height: 120px;
   transition: transform 0.2s;
   &:hover {
     background-color: #effff0;
