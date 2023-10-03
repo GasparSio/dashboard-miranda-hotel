@@ -1,39 +1,51 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { Button, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
+import { colors } from '../theme';
 
-export function BookingNav({ onClientNameChange }) {
-  const [activeButton, setActiveButton] = useState('allBookings');
+export function BookingNav({ onClientNameChange, onFilterButtonClick, filter }) {
   const [clientName, setClientName] = useState('');
   
-  const toggle = (activeState) => {
-    setActiveButton(activeState);
-  };
-
   const handleClientNameChange = (event) => {
     const newValue = event.target.value;
     setClientName(newValue);
     onClientNameChange(newValue);
   };
 
-  const isAllBookingsActive = activeButton === 'allBookings';
-  const isCheckInActive = activeButton === 'checkIn';
-  const isCheckOutActive = activeButton === 'checkOut';
-  const isProgressActive = activeButton === 'progress';
     return (
       <WrapperBookingNavContainer>
         <LeftNavContainer>
-          <WrapperButton isactive={isAllBookingsActive }>
-            <Button onClick={() => toggle('allBookings')}>All Bookings</Button>
+          <WrapperButton >
+            <Button style={{
+              color: filter === 'All Bookings' && `${colors.filterGreenButton}`,
+              borderBottom: filter === 'All Bookings' && `3px solid ${colors.filterGreenButton}`,
+              fontWeight: filter === 'All Bookings' && `600`,
+            }} 
+            onClick={() => onFilterButtonClick('All Bookings')}>All Bookings</Button>
           </WrapperButton>
-          <WrapperButton isactive={isCheckInActive }>
-            <Button onClick={() => toggle('checkIn')}>Check In</Button>
+          <WrapperButton >
+            <Button style={{
+              color: filter === 'Check In' && `${colors.filterGreenButton}`,
+              borderBottom: filter === 'Check In' && `3px solid ${colors.filterGreenButton}`,
+              fontWeight: filter === 'Check In' && `600`,
+            }} 
+            onClick={() => onFilterButtonClick('Check In')}>Check In</Button>
           </WrapperButton>
-          <WrapperButton isactive={isCheckOutActive }>
-            <Button onClick={() => toggle('checkOut')}>Check Out</Button>
+          <WrapperButton >
+            <Button style={{
+              color: filter === 'Check Out' && `${colors.filterGreenButton}`,
+              borderBottom: filter === 'Check Out' && `3px solid ${colors.filterGreenButton}`,
+              fontWeight: filter === 'Check Out' && `600`,
+            }} 
+            onClick={() => onFilterButtonClick('Check Out')}>Check Out</Button>
           </WrapperButton>
-          <WrapperButton isactive={isProgressActive }>
-            <Button onClick={() => toggle('progress')}>In Progress</Button>
+          <WrapperButton >
+            <Button style={{
+              color: filter === 'In Progress' && `${colors.filterGreenButton}`,
+              borderBottom: filter === 'In Progress' && `3px solid ${colors.filterGreenButton}`,
+              fontWeight: filter === 'In Progress' && `600`,
+            }} 
+            onClick={() => onFilterButtonClick('In Progress')}>In Progress</Button>
           </WrapperButton>
             <WrapperInput>
               <SearchIcon/>

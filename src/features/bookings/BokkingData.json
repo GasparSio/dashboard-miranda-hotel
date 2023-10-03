@@ -7,8 +7,10 @@
         "checkout": "2023-05-03",
         "specialrequest": "velit deserunt consequat amet excepteur sunt duis",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "in progress"
+        "roomtype": "Delux - Single Bed",
+        "status": "in progress",
+        "price": "105 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Vernon Mitchell",
@@ -18,8 +20,10 @@
         "checkout": "2023-03-29",
         "specialrequest": "eiusmod et laborum cillum reprehenderit cillum Lorem fugiat",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "check in"
+        "roomtype": "Delux - Single Bed",
+        "status": "check in",
+        "price": "130 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Dwayne Flatley",
@@ -29,8 +33,10 @@
         "checkout": "2023-07-03",
         "specialrequest": "laboris ex et id excepteur exercitation ea cupidatat",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "check out"
+        "roomtype": "Delux - Double Bed",
+        "status": "check out",
+        "price": "110 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Charlotte Steuber",
@@ -40,8 +46,10 @@
         "checkout": "2023-04-04",
         "specialrequest": "ipsum dolore est ut laboris incididunt ut",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "check in"
+        "roomtype": "Delux - Single Bed",
+        "status": "check in",
+        "price": "105 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Kenneth Koch",
@@ -51,8 +59,10 @@
         "checkout": "2022-12-03",
         "specialrequest": "id et culpa velit minim eiusmod eiusmod",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "in progress"
+        "roomtype": "Delux - Double Bed",
+        "status": "in progress",
+        "price": "130 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Oliver Spencer",
@@ -62,8 +72,10 @@
         "checkout": "2023-08-19",
         "specialrequest": "eiusmod elit dolor veniam et",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "check out"
+        "roomtype": "Delux - Single Bed",
+        "status": "check out",
+        "price": "105 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Delia Predovic",
@@ -73,8 +85,10 @@
         "checkout": "2023-04-27",
         "specialrequest": "quis sit",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "check in"
+        "roomtype": "Delux - Double Bed",
+        "status": "check in",
+        "price": "150 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Jeffery Walter",
@@ -84,8 +98,10 @@
         "checkout": "2023-05-19",
         "specialrequest": "ullamco est reprehenderit do",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "in progress"
+        "roomtype": "Delux - Single Bed",
+        "status": "in progress",
+        "price": "105 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Bethany Anderson",
@@ -95,8 +111,10 @@
         "checkout": "2023-08-25",
         "specialrequest": "ex nisi enim ullamco",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "in progress"
+        "roomtype": "Delux - Double Bed",
+        "status": "in progress",
+        "price": "150 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     },
     {
         "fullname": "Ethel Bernier",
@@ -106,7 +124,9 @@
         "checkout": "2023-08-14",
         "specialrequest": "elit ad esse ipsum esse magna",
         "roominfo": "1",
-        "roomtype": "Single Bed",
-        "status": "check in"
+        "roomtype": "Delux - Single Bed",
+        "status": "check in",
+        "price": "105 /night",
+        "photo": "https://cache.marriott.com/content/dam/marriott-renditions/JAXAM/jaxam-deluxe-guestroom-4873-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
     }
 ]

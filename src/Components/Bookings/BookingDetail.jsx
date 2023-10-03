@@ -2,11 +2,30 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { RxCrossCircled } from "react-icons/rx";
 import { colors } from '../theme';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchBooking } from '../../features/bookings/bookingSlice';
 
 
 export const BookingDetail = () => {
-  const navigate = useNavigate()
   const { id } = useParams();
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const booking = useSelector(state => state.bookings.booking);
+  const bookingId = parseInt(id, 10);
+  
+  console.log(booking);
+  
+  useEffect(() => {
+    // Llama a la acción fetchBooking para cargar los detalles de la reserva
+    dispatch(fetchBooking(bookingId));
+  }, [dispatch, bookingId]);
+  
+
+  if (!booking) {
+    navigate('/home/bookings'); 
+    return null;
+  }
 
   const Handleback = () => {
     navigate(-1)
@@ -14,35 +33,34 @@ export const BookingDetail = () => {
 
   return (
     <WrapperBookingDetail>
-      {/* <h2>Detalles del Booking #{id}</h2> */}
       <LeftContainer>
         <NameContainer>
-          <span>Roberto Mansini</span>
-          <p>ID 1</p>
+          <span>{booking.fullname}</span>
+          <p>ID: {booking.id}</p>
         </NameContainer>
         <DateContainer>
           <CheckInContainer>
             <span>Check in</span>
-            <p>2023-12-24 - 13:00pm</p>
+            <p>{booking.checkin}</p>
           </CheckInContainer>
           <CheckOutContainer>
             <span>Check out</span>
-            <p>2023-12-29 - 11:00am</p>
+            <p>{booking.checkout}</p>
           </CheckOutContainer>
         </DateContainer>
         <Line></Line>
         <RoomContainer>
           <CheckInContainer>
             <span>Room Info</span>
-            <p>Deluxe - Single Bed</p>
+            <p>{booking.roomtype}</p>
           </CheckInContainer>
           <CheckInContainer>
             <span>Price</span>
-            <p>$ 145 /night</p>
+            <p>{booking.price}</p>
           </CheckInContainer>
         </RoomContainer>
         <RequestContainer>
-          <span>Special Request: ad nostrud ipsum mollit et adipisicing laborum consectetur quis amet dolor anim duis dolorad nostrud ipsum mollit et adipisicing laborum consectetur quis amet dolor anim duis dolorad nostrud ipsum mollit et adipisicing laborum consectetur quis amet dolor anim duis dolorad nostrud ipsum mollit et adipisicing laborum consectetur quis amet dolor anim duis dolorad nostrud ipsum mollit et adipisicing laborum consectetur quis amet dolor anim duis dolor</span>
+          <span>{booking.specialrequest}</span>
         </RequestContainer>
         <FacilitiesContainer>
           <h1>Facilities</h1>
@@ -56,10 +74,12 @@ export const BookingDetail = () => {
         <ButtonBack onClick={Handleback}/>
       </LeftContainer>
       <RightContainer>
-        <Photo></Photo>
+        <Photo>
+          <img src={booking.photo}/>
+        </Photo>
         <RoomTypeContainer>
-          <span>Bed Type</span>
-          <span>Status</span>
+          <span>{booking.roomtype}</span>
+          {/* <span>{booking.status}</span> */}
         </RoomTypeContainer>
       </RightContainer>
     </WrapperBookingDetail>
@@ -74,6 +94,7 @@ const WrapperBookingDetail = styled.div`
     width: 70%;
     border-radius: 25px;
     background-color: white;
+    border: 1px solid #c5d6c7;
 `;
 const LeftContainer = styled.div`
   position: relative;
@@ -214,15 +235,31 @@ const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  position: relative;
 `;
 const Photo = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: grey;
   border-radius: 0 25px 25px 0;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 25px 25px 0;
+  }
 `;
 
 const RoomTypeContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  left: 24%;
+  span{
+    color: white;
+    font-size: 26px;
+    font-family: Poppins;
+    font-weight: 600;
+  }
 `;

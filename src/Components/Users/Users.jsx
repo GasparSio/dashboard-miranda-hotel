@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, fetchUsers} from '../../features/users/userSlice';
 import { UsersNav } from "./UsersNav";
 import Table from "../Table";
-import { CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText } from '../StyledTable';
+import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
 import { MdDelete } from "react-icons/md";
 import { Active, Inactive } from "./StatusButton";
@@ -35,9 +35,27 @@ export const Users = () => {
     setuserName(newUserName);
   };
 
-  const filteredBookings = users.filter((user) =>
+  const searchUsers = users.filter((user) =>
     user.fullname.toLowerCase().includes(userName.toLowerCase())
   );
+
+  const [filterNav, setFilterNav] = useState('All Employee');
+  
+  const filteredUsers = users.filter((booking) => {
+    switch(filterNav){
+      case "All Employee":
+        return true;
+      case "Active Employee":
+        return booking.status === "active"
+      case "Inactive Employee":
+        return booking.status === "inactive"
+      default:
+        return false;
+    }
+  })
+
+  const finalFilteredUsers = userName ? searchUsers : filteredUsers;
+
 
   const cols = [
     {
@@ -100,8 +118,12 @@ export const Users = () => {
     return(
       <>
         <Wrapperdashboardcontainer width={width}>
-          <UsersNav onUserNameChange={handleUserNameChange}/>
-          <Table cols={cols} data={filteredBookings}/>
+          <UsersNav 
+            onUserNameChange={handleUserNameChange}
+            onFilterButtonClick={setFilterNav} 
+            filter={filterNav}
+          />
+          <Table cols={cols} data={finalFilteredUsers}/>
         </Wrapperdashboardcontainer>
       </>
     )

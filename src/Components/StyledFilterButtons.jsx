@@ -3,13 +3,10 @@ import { colors } from './theme';
 import { AiOutlineSearch } from "react-icons/ai";
 
 export const WrapperButton = styled.div`
-  border-bottom: ${(props) => props.isactive ? `3px solid ${colors.filterGreenButton}` : 'none'};
   height: 42px;
   width: 180px;
   display: flex;
   justify-content: center;
-  color: ${(props) => props.isactive ? `${colors.filterGreenButton}` : 'none'};
-  font-weight: ${(props) => props.isactive ? '600' : '400'};
 `;
     
 export const Button = styled.button`

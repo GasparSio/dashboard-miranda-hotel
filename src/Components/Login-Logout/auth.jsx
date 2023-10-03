@@ -18,7 +18,6 @@ const authReducer = (state, action) => {
     case 'logout':
       return { isAuthenticated: false, username: null, email: null };
     case 'updateuser':
-      console.log("updateuser Reducer, estados: ", state.username, state.email, state.image);
       return {isAuthenticated: true,  username: action.payload.username, email: action.payload.email, image: action.payload.image };
     default:
       return state;

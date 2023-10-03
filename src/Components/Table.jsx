@@ -34,12 +34,15 @@ export default Table;
 
 const TableContainer = styled.div`
   width: ${({ width }) => width}px;
+  background-color: #dddddd;
+  border-radius: 8px;
 `;
 
 const StyledTable = styled.div`
   display: table;
-  width: 100%;
+  width: 98%;
   table-layout: fixed;
+  margin: auto;
 `;
 
 const TableHeader = styled.div`

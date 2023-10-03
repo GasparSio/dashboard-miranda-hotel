@@ -20,8 +20,9 @@ export const fetchBookings = createAsyncThunk(
 export const fetchBooking= createAsyncThunk(
     'bookings/fetchBooking',
     async (bookingId) => {
-        const bookingById = bookings.find((booking) => booking.id === bookingId)
-        return await delay(bookingById);
+        const booking = bookings.find((booking) => booking.id === bookingId)
+        console.log('Booking Data:', booking);
+        return await delay(booking);
     } 
 );
 export const createBooking = createAsyncThunk(

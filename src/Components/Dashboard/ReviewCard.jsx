@@ -124,7 +124,7 @@ const ProfileContainer = styled.div`
 const NameContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 60%;
+      width: 83%;
     align-items: center;
 `;
 const NameText = styled.span`

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteBooking, fetchBookings } from '../../features/bookings/bookingSlice';
 import { BookingNav } from './BookingNav';
 import Table from "../Table";
-import { CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText } from '../StyledTable';
+import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
 import styled from "styled-components";
 import { RequestPopUp } from "./RequestPopUp";
@@ -13,7 +13,6 @@ import { NavLink } from "react-router-dom";
 
 export const Bookings = () => {
   const dispatch = useDispatch();
-  const [openPopUp, setOpenPopUp] = useState(false);
   const bookings = useSelector(state => state.bookings.bookings);
   const width = useSelector(state => state.visual.width);
 
@@ -25,13 +24,18 @@ export const Bookings = () => {
     dispatch(deleteBooking(bookingId))
   }
 
-  const handleOpenPopUp = () => {
-    setOpenPopUp(true)
-  }
+// Mantener un objeto para rastrear el estado del popup para cada reserva
+const [popUpStates, setPopUpStates] = useState({});
 
-  const handleClosePopUp = () => {
-    setOpenPopUp(false)
-  }
+// Función para abrir el popup de una reserva específica
+const handleOpenPopUp = (bookingId) => {
+  setPopUpStates({ ...popUpStates, [bookingId]: true });
+}
+
+// Función para cerrar el popup de una reserva específica
+const handleClosePopUp = (bookingId) => {
+  setPopUpStates({ ...popUpStates, [bookingId]: false });
+}
 
   const statusHandler = (row) => {
     if(row.status === 'check in'){
@@ -48,10 +52,29 @@ export const Bookings = () => {
     setClientName(newClientName);
   };
 
-  const filteredBookings = bookings.filter((booking) =>
+  const searchBookings = bookings.filter((booking) =>
     booking.fullname.toLowerCase().includes(clientName.toLowerCase())
   );
   
+  const [filterNav, setFilterNav] = useState('All Bookings');
+  
+  const filteredBookings = bookings.filter((booking) => {
+    switch(filterNav){
+      case "All Bookings":
+        return true;
+      case "Check In":
+        return booking.status === "check in"
+      case "Check Out":
+        return booking.status === "check out"
+      case "In Progress":
+        return booking.status === "in progress"
+      default:
+        return false;
+    }
+  })
+
+  const finalFilteredBookings = clientName ? searchBookings : filteredBookings;
+
   const cols = [
     {
       property: 'guest',
@@ -93,14 +116,14 @@ export const Bookings = () => {
       label: 'Special Request',
       display: (row) => (
         <CellContainer>
-          <Button onClick={handleOpenPopUp}>View Notes</Button>
-          {(openPopUp) && 
+          <Button onClick={() => handleOpenPopUp(row.id)}>View Notes</Button>
+          {popUpStates[row.id] && 
           <RequestPopUp
             data={row.specialrequest}
             onClose={() => {
-            handleClosePopUp();
-          }}
-      />}
+              handleClosePopUp(row.id);
+            }}
+          />}
         </CellContainer>
       ),
     },
@@ -109,7 +132,10 @@ export const Bookings = () => {
       label: 'Room Type',
       display: (row) => (
         <CellContainer>
-          <PropertyText>{row.roomtype} - {row.roominfo}</PropertyText>
+          <PropertyText>
+            {row.roomtype}
+            Room Numer: {row.roominfo}
+          </PropertyText>
         </CellContainer>
       ),
     },
@@ -135,8 +161,8 @@ export const Bookings = () => {
 
   return(
       <Wrapperdashboardcontainer width={width}>
-        <BookingNav onClientNameChange={handleClientNameChange}/>
-        <Table cols={cols} data={filteredBookings}/>
+        <BookingNav onClientNameChange={handleClientNameChange} onFilterButtonClick={setFilterNav} filter={filterNav}/>
+        <Table cols={cols} data={finalFilteredBookings}/>
       </Wrapperdashboardcontainer>
   )
 }
