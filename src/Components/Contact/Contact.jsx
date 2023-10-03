@@ -7,7 +7,8 @@ import { Reviews } from "../Dashboard/Reviews";
 import { WrapperButton, Button } from '../StyledFilterButtons';
 import Table from '../Table';
 import { fetchContacts, updateContact } from "../../features/contact/contactSlice";
-import { CustomWrapperStyles, CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText, Archived } from '../StyledTable';
+import { CustomWrapperStyles, CellContainer, PropertyText } from '../StyledTable';
+import { colors } from "../theme";
 
 export const Contact = (props) => {
   const dispatch = useDispatch()
@@ -19,7 +20,14 @@ export const Contact = (props) => {
 
   }, [dispatch])
 
-
+  const handleArchive = (contactId) => {
+    dispatch(
+      updateContact({
+        contactId: contactId,
+        update: { archived: true }, // Specify the property to update
+      })
+    );
+  }
   const cols = [
     {
       property: 'date',
@@ -57,24 +65,35 @@ export const Contact = (props) => {
       label: 'Action',
       display: (row) => (
         <CellContainer>
-          <LineContainer><Archived >Archive</Archived></LineContainer>
+          {row.archived ? (
+            <Archived>Archivado</Archived>
+          ) : (
+            <ArchiveButton onClick={() => handleArchive(row.id)} >
+              Archive
+            </ArchiveButton>
+          )}
         </CellContainer>
       ),
     },
   ]
 
-  const [allContactActive, setallContactActive] = useState(false);
-  const [archivedActive, setarchivedActive] = useState(false);
 
-  const handleAllContact = () => {
-      setallContactActive(true)
-      setarchivedActive(false)
-      dispatch(updateContact())
-  }
-  const handleArchived = () => {
-      setallContactActive(false)
-      setarchivedActive(true)
-  }
+  const [filterNav, setFilterNav] = useState('All Contacts');
+  
+  const onFilterButtonClick = (filter) => {
+    setFilterNav(filter);
+  };
+
+  const filteredContacts = contacts.filter((contact) => {
+    switch (filterNav) {
+      case 'All Contacts':
+        return true;
+      case 'Archived':
+        return contact.archived === true;
+      default:
+        return false;
+    }
+  });
 
   return(
     <>
@@ -82,15 +101,25 @@ export const Contact = (props) => {
         <Reviews />
       </CustomWrapperStyles>
       <WrapperContactNav>
-        <WrapperButton isactive={allContactActive}>
-            <Button onClick={handleAllContact}>All Contacts</Button>
+        <WrapperButton >
+            <Button style={{
+              color: filterNav === 'All Contacts' && `${colors.filterGreenButton}`,
+              borderBottom: filterNav === 'All Contacts' && `3px solid ${colors.filterGreenButton}`,
+              fontWeight: filterNav === 'All Contacts' && `600`,
+            }} 
+            onClick={() => onFilterButtonClick('All Contacts')}>All Contacts</Button>
         </WrapperButton>
-        <WrapperButton isactive={archivedActive}>
-            <Button onClick={handleArchived}>Archived</Button>
+        <WrapperButton>
+            <Button style={{
+              color: filterNav === 'Archived' && `${colors.filterGreenButton}`,
+              borderBottom: filterNav === 'Archived' && `3px solid ${colors.filterGreenButton}`,
+              fontWeight: filterNav === 'Archived' && `600`,
+            }} 
+            onClick={() => onFilterButtonClick('Archived')}>Archived</Button>
         </WrapperButton>
       </WrapperContactNav>
       <Wrapperdashboardcontainer width={width}>
-       <Table cols={cols} data={contacts}/>
+       <Table cols={cols} data={filteredContacts}/>
       </Wrapperdashboardcontainer>
     </>
   )
@@ -125,3 +154,41 @@ const SubjectContainer = styled.div`
   flex-direction: column;
   height: auto
 `;
+const Archived = styled.span`
+  background-color: ${colors.primaryGreen};
+  color: white;
+  font-family: Poppins;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  width: 80px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: transform;
+  &:hover {
+    transform: scale(1.05);
+}
+`
+const ArchiveButton = styled.button`
+  background-color: ${colors.primaryRed};
+  color: white;
+  font-family: Poppins;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  width: 80px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: transform;
+  &:hover {
+    transform: scale(1.05);
+}
+`

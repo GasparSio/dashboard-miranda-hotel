@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "./theme";
 
 export const CustomWrapperStyles = styled.section`
   height: 275px;
@@ -34,24 +33,4 @@ export const PropertyText = styled.span`
   font-weight: 400;
   font-family: Poppins;
   color: #393939;
-`;
-
-export const Archived = styled.button`
-  background-color: ${colors.primaryRed};
-  color: white;
-  font-family: Poppins;
-  font-weight: 500;
-  letter-spacing: 1px;
-  border-radius: 10px;
-  width: 80px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  transition: transform;
-  &:hover {
-    transform: scale(1.05);
-  }
 `;

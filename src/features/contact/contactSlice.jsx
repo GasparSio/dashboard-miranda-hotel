@@ -31,13 +31,27 @@ export const createContact = createAsyncThunk(
         return createdContact;
     } 
 );
-export const updateContact = createAsyncThunk(
+
+
+// Function to find and update the contact in the JSON data
+const updateContactInData = (contact, contactId, update) => {
+    return contact.map((contact) =>
+      contact.id === contactId ? { ...contact, ...update } : contact
+    );
+  };
+
+  export const updateContact = createAsyncThunk(
     'contact/updateContact',
-    async (contactId, updateContact) => {
-        const updated = await delay(updateContact)
-        return updated;
-    } 
-);
+    async ({ contactId, update }) => {
+      // Simulate an API call with a delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Find and update the contact in the JSON data
+      const updatedContacts = updateContactInData(contact, contactId, update);
+      // Return the updated data
+      return updatedContacts;
+    }
+  );
+
 export const deleteContact = createAsyncThunk(
     'contact/deleteContact',
     async (contactId) => {
@@ -49,7 +63,7 @@ export const deleteContact = createAsyncThunk(
 export const roomSlice = createSlice({
     name: 'contact',
     initialState: {
-    contacts: [],
+    contacts: contact,
     contact: null,
     status: 'idle',
     isloading: false,
@@ -100,10 +114,10 @@ export const roomSlice = createSlice({
             state.isloading = true
         },
         [updateContact.fulfilled] : (state, action) => {
-            
-            state.status = 'success'
-            state.isloading = false
-            state.active = true
+            state.status = 'success';
+            state.isLoading = false;
+            state.active = true;
+            state.contacts = action.payload;
         },
         [updateContact.rejected] : (state, action) => {
             state.haserror = true
