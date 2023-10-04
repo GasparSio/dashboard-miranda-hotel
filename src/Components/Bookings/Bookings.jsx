@@ -169,11 +169,10 @@ const handleClosePopUp = (bookingId) => {
 
 const Link = styled(NavLink)`
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: green;
+  text-decoration: none;
   color: #799283;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   font-family: 'Poppins';
 `;
 const DeleteIconContainer = styled.span`

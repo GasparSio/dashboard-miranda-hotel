@@ -64,7 +64,7 @@ export const LeftNavLink = () => {
 }
 
 const Wrappersection = styled.section`
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     width: 25%;

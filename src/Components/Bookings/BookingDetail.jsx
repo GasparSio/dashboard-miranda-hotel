@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { RxCrossCircled } from "react-icons/rx";
+import { MdArrowBack } from "react-icons/md";
 import { colors } from '../theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -103,13 +103,13 @@ const LeftContainer = styled.div`
   justify-content: space-evenly;
   width: 50%;
 `;
-const ButtonBack = styled(RxCrossCircled)`
+const ButtonBack = styled(MdArrowBack)`
   position: absolute;
   top: 3%;
-  right: 3%;
-  color: ${colors.primaryRed};
-  width: 20px;
-  height: 20px;
+  left: 3%;
+  color: #000000;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   transition: transform;
   &:hover{
