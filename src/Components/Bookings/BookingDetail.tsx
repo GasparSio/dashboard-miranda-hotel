@@ -1,34 +1,37 @@
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdArrowBack } from "react-icons/md";
-import { colors } from '../theme';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { useEffect } from 'react';
 import { fetchBooking } from '../../features/bookings/bookingSlice';
+// import { Booking } from '../../features/bookings/bookingSlice';
 
-
-export const BookingDetail = () => {
-  const { id } = useParams();
+export const BookingDetail = (): JSX.Element => {
+  const { id } = useParams<{ id:string }>();
   const navigate = useNavigate()
-  const dispatch = useDispatch();
-  const booking = useSelector(state => state.bookings.booking);
-  const bookingId = parseInt(id, 10);
+  const dispatch = useCustomDispatch();
+  const booking: Booking | null = useCustomSelector(state => state.bookings.booking);
+
+  // Verificar si id es undefined o null antes de la conversión
+  const bookingId: number | undefined = id ? parseInt(id, 10) : undefined;
   
   console.log(booking);
   
   useEffect(() => {
-    // Llama a la acción fetchBooking para cargar los detalles de la reserva
-    dispatch(fetchBooking(bookingId));
+    // Verificar si bookingId no es undefined antes de realizar el dispatch
+    if (bookingId !== undefined) {
+      // Llama a la acción fetchBooking para cargar los detalles de la reserva
+      dispatch(fetchBooking(bookingId));
+    }
   }, [dispatch, bookingId]);
-  
 
-  if (!booking) {
-    navigate('/home/bookings'); 
-    return null;
+  if (bookingId === undefined) {
+    navigate('/home/bookings');
   }
 
-  const Handleback = () => {
-    navigate(-1)
+  const Handleback = (): void => {
+    navigate(-1);
   };
 
   return (

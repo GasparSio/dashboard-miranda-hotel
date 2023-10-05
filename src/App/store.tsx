@@ -5,7 +5,7 @@ import bookingsReducer from '../features/bookings/bookingSlice';
 import contactReducer from '../features/contact/contactSlice';
 import usersReducer from '../features/users/userSlice';
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     rooms: roomsReducer,
     visual: visualReducer,
@@ -14,3 +14,8 @@ export default configureStore({
     users: usersReducer,
   }
 })
+
+export type RootState = ReturnType<typeof store.getState>;
+export type Dispatch = typeof store.dispatch;
+
+export default store;

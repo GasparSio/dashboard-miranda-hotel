@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import { deleteBooking, fetchBookings } from '../../features/bookings/bookingSlice';
 import { BookingNav } from './BookingNav';
 import Table from "../Table";
@@ -10,11 +9,12 @@ import { RequestPopUp } from "./RequestPopUp";
 import { CheckIn, CheckOut, InProgress } from "./StatusButton";
 import { MdDelete } from 'react-icons/md';
 import { NavLink } from "react-router-dom";
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 
 export const Bookings = () => {
-  const dispatch = useDispatch();
-  const bookings = useSelector(state => state.bookings.bookings);
-  const width = useSelector(state => state.visual.width);
+  const dispatch = useCustomDispatch();
+  const bookings = useCustomSelector(state => state.bookings.bookings);
+  const width = useCustomSelector(state => state.visual.width);
 
   useEffect(() => {
     dispatch(fetchBookings())

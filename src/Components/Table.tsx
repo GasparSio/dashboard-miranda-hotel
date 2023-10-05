@@ -1,11 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useCustomSelector } from '../hooks/redux/index';
 
-const Table = (props) => {
-  const width = useSelector(state => state.visual.width);
+interface TableColumn {
+  property: string;
+  label: string;
+  display?: (row: Record<string, any>) => React.ReactNode;
+}
 
-  const displayRow = (row, rowIndex) => (
+interface TableProps {
+  cols: TableColumn[];
+  data: Record<string, any>[];
+}
+
+
+const Table = (props: TableProps) => {
+  const width = useCustomSelector(state => state.visual.width);
+
+  const displayRow = (row: Record<string, any>, rowIndex: number) => (
     <TableRow key={rowIndex}>
       {props.cols.map(col => 
         <TableCell key={col.property}>

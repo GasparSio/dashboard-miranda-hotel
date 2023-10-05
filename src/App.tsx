@@ -11,7 +11,7 @@ import { Contact } from './Components/Contact/Contact.jsx';
 import { AuthProvider } from './Components/Login-Logout/auth';
 
 
-function App() {
+function App(): JSX.Element{
   return (
     <BrowserRouter>
       <AuthProvider>
