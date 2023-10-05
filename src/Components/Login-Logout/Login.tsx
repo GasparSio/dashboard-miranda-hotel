@@ -1,19 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import styled from 'styled-components';
 import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 import logo from '../../Img/icon-hotel.png';
 
-const userCode = 'gas';
-const emailCode = 'sio';
+const userCode: string = 'gas';
+const emailCode: string = 'sio';
 
-export const Login = () => {
+export const Login: React.FC = () => {
     const navigate = useNavigate();
-    const { authState, login } = useAuth();
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [wrongUser, setwrongUser] = useState(false);
+    const auth = useAuth();
+
+    if (!auth) {
+        // Manejo de caso donde auth es nulo, por ejemplo, redirigir o mostrar un mensaje de error.
+        return <div>Autenticación no disponible</div>;
+    }
+
+    const { authState, login } = auth;
+    const [username, setUsername] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [wrongUser, setwrongUser] = useState<boolean>(false);
 
     useEffect(() => {
         if (authState.isAuthenticated) {
@@ -23,7 +30,7 @@ export const Login = () => {
         }
       }, [authState.isAuthenticated, navigate]);
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     if (username === userCode && email === emailCode) {
       login({ username, email });

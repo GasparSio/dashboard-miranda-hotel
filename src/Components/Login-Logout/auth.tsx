@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import profileImage from '../../Img/18942381.jpg'
+import profileImage from '../../Img/18942381.jpg';
 
 const AuthContext = React.createContext<{ authState: AuthState; login: Function; logout: Function } | null>(null);
 
@@ -37,10 +37,10 @@ const authReducer = (state: AuthState, action: AuthAction) => {
   }
 };
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
-  const [authState, dispatch] = useReducer(authReducer, initialState);
+  const [authState, dispatch] = useReducer<AuthState, AuthAction>(authReducer, initialState);
 
   // Cargar la información de inicio de sesión desde localStorage
   useEffect(() => {
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   //funcion de login
-  const login = ({ username, email }) => {
+  const login = ({ username, email }: { username: string; email: string }) => {
     dispatch({ type: 'login', payload: { username, email } });
     navigate('/home/dashboard');
     localStorage.setItem("loggedInUser", JSON.stringify({ username, email }));
