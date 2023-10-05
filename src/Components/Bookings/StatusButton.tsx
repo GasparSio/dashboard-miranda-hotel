@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const CheckIn = () => {
+export const CheckIn = (): React.JSX.Element => {
   return (
     <CheckInButton>Check In</CheckInButton>
   )
@@ -22,7 +22,7 @@ const CheckInButton = styled.button`
     transform: scale(1.03);
 }
 `
-export const CheckOut = () => {
+export const CheckOut = (): React.JSX.Element => {
   return (
     <CheckOutButton>Check In</CheckOutButton>
   )

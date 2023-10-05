@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const CustomWrapperStyles = styled.section`
+interface CustomWrapperStylesProps {
+  width?: string; // O el tipo correcto de width que esperas
+}
+
+export const CustomWrapperStyles = styled.section<CustomWrapperStylesProps>`
   height: 275px;
   top: 84px;
   right: 0;

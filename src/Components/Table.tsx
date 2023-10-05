@@ -12,7 +12,9 @@ interface TableProps {
   cols: TableColumn[];
   data: Record<string, any>[];
 }
-
+interface TableContainerProps {
+  width: string;
+}
 
 const Table = (props: TableProps) => {
   const width = useCustomSelector(state => state.visual.width);
@@ -44,7 +46,7 @@ const Table = (props: TableProps) => {
 
 export default Table;
 
-const TableContainer = styled.div`
+const TableContainer = styled.div<TableContainerProps>`
   width: ${({ width }) => width}px;
   background-color: #dddddd;
   border-radius: 8px;

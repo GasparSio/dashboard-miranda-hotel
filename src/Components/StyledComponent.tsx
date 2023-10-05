@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Wrapperdashboardcontainer = styled.section`
+interface WrapperdashboardcontainerProps {
+  width?: string; // O el tipo correcto de width que esperas
+}
+
+export const Wrapperdashboardcontainer = styled.section<WrapperdashboardcontainerProps>`
   position: absolute;
   top: 66px;
   right: 2%;
