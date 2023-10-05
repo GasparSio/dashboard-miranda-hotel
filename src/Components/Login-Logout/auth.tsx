@@ -2,16 +2,29 @@ import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profileImage from '../../Img/18942381.jpg'
 
-const AuthContext = React.createContext(null);
+const AuthContext = React.createContext<{ authState: AuthState; login: Function; logout: Function } | null>(null);
 
-const initialState = {
+interface AuthState {
+  isAuthenticated: boolean;
+  username: string | null;
+  email: string | null;
+  image: string;
+}
+
+const initialState: AuthState  = {
   isAuthenticated: false,
   username: null,
   email: null,
   image: profileImage,
 }
 
-const authReducer = (state, action) => {
+type AuthAction =
+  | { type: 'login'; payload: { username: string; email: string } }
+  | { type: 'logout' }
+  | { type: 'updateuser'; payload: { username: string; email: string; image: string } };
+
+
+const authReducer = (state: AuthState, action: AuthAction) => {
   switch (action.type) {
     case 'login':
       return { isAuthenticated: true, username: action.payload.username, email: action.payload.email };
@@ -59,7 +72,7 @@ export const AuthProvider = ({ children }) => {
   const ModalClose = () => {
     setOpenModal(false)
   };
-  const updateUser = (username, email, image) => {
+  const updateUser = (username: string, email: string, image: string) => {
     dispatch({type: 'updateuser', payload: { username, email, image }})
     localStorage.setItem("loggedInUser", JSON.stringify({ 
       username: username || authState.username, 

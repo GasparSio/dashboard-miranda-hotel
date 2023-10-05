@@ -2,7 +2,12 @@ import React from 'react'
 import { RxCrossCircled } from "react-icons/rx";
 import styled from 'styled-components';
 
-export const RequestPopUp = ({onClose, data}) => {
+interface RequestPopUpProps {
+  onClose: () => void;
+  data: string;
+}
+
+export const RequestPopUp = ({onClose, data}: RequestPopUpProps) => {
   return (
     <ModalContainer>
         <TextContainer>

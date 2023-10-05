@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
 import { colors } from '../theme';
+import { ChangeEvent } from 'react';
 
-export function BookingNav({ onClientNameChange, onFilterButtonClick, filter }) {
+interface BookingNavProps {
+  onClientNameChange: (newClientName: string) => void;
+  onFilterButtonClick: (filter: string) => void;
+  filter: string;
+}
+
+export function BookingNav({ onClientNameChange, onFilterButtonClick, filter }: BookingNavProps) {
   const [clientName, setClientName] = useState('');
   
-  const handleClientNameChange = (event) => {
+  const handleClientNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setClientName(newValue);
     onClientNameChange(newValue);
@@ -17,33 +24,33 @@ export function BookingNav({ onClientNameChange, onFilterButtonClick, filter }) 
         <LeftNavContainer>
           <WrapperButton >
             <Button style={{
-              color: filter === 'All Bookings' && `${colors.filterGreenButton}`,
-              borderBottom: filter === 'All Bookings' && `3px solid ${colors.filterGreenButton}`,
-              fontWeight: filter === 'All Bookings' && `600`,
+              color: filter === 'All Bookings' ? colors.filterGreenButton : undefined,
+              borderBottom: filter === 'All Bookings' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filter === 'All Bookings' ? 600 : undefined,
             }} 
             onClick={() => onFilterButtonClick('All Bookings')}>All Bookings</Button>
           </WrapperButton>
           <WrapperButton >
             <Button style={{
-              color: filter === 'Check In' && `${colors.filterGreenButton}`,
-              borderBottom: filter === 'Check In' && `3px solid ${colors.filterGreenButton}`,
-              fontWeight: filter === 'Check In' && `600`,
+              color: filter === 'Check In' ? colors.filterGreenButton : undefined,
+              borderBottom: filter === 'Check In' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filter === 'Check In' ? 600 : undefined,
             }} 
             onClick={() => onFilterButtonClick('Check In')}>Check In</Button>
           </WrapperButton>
           <WrapperButton >
             <Button style={{
-              color: filter === 'Check Out' && `${colors.filterGreenButton}`,
-              borderBottom: filter === 'Check Out' && `3px solid ${colors.filterGreenButton}`,
-              fontWeight: filter === 'Check Out' && `600`,
-            }} 
+              color: filter === 'Check Out' ? colors.filterGreenButton : undefined,
+              borderBottom: filter === 'Check Out' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filter === 'Check Out' ? 600 : undefined,
+            }}
             onClick={() => onFilterButtonClick('Check Out')}>Check Out</Button>
           </WrapperButton>
           <WrapperButton >
             <Button style={{
-              color: filter === 'In Progress' && `${colors.filterGreenButton}`,
-              borderBottom: filter === 'In Progress' && `3px solid ${colors.filterGreenButton}`,
-              fontWeight: filter === 'In Progress' && `600`,
+              color: filter === 'In Progress' ? `${colors.filterGreenButton}` : undefined,
+              borderBottom: filter === 'In Progress' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filter === 'In Progress' ? 600 : undefined,
             }} 
             onClick={() => onFilterButtonClick('In Progress')}>In Progress</Button>
           </WrapperButton>

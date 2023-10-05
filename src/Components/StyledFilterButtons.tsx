@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components";
 import { colors } from './theme';
 import { AiOutlineSearch } from "react-icons/ai";

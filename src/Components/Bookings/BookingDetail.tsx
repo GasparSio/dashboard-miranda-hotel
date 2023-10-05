@@ -5,13 +5,13 @@ import { MdArrowBack } from "react-icons/md";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { useEffect } from 'react';
 import { fetchBooking } from '../../features/bookings/bookingSlice';
-// import { Booking } from '../../features/bookings/bookingSlice';
+import { BookingType } from '../../features/bookings/bookingSlice';
 
 export const BookingDetail = (): JSX.Element => {
   const { id } = useParams<{ id:string }>();
   const navigate = useNavigate()
   const dispatch = useCustomDispatch();
-  const booking: Booking | null = useCustomSelector(state => state.bookings.booking);
+  const booking: BookingType | null = useCustomSelector(state => state.bookings.booking);
 
   // Verificar si id es undefined o null antes de la conversión
   const bookingId: number | undefined = id ? parseInt(id, 10) : undefined;
@@ -25,11 +25,11 @@ export const BookingDetail = (): JSX.Element => {
       dispatch(fetchBooking(bookingId));
     }
   }, [dispatch, bookingId]);
-
+  
   if (bookingId === undefined) {
     navigate('/home/bookings');
   }
-
+  
   const Handleback = (): void => {
     navigate(-1);
   };
@@ -38,32 +38,32 @@ export const BookingDetail = (): JSX.Element => {
     <WrapperBookingDetail>
       <LeftContainer>
         <NameContainer>
-          <span>{booking.fullname}</span>
-          <p>ID: {booking.id}</p>
+          <span>{booking?.fullname}</span>
+          <p>ID: {booking?.id}</p>
         </NameContainer>
         <DateContainer>
           <CheckInContainer>
             <span>Check in</span>
-            <p>{booking.checkin}</p>
+            <p>{booking?.checkin}</p>
           </CheckInContainer>
           <CheckOutContainer>
             <span>Check out</span>
-            <p>{booking.checkout}</p>
+            <p>{booking?.checkout}</p>
           </CheckOutContainer>
         </DateContainer>
         <Line></Line>
         <RoomContainer>
           <CheckInContainer>
             <span>Room Info</span>
-            <p>{booking.roomtype}</p>
+            <p>{booking?.roomtype}</p>
           </CheckInContainer>
           <CheckInContainer>
             <span>Price</span>
-            <p>{booking.price}</p>
+            <p>{booking?.price}</p>
           </CheckInContainer>
         </RoomContainer>
         <RequestContainer>
-          <span>{booking.specialrequest}</span>
+          <span>{booking?.specialrequest}</span>
         </RequestContainer>
         <FacilitiesContainer>
           <h1>Facilities</h1>
@@ -78,10 +78,10 @@ export const BookingDetail = (): JSX.Element => {
       </LeftContainer>
       <RightContainer>
         <Photo>
-          <img src={booking.photo}/>
+          <img src={booking?.photo}/>
         </Photo>
         <RoomTypeContainer>
-          <span>{booking.roomtype}</span>
+          <span>{booking?.roomtype}</span>
           {/* <span>{booking.status}</span> */}
         </RoomTypeContainer>
       </RightContainer>

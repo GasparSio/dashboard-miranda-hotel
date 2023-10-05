@@ -11,33 +11,39 @@ import { MdDelete } from 'react-icons/md';
 import { NavLink } from "react-router-dom";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 
+interface PopUpStates {
+  [bookingId: number]: boolean;
+}
+
 export const Bookings = () => {
   const dispatch = useCustomDispatch();
   const bookings = useCustomSelector(state => state.bookings.bookings);
   const width = useCustomSelector(state => state.visual.width);
-
+  console.log('Carga de Booking?');
+  
   useEffect(() => {
     dispatch(fetchBookings())
   }, [dispatch])
-
-  const onDeleteBooking = (bookingId) => {
+  console.log('Carga de Booking? dps del dispatch?');
+  
+  const onDeleteBooking = (bookingId: number) => {
     dispatch(deleteBooking(bookingId))
   }
 
+const initialPopUpStates: PopUpStates = {};
 // Mantener un objeto para rastrear el estado del popup para cada reserva
-const [popUpStates, setPopUpStates] = useState({});
-
+const [popUpStates, setPopUpStates] = useState<PopUpStates>(initialPopUpStates);
 // Función para abrir el popup de una reserva específica
-const handleOpenPopUp = (bookingId) => {
+const handleOpenPopUp = (bookingId: number) => {
   setPopUpStates({ ...popUpStates, [bookingId]: true });
 }
 
 // Función para cerrar el popup de una reserva específica
-const handleClosePopUp = (bookingId) => {
+const handleClosePopUp = (bookingId: number) => {
   setPopUpStates({ ...popUpStates, [bookingId]: false });
 }
 
-  const statusHandler = (row) => {
+  const statusHandler = (row: Record<string, any>) => {
     if(row.status === 'check in'){
       return <CheckIn/> 
     }else if(row.status === 'check out'){
@@ -48,7 +54,7 @@ const handleClosePopUp = (bookingId) => {
   }
   
   const [clientName, setClientName] = useState('');
-  const handleClientNameChange = (newClientName) => {
+  const handleClientNameChange = (newClientName: string) => {
     setClientName(newClientName);
   };
 
@@ -56,7 +62,7 @@ const handleClosePopUp = (bookingId) => {
     booking.fullname.toLowerCase().includes(clientName.toLowerCase())
   );
   
-  const [filterNav, setFilterNav] = useState('All Bookings');
+  const [filterNav, setFilterNav] = useState<string>('All Bookings');
   
   const filteredBookings = bookings.filter((booking) => {
     switch(filterNav){
@@ -79,7 +85,7 @@ const handleClosePopUp = (bookingId) => {
     {
       property: 'guest',
       label: 'Guest',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <span>{row.fullname}</span>
           <Link to={`/home/bookings/${row.id}`} >ID: {row.id}</Link>
@@ -89,14 +95,14 @@ const handleClosePopUp = (bookingId) => {
     {
       property: 'orderdate',
       label: 'Order Date',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <PropertyText>{row.orderdate}</PropertyText>
       ),
     },
     {
       property: 'checkin',
       label: 'Check In',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.checkin}</PropertyText>
         </CellContainer>
@@ -105,7 +111,7 @@ const handleClosePopUp = (bookingId) => {
     {
       property: 'checkout',
       label: 'Check Out',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.checkout}</PropertyText>
         </CellContainer>
@@ -114,7 +120,7 @@ const handleClosePopUp = (bookingId) => {
     {
       property: 'specialrequest',
       label: 'Special Request',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <Button onClick={() => handleOpenPopUp(row.id)}>View Notes</Button>
           {popUpStates[row.id] && 
@@ -130,7 +136,7 @@ const handleClosePopUp = (bookingId) => {
     {
       property: 'roomtype',
       label: 'Room Type',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>
             {row.roomtype}
@@ -142,7 +148,7 @@ const handleClosePopUp = (bookingId) => {
     {
       property: 'status',
       label: 'Status',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <LineContainerComment><PropertyText>{statusHandler(row)}</PropertyText></LineContainerComment>
         </CellContainer>
@@ -151,7 +157,7 @@ const handleClosePopUp = (bookingId) => {
     {
       property: 'delete',
       label: '',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteBooking(row.id)}/></DeleteIconContainer>
         </CellContainer>
