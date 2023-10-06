@@ -7,7 +7,7 @@ import { Rooms } from './Components/Rooms/Rooms';
 import { Bookings } from './Components/Bookings/Bookings';
 import { BookingDetail } from './Components/Bookings/BookingDetail';
 import { Users } from './Components/Users/Users';
-import { Contact } from './Components/Contact/Contact.jsx';
+import { Contact } from './Components/Contact/Contact';
 import { AuthProvider } from './Components/Login-Logout/auth';
 
 

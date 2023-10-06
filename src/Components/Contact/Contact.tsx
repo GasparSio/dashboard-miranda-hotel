@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect} from "react";
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import styled from "styled-components";
 import { Reviews } from "../Dashboard/Reviews";
 import { WrapperButton, Button } from '../StyledFilterButtons';
@@ -9,18 +7,20 @@ import Table from '../Table';
 import { fetchContacts, updateContact } from "../../features/contact/contactSlice";
 import { CustomWrapperStyles, CellContainer, PropertyText } from '../StyledTable';
 import { colors } from "../theme";
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 
-export const Contact = (props) => {
-  const dispatch = useDispatch()
-  const contacts = useSelector(state => state.contact.contacts);
-  const width = useSelector(state => state.visual.width);
+export const Contact = () => {
+  
+  const dispatch = useCustomDispatch()
+  const contacts = useCustomSelector(state => state.contact.contacts);
+  const width = useCustomSelector(state => state.visual.width);
 
   useEffect(() => {
     dispatch(fetchContacts())
 
   }, [dispatch])
 
-  const handleArchive = (contactId) => {
+  const handleArchive = (contactId: number) => {
     dispatch(
       updateContact({
         contactId: contactId,
@@ -32,7 +32,7 @@ export const Contact = (props) => {
     {
       property: 'date',
       label: 'Date',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.date}</PropertyText>
           <PropertyText>Id: {row.id}</PropertyText>
@@ -42,7 +42,7 @@ export const Contact = (props) => {
     {
       property: 'customers',
       label: 'Customers',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.fullname}</PropertyText>
           <PropertyText>{row.email}</PropertyText>
@@ -53,7 +53,7 @@ export const Contact = (props) => {
     {
       property: 'comment',
       label: 'Comment',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <SubjectContainer>
           <SubjecText>{row.asunto}</SubjecText>
           <PropertyText>{row.comment}</PropertyText>
@@ -63,7 +63,7 @@ export const Contact = (props) => {
     {
       property: 'status',
       label: 'Action',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           {row.archived ? (
             <Archived>Archivado</Archived>
@@ -78,9 +78,9 @@ export const Contact = (props) => {
   ]
 
 
-  const [filterNav, setFilterNav] = useState('All Contacts');
+  const [filterNav, setFilterNav] = useState<string>('All Contacts');
   
-  const onFilterButtonClick = (filter) => {
+  const onFilterButtonClick = (filter: string) => {
     setFilterNav(filter);
   };
 
@@ -103,17 +103,17 @@ export const Contact = (props) => {
       <WrapperContactNav>
         <WrapperButton >
             <Button style={{
-              color: filterNav === 'All Contacts' && `${colors.filterGreenButton}`,
-              borderBottom: filterNav === 'All Contacts' && `3px solid ${colors.filterGreenButton}`,
-              fontWeight: filterNav === 'All Contacts' && `600`,
+              color: filterNav === 'All Contacts' ? colors.filterGreenButton : undefined,
+              borderBottom: filterNav === 'All Contacts' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filterNav === 'All Contacts' ? 600 : undefined,
             }} 
             onClick={() => onFilterButtonClick('All Contacts')}>All Contacts</Button>
         </WrapperButton>
         <WrapperButton>
             <Button style={{
-              color: filterNav === 'Archived' && `${colors.filterGreenButton}`,
-              borderBottom: filterNav === 'Archived' && `3px solid ${colors.filterGreenButton}`,
-              fontWeight: filterNav === 'Archived' && `600`,
+              color: filterNav === 'Archived' ? colors.filterGreenButton : undefined,
+              borderBottom: filterNav === 'Archived' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filterNav === 'Archived' ? 600 : undefined,
             }} 
             onClick={() => onFilterButtonClick('Archived')}>Archived</Button>
         </WrapperButton>
@@ -124,7 +124,10 @@ export const Contact = (props) => {
     </>
   )
 }
-const Wrapperdashboardcontainer = styled.section`
+interface Wrapperdashboardcontainer {
+  width?: string;
+}
+const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
   position: absolute;
   top: 53%;
   right: 2%;
