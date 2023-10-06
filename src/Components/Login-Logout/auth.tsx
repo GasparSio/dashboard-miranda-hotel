@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import profileImage from '../../Img/18942381.jpg';
+// import profileImage from '../../Img/18942381.jpg';
 
 const AuthContext = React.createContext<{ authState: AuthState; login: Function; logout: Function } | null>(null);
 
@@ -15,7 +15,7 @@ const initialState: AuthState  = {
   isAuthenticated: false,
   username: null,
   email: null,
-  image: profileImage,
+  image: '',
 }
 
 type AuthAction =
@@ -24,23 +24,23 @@ type AuthAction =
   | { type: 'updateuser'; payload: { username: string; email: string; image: string } };
 
 
-const authReducer = (state: AuthState, action: AuthAction) => {
-  switch (action.type) {
-    case 'login':
-      return { isAuthenticated: true, username: action.payload.username, email: action.payload.email };
-    case 'logout':
-      return { isAuthenticated: false, username: null, email: null };
-    case 'updateuser':
-      return {isAuthenticated: true,  username: action.payload.username, email: action.payload.email, image: action.payload.image };
-    default:
-      return state;
-  }
-};
+  const authReducer = (state: AuthState, action: AuthAction) => {
+    switch (action.type) {
+      case 'login':
+        return { isAuthenticated: true, username: action.payload.username, email: action.payload.email, image: initialState.image };
+      case 'logout':
+        return { isAuthenticated: false, username: null, email: null, image: initialState.image };
+      case 'updateuser':
+        return { isAuthenticated: true, username: action.payload.username, email: action.payload.email, image: action.payload.image };
+      default:
+        return state;
+    }
+  };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
-  const [authState, dispatch] = useReducer<AuthState, AuthAction>(authReducer, initialState);
+  const [authState, dispatch] = useReducer(authReducer, initialState);
 
   // Cargar la información de inicio de sesión desde localStorage
   useEffect(() => {

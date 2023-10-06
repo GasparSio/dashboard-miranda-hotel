@@ -11,16 +11,16 @@ const emailCode: string = 'sio';
 export const Login: React.FC = () => {
     const navigate = useNavigate();
     const auth = useAuth();
-
+    const [username, setUsername] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [wrongUser, setwrongUser] = useState<boolean>(false);
+    
     if (!auth) {
         // Manejo de caso donde auth es nulo, por ejemplo, redirigir o mostrar un mensaje de error.
         return <div>Autenticación no disponible</div>;
     }
-
     const { authState, login } = auth;
-    const [username, setUsername] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [wrongUser, setwrongUser] = useState<boolean>(false);
+    
 
     useEffect(() => {
         if (authState.isAuthenticated) {
