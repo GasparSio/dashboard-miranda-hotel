@@ -6,16 +6,16 @@ export const visualSlice = createSlice({
         width: '75%',
     },
     reducers: {
-        incrementWidthSupNav: (state, action) => {
+        incrementWidthSupNav: (state) => {
             state.width = '100%'
         },
-        decrementWidthSupNav: (state, action) => {
+        decrementWidthSupNav: (state) => {
             state.width = '75%'
         },
-        incrementWidthLeftNav: (state, action) => {
+        incrementWidthLeftNav: (state) => {
             state.width = '30%'
         },
-        decrementWidthLeftNav: (state, action) => {
+        decrementWidthLeftNav: (state) => {
             state.width = '0%'
         },
     },

@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import Avatar from 'react-avatar';
 import profileImage from '../../Img/18942381.jpg';
 // import { useAuth } from '../Login-Logout/auth';
 
-export const AvatarProfile = ({ setSelectedAvatarUrl }) => {
-    // const auth = useAuth()
+interface AvatarProfileProps {
+  setSelectedAvatarUrl: (url: string) => void;
+}
+
+export const AvatarProfile: React.FC<AvatarProfileProps> = ({ setSelectedAvatarUrl }) => {
     const [avatarUrl, setAvatarUrl] = useState(localStorage.getItem("avatarImage") || profileImage); // Ruta de la imagen por defecto
     
-    const handleAvatarChange = (e) => {
-    const file = e.target.files[0];
+    const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
 
     if (file) {
         const imageUrl = URL.createObjectURL(file);
@@ -25,7 +28,10 @@ export const AvatarProfile = ({ setSelectedAvatarUrl }) => {
         src={avatarUrl}
         round
         onClick={() => {
-          document.getElementById('avatarInput').click();
+          const input = document.getElementById('avatarInput') as HTMLInputElement;
+          if (input) {
+            input.click();
+          }
         }}
       />
       <input

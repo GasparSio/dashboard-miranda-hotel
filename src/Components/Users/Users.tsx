@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser, fetchUsers} from '../../features/users/userSlice';
 import { UsersNav } from "./UsersNav";
 import Table from "../Table";
@@ -8,21 +7,22 @@ import { Wrapperdashboardcontainer } from '../StyledComponent';
 import { MdDelete } from "react-icons/md";
 import { Active, Inactive } from "./StatusButton";
 import styled from "styled-components";
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 
 export const Users = () => {
-  const dispatch = useDispatch()
-  const users = useSelector(state => state.users.users);
-  const width = useSelector(state => state.visual.width);
-
+  const dispatch = useCustomDispatch()
+  const users = useCustomSelector(state => state.users.users);
+  const width = useCustomSelector(state => state.visual.width);
+  
   useEffect(() => {
-    dispatch(fetchUsers())
+    dispatch(fetchUsers({}))
   }, [dispatch])
-
-  const onDeleteUser = (userId) => {
+  
+  const onDeleteUser = (userId: number) => {
     dispatch(deleteUser(userId))
   }
 
-  const statusHandler = (row) => {
+  const statusHandler = (row: Record<string, any>) => {
     if(row.status === 'active'){
       return <Active/> 
     }else {
@@ -31,7 +31,7 @@ export const Users = () => {
   }
 
   const [userName, setuserName] = useState('');
-  const handleUserNameChange = (newUserName) => {
+  const handleUserNameChange = (newUserName: string) => {
     setuserName(newUserName);
   };
 
@@ -56,12 +56,11 @@ export const Users = () => {
 
   const finalFilteredUsers = userName ? searchUsers : filteredUsers;
 
-
   const cols = [
     {
       property: 'name',
       label: 'Full Name',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.fullname}</PropertyText>
           <PropertyText>Id: {row.id}</PropertyText>
@@ -72,7 +71,7 @@ export const Users = () => {
     {
       property: 'startdate',
       label: 'Start Date',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.startdate}</PropertyText>
         </CellContainer>
@@ -81,7 +80,7 @@ export const Users = () => {
     {
       property: 'description',
       label: 'Description',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.description}</PropertyText>
         </CellContainer>
@@ -90,7 +89,7 @@ export const Users = () => {
     {
       property: 'contact',
       label: 'Contact',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.contact}</PropertyText>
         </CellContainer>
@@ -99,16 +98,16 @@ export const Users = () => {
     {
       property: 'status',
       label: 'Status',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <LineContainerComment><PropertyText>{statusHandler(row)}</PropertyText></LineContainerComment>
         </CellContainer>
       ),
     },
     {
-      property: 'status',
+      property: 'delete',
       label: '',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteUser(row.id)}/></DeleteIconContainer>
         </CellContainer>

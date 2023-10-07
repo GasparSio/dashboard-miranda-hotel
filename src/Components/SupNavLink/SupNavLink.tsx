@@ -6,28 +6,37 @@ import { LuBellRing } from 'react-icons/lu';
 import { PiArrowsLeftRightFill } from 'react-icons/pi';
 import { useAuth } from '../Login-Logout/auth';
 import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { incrementWidthSupNav, decrementWidthSupNav } from '../../features/visual/visualSlice'
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
+
+interface HeaderContainerProps {
+    width: string;
+  }
 
 export const SupNavLink = () => {
-    const dispatch = useDispatch();
-    const width = useSelector((state) => state.visual.width);
+    const dispatch = useCustomDispatch();
+    const width = useCustomSelector((state) => state.visual.width);
     const location = useLocation(); // Obtiene la ubicación actual
-    const sectionName = location.pathname.split('/').pop().toUpperCase().replace(/-/g, ' ');
-    const { logout } = useAuth();
+    const sectionName = location.pathname ? location.pathname.split('/').pop()?.toUpperCase().replace(/-/g, ' ') : '';
+    const auth = useAuth();
     
+    if (!auth) {
+        // Manejo de caso donde auth es nulo.
+        return <div>Autenticación no disponible</div>;
+    }
+    const { logout } = auth;
+
     const onlogoutUser = () => {
         logout();
     }
     const handleWidthChange = () => {
         if (width === '75%'){
             dispatch(incrementWidthSupNav())
-            console.log('increment');
         }else{
             dispatch(decrementWidthSupNav())
-            console.log('decrement');
         }
     }
+
     return(
         <Wrappersupnavlink width={width}>
             <Wrapperhambmenu>
@@ -45,7 +54,7 @@ export const SupNavLink = () => {
     )
 }
 
-const Wrappersupnavlink = styled.section`
+const Wrappersupnavlink = styled.section<HeaderContainerProps>`
     position: absolute;
     top: 0;
     right: 0;

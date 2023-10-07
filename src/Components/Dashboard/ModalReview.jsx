@@ -26,7 +26,7 @@ const ModalContainer = styled.div`
     left: 0%;
     border-radius: 18px;
     z-index: 999;
-    width: 340px;
+    width: 315px;
     height: 160px;
     position: absolute;
     display: flex;

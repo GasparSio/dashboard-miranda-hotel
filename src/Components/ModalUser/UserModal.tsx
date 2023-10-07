@@ -3,28 +3,31 @@ import styled from "styled-components";
 import { useAuth } from "../Login-Logout/auth";
 import { AvatarProfile } from "./AvatarProfile";
 
-
 export const UserModal = () => {
-    const auth = useAuth()
-    const [name, setName] = useState(auth.authState.username)
-    const [email, setEmail] = useState(auth.authState.email)
-    const [selectedAvatarUrl, setSelectedAvatarUrl] = useState(auth.authState.image);
-    console.log(name, email);
+    const auth = useAuth();
 
-    const onSubmitModal = (event) => {
-        event.preventDefault();
-        if (name !== auth.authState.username || email !== auth.authState.email || selectedAvatarUrl !== auth.authState.image) {
-          auth.updateUser(name || "", email || "", selectedAvatarUrl || "");
-        }
-        // if (email !== auth.authState.email) {
-        //   auth.ChangeEmail({ email });
-        // }
-        // if (selectedAvatarUrl) {
-        //   auth.AvatarImageProfile({ avatarUrl: selectedAvatarUrl });
-        // }
-        auth.ModalClose();
-        console.log("onsubmitmodal, photo: ", selectedAvatarUrl);
+    if (!auth) {
+      <p>Auth not available, refresh the website</p>
+      return null; 
     }
+    const { authState, updateUser, ModalClose } = auth;
+    const [name, setName] = useState(authState.username || "");
+    const [email, setEmail] = useState(authState.email || "");
+    const [selectedAvatarUrl, setSelectedAvatarUrl] = useState(authState.image);
+
+      const onSubmitModal = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      if (
+          name !== authState?.username ||
+          email !== authState?.email ||
+          selectedAvatarUrl !== authState?.image
+      ) {
+          updateUser(name || "", email || "", selectedAvatarUrl || "");
+      }
+
+      ModalClose();
+      console.log("onsubmitmodal, photo: ", selectedAvatarUrl);
+  }
 
     return(
         <Wrapper>

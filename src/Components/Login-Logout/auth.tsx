@@ -2,7 +2,18 @@ import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import profileImage from '../../Img/18942381.jpg';
 
-const AuthContext = React.createContext<{ authState: AuthState; login: Function; logout: Function } | null>(null);
+const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
+
+interface AuthContextType {
+  authState: AuthState;
+  login: (userData: { username: string; email: string }) => void;
+  logout: () => void;
+  updateUser: (username: string, email: string, image: string) => void;
+  ModalOpen: () => void;
+  ModalClose: () => void;
+  openModal: boolean;
+}
+
 
 interface AuthState {
   isAuthenticated: boolean;
