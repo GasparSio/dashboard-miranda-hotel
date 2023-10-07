@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../theme';
 
-export const Booked = () => {
+export const Booked = (): JSX.Element  => {
   return(
     <SpanBooked>Booked</SpanBooked>
   )
@@ -25,7 +25,7 @@ const SpanBooked = styled.span`
     transform: scale(1.03);
 `;
 
-export const Available = () => {
+export const Available = (): JSX.Element  => {
   return(
     <SpanAvailable>Available</SpanAvailable>
   )

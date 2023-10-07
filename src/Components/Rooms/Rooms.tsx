@@ -1,33 +1,33 @@
 import React, { useEffect } from "react";
-// import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import { deleteRoom, fetchRooms } from '../../features/rooms/roomSlice';
 import { RoomsNavContainer } from "./RoomsNavContainer";
-import { CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText } from '../StyledTable';
+import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
 import Table from "../Table";
 import roomImage from '../../Img/room-1.avif';
 import styled from "styled-components";
 import { Available, Booked } from "./StatusButton";
 import { MdDelete } from "react-icons/md";
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
+
 
 export const Rooms = () => {
-  const dispatch = useDispatch()
-  const rooms = useSelector(state => state.rooms.rooms);
-  const width = useSelector(state => state.visual.width);
+  const dispatch = useCustomDispatch()
+  const rooms = useCustomSelector(state => state.rooms.rooms);
+  const width = useCustomSelector(state => state.visual.width);
 
   useEffect(() => {
     dispatch(fetchRooms())
   }, [dispatch])
 
-  const statusHandler = (row) => {
+  const statusHandler = (row: Record<string, any>) => {
     if(row.status === 'booked'){
       return <Booked/> 
     }else{
       return <Available/>
     }
   }
-  const onDeleteRoom = (roomId) => {
+  const onDeleteRoom = (roomId: number) => {
     dispatch(deleteRoom(roomId))
   }
 
@@ -35,7 +35,7 @@ export const Rooms = () => {
     {
       property: 'roomname',
       label: 'Room Name',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <ImageContainer>
           <img src={roomImage} alt="Room" />
           <TextContainer>
@@ -48,7 +48,7 @@ export const Rooms = () => {
     {
       property: 'bedtype',
       label: 'Bed Type',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.bedType}</PropertyText>
         </CellContainer>
@@ -57,7 +57,7 @@ export const Rooms = () => {
     {
       property: 'facilities',
       label: 'Facilities',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.facilities}</PropertyText>
         </CellContainer>
@@ -66,7 +66,7 @@ export const Rooms = () => {
     {
       property: 'price',
       label: 'Price',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.price}</PropertyText>
         </CellContainer>
@@ -75,7 +75,7 @@ export const Rooms = () => {
     {
       property: 'offerprice',
       label: 'Offer Price',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.offerprice}</PropertyText>
         </CellContainer>
@@ -84,7 +84,7 @@ export const Rooms = () => {
     {
       property: 'status',
       label: 'Status',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <LineContainerComment><PropertyText>{statusHandler(row)}</PropertyText></LineContainerComment>
         </CellContainer>
@@ -93,7 +93,7 @@ export const Rooms = () => {
     {
       property: 'delete',
       label: '',
-      display: (row) => (
+      display: (row: Record<string, any>) => (
         <CellContainer>
           <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteRoom(row.id)}/></DeleteIconContainer>
         </CellContainer>
