@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export function AllRights() {
+export function AllRights(): JSX.Element {
   return (
     <AllRightsWrapper>
         <Title>Travl Hotel Admin Dashboard</Title>

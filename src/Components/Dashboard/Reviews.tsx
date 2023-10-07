@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import reviewsData from './dashboard-data.json';
-import { ReviewCard } from "./ReviewCard";
-import { useSelector } from "react-redux";
+import { dashboardData } from './dashboard-data';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -10,10 +8,17 @@ import 'swiper/css/navigation';
 import '../../styles/StyleSwiperButton.css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
+import { useCustomSelector } from '../../hooks/redux/index';
+import { ReviewCard, ReviewItem } from "./ReviewCard";
+
+
+interface Wrapperdashboardcontainer {
+    width: string;
+};
 
 export const Reviews = () => {
-    const width = useSelector(state => state.visual.width)
-    const data = reviewsData;
+    const width = useCustomSelector(state => state.visual.width)
+    const data: ReviewItem[] = dashboardData;
 
     return(
         <Wrapperdashboardcontainer width={width} >
@@ -25,7 +30,7 @@ export const Reviews = () => {
                 navigation
             >
             {data.map((item) => (
-            <SwiperSlideContent key={item.email} >
+            <SwiperSlideContent key={item.email} width={width}>
                 <ReviewCard item={item} />
             </SwiperSlideContent>
         ))}
@@ -34,7 +39,7 @@ export const Reviews = () => {
     )
 }
 
-const Wrapperdashboardcontainer = styled.section`
+const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
     position: absolute;
     bottom: 0;
     right: 0;
@@ -55,11 +60,10 @@ const Title = styled.span`
     margin-bottom: 20px;
     padding-left: 50px;
 `;
-
 const SwiperWrap = styled(Swiper)`
     width: 100%;
 `;
-const SwiperSlideContent = styled(SwiperSlide)`
+const SwiperSlideContent = styled(SwiperSlide)<Wrapperdashboardcontainer>`
     display: flex;
     flex-direction: row;
     width: ${(props) => props.width === '75%' ? '450px' : '500px'};

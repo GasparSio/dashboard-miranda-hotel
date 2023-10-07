@@ -5,7 +5,21 @@ import { RxCrossCircled } from 'react-icons/rx';
 import { ModalReview } from './ModalReview';
 import styled from 'styled-components';
 
-export const ReviewCard = ({ item }) => {
+export interface ReviewItem {
+  fullName: string;
+  email: string;
+  phone: string;
+  subject: string;
+  need: string;
+  status: boolean;
+}
+
+interface ReviewCardProps {
+  item: ReviewItem;
+}
+
+
+export const ReviewCard: React.FC<ReviewCardProps> = ({ item }) => {
   const [openModal, setOpenModal] = useState(false);
   const [crossCircleVisible, setCrossCircleVisible] = useState(true);
   const [checkCircleVisible, setCheckCircleVisible] = useState(false);
@@ -107,7 +121,6 @@ const ExpandIcon = styled(GiExpand)`
     transform: scale(1.2);
   }
 `;
-
 const CrossCircled = styled(RxCrossCircled)`
   color: #e23428;
   transition: transform;

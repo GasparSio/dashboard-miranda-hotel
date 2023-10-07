@@ -5,10 +5,14 @@ import { FaBed } from 'react-icons/fa';
 import { BsFillCalendar2CheckFill } from 'react-icons/bs';
 import { TbLogin2 } from 'react-icons/tb';
 import { TbLogout2 } from 'react-icons/tb';
-import { useSelector } from "react-redux";
+import { useCustomSelector } from '../../hooks/redux/index';
+
+interface Wrapperdashboardcontainer {
+    width: string;
+};
 
 export const StatsCards = () => {
-    const width = useSelector(state => state.visual.width)
+    const width = useCustomSelector(state => state.visual.width)
 
     return (
         <Wrapperdashboardcontainer width={width}>
@@ -52,7 +56,7 @@ export const StatsCards = () => {
     )
 }
 
-const Wrapperdashboardcontainer = styled.section`
+const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
     position: absolute;
     top: 110px;
     right: 0%;

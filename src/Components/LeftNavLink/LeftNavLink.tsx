@@ -6,11 +6,16 @@ import { colors } from '../theme';
 import { MdVpnKey, MdEditCalendar, MdPhone, MdOutlinePermContactCalendar } from 'react-icons/md';
 import { BsFillClipboardDataFill } from 'react-icons/bs';
 import { UserProfile } from "./UserProfile";
-import { useSelector } from "react-redux";
 import { AllRights } from "./AllRights";
+import { useCustomSelector } from '../../hooks/redux/index';
+
+
+interface Wrappersection {
+    width: string;
+}
 
 export const LeftNavLink = () => {
-    const width = useSelector((state) => state.visual.width);
+    const width = useCustomSelector((state) => state.visual.width);
 
     return (
         <>
@@ -63,7 +68,7 @@ export const LeftNavLink = () => {
     )
 }
 
-const Wrappersection = styled.section`
+const Wrappersection = styled.section<Wrappersection>`
     position: fixed;
     top: 0;
     bottom: 0;
@@ -74,44 +79,37 @@ const Wrappersection = styled.section`
     display: ${(props) => (props.width === '75%' ? 'block' : 'none')};
     z-index: 1;
 `;
-
 const Wrappertitlecontainer = styled.section`
     width: 100%;
     display: flex;
     margin-top: 10px;
 `;
-
 const Wrapperimg = styled.section`
     width: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
-
 const Wrappertitle = styled.section`
     width: 60%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 `;
-
 const Logo = styled.img`
     width: 60%;
     max-width: 40px;
 `;
-
 const Title = styled.span`
     font-size: 24px;
     font-weight: 600;
 `;
-
 const Subtitle = styled.span`
     font-size: 12px;
     color: #5D5449;
     font-weight: 300;
     font-family: Poppins;
 `;
-
 const Wrappernavlinks = styled.div`
     display: flex;
     flex-direction: column;
@@ -143,7 +141,6 @@ const IconUsers = styled(MdOutlinePermContactCalendar)`
     width: 30%;
     height: 30px;
 `;
-
 const Link = styled(NavLink)`
     display: flex;
     height: 70px;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface WrapperdashboardcontainerProps {
-  width?: string; // O el tipo correcto de width que esperas
+  width?: string;
 }
 
 export const Wrapperdashboardcontainer = styled.section<WrapperdashboardcontainerProps>`

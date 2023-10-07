@@ -3,20 +3,22 @@ import styled from "styled-components";
 import { useAuth } from "../Login-Logout/auth";
 import profileImage from '../../Img/18942381.jpg';
 
-export const UserProfile = () => {
+export const UserProfile: React.FC = () => {
     const auth = useAuth()
     
     const onHandleClick = () => {
-        auth.ModalOpen()
+        if(auth){
+            auth.ModalOpen()
+        }
     }
     return(
-        <Wrapperprofile  >
+        <Wrapperprofile >
             <Wrapperimage>
                 <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" />
             </Wrapperimage>
             <Wrapperspan>
-                <Name>{auth.authState.username ? auth.authState.username : 'Name'}</Name>
-                <Email>{auth.authState.email ? auth.authState.email : 'Email'}</Email>
+                <Name>{auth?.authState.username ? auth.authState.username : 'Name'}</Name>
+                <Email>{auth?.authState.email ? auth.authState.email : 'Email'}</Email>
             </Wrapperspan>
             <Wrapperbutton >
                 <Button onClick={onHandleClick}>Edit</Button>

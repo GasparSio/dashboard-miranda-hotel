@@ -2,7 +2,20 @@ import React from 'react'
 import { RxCrossCircled } from "react-icons/rx";
 import styled from 'styled-components';
 
-export const ModalReview = ({onClose, review}) => {
+
+interface ModalReviewProps {
+  onClose: () => void; // Esta función no recibe argumentos y no devuelve nada
+  review: {
+    fullName: string;
+    email: string;
+    phone: string;
+    subject: string;
+    need: string;
+    status: boolean;
+  };
+}
+
+export const ModalReview: React.FC<ModalReviewProps> = ({onClose, review}) => {
 
   return (
     <ModalContainer>
@@ -26,7 +39,7 @@ const ModalContainer = styled.div`
     left: 0%;
     border-radius: 18px;
     z-index: 999;
-    width: 315px;
+    width: 327px;
     height: 160px;
     position: absolute;
     display: flex;
