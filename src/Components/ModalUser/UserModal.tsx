@@ -5,8 +5,8 @@ import { AvatarProfile } from "./AvatarProfile";
 
 export const UserModal = () => {
     const auth = useAuth();
- 
     const { authState, updateUser, ModalClose } = auth;
+    
     const [name, setName] = useState(authState.username || "");
     const [email, setEmail] = useState(authState.email || "");
     const [selectedAvatarUrl, setSelectedAvatarUrl] = useState(authState.image);

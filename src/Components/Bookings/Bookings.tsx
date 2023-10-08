@@ -19,12 +19,10 @@ export const Bookings = () => {
   const dispatch = useCustomDispatch();
   const bookings = useCustomSelector(state => state.bookings.bookings);
   const width = useCustomSelector(state => state.visual.width);
-  console.log('Carga de Booking?');
   
   useEffect(() => {
     dispatch(fetchBookings())
   }, [dispatch])
-  console.log('Carga de Booking? dps del dispatch?');
   
   const onDeleteBooking = (bookingId: number) => {
     dispatch(deleteBooking(bookingId))

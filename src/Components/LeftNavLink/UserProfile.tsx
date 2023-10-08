@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuth } from "../Login-Logout/auth";
-import profileImage from '../../Img/18942381.jpg';
 
 export const UserProfile: React.FC = () => {
     const auth = useAuth()
@@ -14,7 +13,8 @@ export const UserProfile: React.FC = () => {
     return(
         <Wrapperprofile >
             <Wrapperimage>
-                <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" />
+                {/* <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" /> */}
+                <Image src={process.env.PUBLIC_URL + '/images/18942381.jpg'} alt="User image" />
             </Wrapperimage>
             <Wrapperspan>
                 <Name>{auth?.authState.username ? auth.authState.username : 'Name'}</Name>
