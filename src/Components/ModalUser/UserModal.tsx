@@ -5,11 +5,7 @@ import { AvatarProfile } from "./AvatarProfile";
 
 export const UserModal = () => {
     const auth = useAuth();
-
-    if (!auth) {
-      <p>Auth not available, refresh the website</p>
-      return null; 
-    }
+ 
     const { authState, updateUser, ModalClose } = auth;
     const [name, setName] = useState(authState.username || "");
     const [email, setEmail] = useState(authState.email || "");

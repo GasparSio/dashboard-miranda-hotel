@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
-import logo from '../../Img/icon-hotel.png';
 
 const userCode: string = 'gas';
 const emailCode: string = 'sio';
@@ -15,12 +14,7 @@ export const Login: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [wrongUser, setwrongUser] = useState<boolean>(false);
     
-    if (!auth) {
-        // Manejo de caso donde auth es nulo, por ejemplo, redirigir o mostrar un mensaje de error.
-        return <div>Autenticación no disponible</div>;
-    }
     const { authState, login } = auth;
-    
 
     useEffect(() => {
         if (authState.isAuthenticated) {
@@ -29,6 +23,7 @@ export const Login: React.FC = () => {
             navigate('/login')
         }
       }, [authState.isAuthenticated, navigate]);
+
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
@@ -47,7 +42,7 @@ export const Login: React.FC = () => {
         <Wrapper>
             <Formcontainer>
                 <Wrapperimg>
-                    <Logo src={logo} alt="Icon hotel" />
+                    <Logo src={process.env.PUBLIC_URL + '/images/icon-hotel.png'} alt="Icon hotel" />
                 </Wrapperimg>
                 <Title>Hello!</Title>
                 <Form onSubmit={handleLogin}>

@@ -4,7 +4,6 @@ import { RoomsNavContainer } from "./RoomsNavContainer";
 import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
 import Table from "../Table";
-import roomImage from '../../Img/room-1.avif';
 import styled from "styled-components";
 import { Available, Booked } from "./StatusButton";
 import { MdDelete } from "react-icons/md";
@@ -37,7 +36,7 @@ export const Rooms = () => {
       label: 'Room Name',
       display: (row: Record<string, any>) => (
         <ImageContainer>
-          <img src={roomImage} alt="Room" />
+          <img src={process.env.PUBLIC_URL + '/images/room-1.avif'} alt="Room" />
           <TextContainer>
             <PropertyText>{row.roomNumber}</PropertyText>
             <PropertyText>Id: {row.id}</PropertyText>

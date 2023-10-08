@@ -6,17 +6,17 @@ import { LuBellRing } from 'react-icons/lu';
 import { PiArrowsLeftRightFill } from 'react-icons/pi';
 import { useAuth } from '../Login-Logout/auth';
 import { useLocation } from "react-router-dom";
-import { incrementWidthSupNav, decrementWidthSupNav } from '../../features/visual/visualSlice'
+import { incrementWidthSupNav, decrementWidthSupNav } from '../../features/visual/visualSlice';
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 
 interface HeaderContainerProps {
     width: string;
-  }
+}
 
 export const SupNavLink = () => {
     const dispatch = useCustomDispatch();
     const width = useCustomSelector((state) => state.visual.width);
-    const location = useLocation(); // Obtiene la ubicación actual
+    const location = useLocation(); 
     const sectionName = location.pathname ? location.pathname.split('/').pop()?.toUpperCase().replace(/-/g, ' ') : '';
     const auth = useAuth();
     

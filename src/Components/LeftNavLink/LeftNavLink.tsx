@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from 'styled-components';
-import logo from '../../Img/icon-hotel.png';
 import { colors } from '../theme';
 import { MdVpnKey, MdEditCalendar, MdPhone, MdOutlinePermContactCalendar } from 'react-icons/md';
 import { BsFillClipboardDataFill } from 'react-icons/bs';
@@ -22,7 +21,7 @@ export const LeftNavLink = () => {
             <Wrappersection width={width}>
                 <Wrappertitlecontainer>
                     <Wrapperimg>
-                        <Logo src={logo} alt="Icon hotel" />
+                        <Logo src={process.env.PUBLIC_URL + '/images/icon-hotel.png'} alt="Icon hotel" />
                     </Wrapperimg>
                     <Wrappertitle>
                         <Title>Travelboard</Title>
