@@ -2,8 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; // Para usar expect(...).toHaveStyle
 
-import { Button } from './UserProfile'; 
-
+const { Button } = require('./UserProfile.jsx');
 
 test('Button should have correct background-color and color', () => {
     // Definir los valores esperados para background-color y color

@@ -106,7 +106,7 @@ export const Users = () => {
       ),
     },
     {
-      property: 'status',
+      property: 'statusDelete',
       label: '',
       display: (row) => (
         <CellContainer>

@@ -71,6 +71,7 @@ const Wrappersection = styled.section`
     height: 100vh;
     box-shadow: 13px 3px 40px #00000005;
     background-color: #ffffff;
+    transition: width 1s ease;
     display: ${(props) => (props.width === '75%' ? 'block' : 'none')};
     z-index: 1;
 `;
