@@ -37,21 +37,23 @@ export const Login = () => {
     }
   };
     return(
-        <Wrapper>
+            <Wrapper>
             <Formcontainer>
                 <Wrapperimg>
-                    <Logo src={logo} alt="Icon hotel" />
+                    <Logo src={process.env.PUBLIC_URL + '/images/icon-hotel.png'} alt="Icon hotel" />
                 </Wrapperimg>
                 <Title>Hello!</Title>
                 <Form onSubmit={handleLogin}>
                     <Input 
                         value={username}
+                        data-cy="username-input"
                         placeholder="Username"
                         onChange={(e) => setUsername(e.target.value)}
                         />
                     <Input
                         type="password"
                         value={email}
+                        data-cy="email-input"
                         placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                     />

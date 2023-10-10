@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-// import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRoom, fetchRooms } from '../../features/rooms/roomSlice';
 import { RoomsNavContainer } from "./RoomsNavContainer";
-import { CellContainer, LineContainer, LineContainerComment, ValueText, PropertyText } from '../StyledTable';
+import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
 import Table from "../Table";
 import roomImage from '../../Img/room-1.avif';

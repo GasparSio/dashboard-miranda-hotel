@@ -75,7 +75,7 @@ export const BookingDetail = () => {
       </LeftContainer>
       <RightContainer>
         <Photo>
-          <img src={booking.photo}/>
+          <img src={booking.photo} alt='Bedroom'/>
         </Photo>
         <RoomTypeContainer>
           <span>{booking.roomtype}</span>
@@ -170,7 +170,7 @@ const CheckOutContainer = styled.div`
     font-family: Poppins;
     font-weight: 400;
     font-size: 14px;
-    color: #799283;
+    color: ${colors.primaryGreen};
   }
 `;
 
@@ -197,7 +197,7 @@ const RequestContainer = styled.div`
     font-family: Poppins;
     font-weight: 400;
     font-size: 14px;
-    color: #363636;
+    color: ${colors.lightBlack};
   }
 
 `;
@@ -212,7 +212,7 @@ const FacilitiesContainer = styled.div`
     font-family: Poppins;
     font-weight: 400;
     font-size: 14px;
-    color: #363636;
+    color: ${colors.lightBlack};
   }
   `;
   const Amenities = styled.div`
