@@ -48,12 +48,14 @@ export const Login: React.FC = () => {
                 <Form onSubmit={handleLogin}>
                     <Input 
                         value={username}
+                        data-cy="username-input"
                         placeholder="Username"
                         onChange={(e) => setUsername(e.target.value)}
                         />
                     <Input
                         type="password"
                         value={email}
+                        data-cy="email-input"
                         placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                     />
