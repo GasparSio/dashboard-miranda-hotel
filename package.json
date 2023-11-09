@@ -1,5 +1,6 @@
 {
   "name": "dashboard-miranda",
+  "homepage": "https://gasparsio.github.io/dashboard-miranda-hotel/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
