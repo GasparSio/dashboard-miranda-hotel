@@ -19,8 +19,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "deployaws": "aws s3 sync build/ s3://gasparsio-dashboard-miranda --delete --profile admin",
