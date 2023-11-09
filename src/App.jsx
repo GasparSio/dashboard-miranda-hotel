@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Login } from './Components/Login-Logout/Login';
-import { Home } from './Components/Home/Home';
-import { Dashboard } from './Components/Dashboard/Dashboard';
-import { Rooms } from './Components/Rooms/Rooms';
-import { Bookings } from './Components/Bookings/Bookings';
-import { BookingDetail } from './Components/Bookings/BookingDetail';
-import { Users } from './Components/Users/Users';
+import { Login } from './Components/Login-Logout/Login.jsx';
+import { Home } from './Components/Home/Home.jsx';
+import { Dashboard } from './Components/Dashboard/Dashboard.jsx';
+import { Rooms } from './Components/Rooms/Rooms.jsx';
+import { Bookings } from './Components/Bookings/Bookings.jsx';
+import { BookingDetail } from './Components/Bookings/BookingDetail.jsx';
+import { Users } from './Components/Users/Users.jsx';
 import { Contact } from './Components/Contact/Contact.jsx';
-import { AuthProvider } from './Components/Login-Logout/auth';
+import { AuthProvider } from './Components/Login-Logout/auth.jsx';
 
 
 function App() {
