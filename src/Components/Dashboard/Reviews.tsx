@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { dashboardData } from './dashboard-data';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '../../styles/StyleSwiperButton.css';
@@ -23,10 +23,10 @@ export const Reviews = () => {
     return(
         <Wrapperdashboardcontainer width={width} >
             <Title>Latest Review by Customers</Title>
-            <SwiperWrap
-                modules={[Navigation]}
+            <Swiper style={{width: '100%'}}
+                modules={[Navigation, A11y]}
                 slidesPerView={width === '75%' ? 3 : 4} // Número de tarjetas visibles por vez
-                spaceBetween={1} // Espacio entre las tarjetas
+                spaceBetween={0} // Espacio entre las tarjetas
                 navigation
             >
             {data.map((item) => (
@@ -34,7 +34,7 @@ export const Reviews = () => {
                 <ReviewCard item={item} />
             </SwiperSlideContent>
         ))}
-            </SwiperWrap >
+            </Swiper >
         </Wrapperdashboardcontainer>
     )
 }
@@ -50,7 +50,6 @@ const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
     box-shadow: 0px 4px 4px #00000005;
     border-radius: 20px;
     background-color: #FFFFFF;
-    
 `;
 const Title = styled.span`
     font-family: Poppins;
@@ -64,8 +63,6 @@ const SwiperWrap = styled(Swiper)`
     width: 100%;
 `;
 const SwiperSlideContent = styled(SwiperSlide)<Wrapperdashboardcontainer>`
-    display: flex;
-    flex-direction: row;
     width: ${(props) => props.width === '75%' ? '450px' : '500px'};
 `;
 
