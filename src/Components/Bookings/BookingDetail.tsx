@@ -79,7 +79,7 @@ export const BookingDetail = (): JSX.Element => {
       </LeftContainer>
       <RightContainer>
         <Photo>
-          <img src={booking?.photo}/>
+          <img src={booking?.photo} alt='booking room'/>
         </Photo>
         <RoomTypeContainer>
           <span>{booking?.roomtype}</span>

@@ -27,7 +27,7 @@ function App(): JSX.Element{
             <Route path='contacts' element={<Contact />} />  
             <Route path='users' element={<Users />} />  
           </Route>
-          {/* <Route path='*' element={<Login/>} /> */}
+          <Route path='*' element={<Login/>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

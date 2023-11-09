@@ -156,3 +156,4 @@ export const bookingSlice = createSlice({
 })
 
 export default bookingSlice.reducer;
+export type { BookingsState };
