@@ -18,7 +18,7 @@ function App(): JSX.Element{
         <Routes>
           <Route path='/' element={<Login/>} />
           <Route path='/login' element={<Login/>} />
-          <Route path='/dashboard-miranda-hotel' element={<Home/>} />
+          <Route path='/dashboard-miranda-hotel' element={<Login/>} />
           <Route path='/home' element={<Home/>}>
             <Route path='dashboard' element={<Dashboard/>} />  
             <Route path='bookings' element={<Bookings />} />  
