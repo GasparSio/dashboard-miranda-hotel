@@ -105,11 +105,7 @@ export const Users = () => {
       ),
     },
     {
-<<<<<<< HEAD:src/Components/Users/Users.jsx
-      property: 'statusDelete',
-=======
       property: 'delete',
->>>>>>> with-typescript:src/Components/Users/Users.tsx
       label: '',
       display: (row: Record<string, any>) => (
         <CellContainer>

@@ -4,13 +4,8 @@ import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 
-<<<<<<< HEAD:src/Components/Login-Logout/Login.jsx
-const userCode = 'gaspar';
-const emailCode = 'sio@gmail.com';
-=======
 const userCode: string = 'gas';
 const emailCode: string = 'sio';
->>>>>>> with-typescript:src/Components/Login-Logout/Login.tsx
 
 export const Login: React.FC = () => {
     const navigate = useNavigate();
