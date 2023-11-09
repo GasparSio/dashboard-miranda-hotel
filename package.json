@@ -36,7 +36,13 @@
     "cypress": "cypress open"
   },
   "compilerOptions": {
-    "allowedExtensions": [".avif", ".jpg", ".png", ".jpeg", ".gif"]
+    "allowedExtensions": [
+      ".avif",
+      ".jpg",
+      ".png",
+      ".jpeg",
+      ".gif"
+    ]
   },
   "eslintConfig": {
     "extends": [
