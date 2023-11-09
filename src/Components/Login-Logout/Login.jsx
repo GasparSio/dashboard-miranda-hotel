@@ -5,8 +5,8 @@ import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 import logo from '../../Img/icon-hotel.png';
 
-const userCode = 'gas';
-const emailCode = 'sio';
+const userCode = 'gaspar';
+const emailCode = 'sio@gmail.com';
 
 export const Login = () => {
     const navigate = useNavigate();

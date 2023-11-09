@@ -44,10 +44,10 @@ export const LeftNavLink = () => {
                         <Text>Rooms</Text>
                     </Link>
                     <Link
-                        to='/home/contact'
+                        to='/home/contacts'
                     >
                         <IconContact />
-                        <Text>Contact</Text>
+                        <Text>Contacts</Text>
                     </Link>
                     <Link
                         to='/home/users'
