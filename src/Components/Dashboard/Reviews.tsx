@@ -23,7 +23,7 @@ export const Reviews = () => {
     return(
         <Wrapperdashboardcontainer width={width} >
             <Title>Latest Review by Customers</Title>
-            <SwiperWrap
+            <Swiper style={{width: '100%'}}
                 modules={[Navigation]}
                 slidesPerView={width === '75%' ? 3 : 4} // Número de tarjetas visibles por vez
                 spaceBetween={1} // Espacio entre las tarjetas
@@ -34,7 +34,7 @@ export const Reviews = () => {
                 <ReviewCard item={item} />
             </SwiperSlideContent>
         ))}
-            </SwiperWrap >
+            </Swiper >
         </Wrapperdashboardcontainer>
     )
 }
@@ -64,8 +64,6 @@ const SwiperWrap = styled(Swiper)`
     width: 100%;
 `;
 const SwiperSlideContent = styled(SwiperSlide)<Wrapperdashboardcontainer>`
-    display: flex;
-    flex-direction: row;
     width: ${(props) => props.width === '75%' ? '450px' : '500px'};
 `;
 
