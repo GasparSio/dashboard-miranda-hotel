@@ -7,5 +7,8 @@ export default defineConfig(() => {
       outDir: 'build',
     },
     plugins: [react()],
+    define: {
+      'process.env': process.env
+    }
   };
 });
