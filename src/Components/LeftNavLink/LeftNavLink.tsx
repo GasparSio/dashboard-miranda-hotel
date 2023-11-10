@@ -7,7 +7,7 @@ import { BsFillClipboardDataFill } from 'react-icons/bs';
 import { UserProfile } from "./UserProfile";
 import { AllRights } from "./AllRights";
 import { useCustomSelector } from '../../hooks/redux/index';
-
+import logo from '../../Img/icon-hotel.png';
 
 interface Wrappersection {
     width: string;
@@ -21,7 +21,7 @@ export const LeftNavLink = () => {
             <Wrappersection width={width}>
                 <Wrappertitlecontainer>
                     <Wrapperimg>
-                        <Logo src={process.env.PUBLIC_URL + '/images/icon-hotel.png'} alt="Icon hotel" />
+                        <Logo src={logo} alt="Icon hotel" />
                     </Wrapperimg>
                     <Wrappertitle>
                         <Title>Travelboard</Title>

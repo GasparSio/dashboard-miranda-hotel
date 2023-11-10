@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { LeftNavLink } from '../LeftNavLink/LeftNavLink';
 import { SupNavLink } from '../SupNavLink/SupNavLink';
@@ -8,6 +8,12 @@ import { UserModal } from "../ModalUser/UserModal";
 
 export const Home = () => {
     const { authState, openModal } = useAuth();
+
+    // const [sidebarVisible, setSidebarVisible] = useState(true);
+    
+    // const toggleSidebar = () => {
+    //     setSidebarVisible(!sidebarVisible);
+    // };
 
     if (!authState.isAuthenticated) {
         return <Login />;

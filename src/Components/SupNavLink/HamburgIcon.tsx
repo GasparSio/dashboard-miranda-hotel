@@ -3,10 +3,14 @@ import { CgMenuLeft } from 'react-icons/cg';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { colors } from '../theme';
+import { useCustomSelector } from '../../hooks/redux';
 
+interface HamburgIconProps {
+  onClick: () => void; // Tipo de función que no toma argumentos y no devuelve nada
+}
 
-export const HamburgIcon = ({onClick}) => {
-    const width = useSelector((state) => state.visual.width);
+export const HamburgIcon: React.FC<HamburgIconProps> = ({onClick}) => {
+    const width = useCustomSelector((state) => state.visual.width);
 
   return (
     <Button onClick={onClick} width={width} data-testid="hamburg-icon"></Button>

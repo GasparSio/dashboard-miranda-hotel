@@ -1,30 +1,54 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import profileImage from '../../Img/18942381.jpg'
+// import profileImage from '../../Img/18942381.jpg';
 
-const AuthContext = React.createContext(null);
+const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 
-const initialState = {
+interface AuthContextType {
+  authState: AuthState;
+  login: (userData: { username: string; email: string }) => void;
+  logout: () => void;
+  updateUser: (username: string, email: string, image: string) => void;
+  ModalOpen: () => void;
+  ModalClose: () => void;
+  openModal: boolean;
+}
+
+
+interface AuthState {
+  isAuthenticated: boolean;
+  username: string | null;
+  email: string | null;
+  image: string;
+}
+
+const initialState: AuthState  = {
   isAuthenticated: false,
   username: null,
   email: null,
-  image: profileImage,
+  image: '',
 }
 
-const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'login':
-      return { isAuthenticated: true, username: action.payload.username, email: action.payload.email };
-    case 'logout':
-      return { isAuthenticated: false, username: null, email: null };
-    case 'updateuser':
-      return {isAuthenticated: true,  username: action.payload.username, email: action.payload.email, image: action.payload.image };
-    default:
-      return state;
-  }
-};
+type AuthAction =
+  | { type: 'login'; payload: { username: string; email: string } }
+  | { type: 'logout' }
+  | { type: 'updateuser'; payload: { username: string; email: string; image: string } };
 
-export const AuthProvider = ({ children }) => {
+
+  const authReducer = (state: AuthState, action: AuthAction) => {
+    switch (action.type) {
+      case 'login':
+        return { isAuthenticated: true, username: action.payload.username, email: action.payload.email, image: initialState.image };
+      case 'logout':
+        return { isAuthenticated: false, username: null, email: null, image: initialState.image };
+      case 'updateuser':
+        return { isAuthenticated: true, username: action.payload.username, email: action.payload.email, image: action.payload.image };
+      default:
+        return state;
+    }
+  };
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const [authState, dispatch] = useReducer(authReducer, initialState);
@@ -40,7 +64,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   //funcion de login
-  const login = ({ username, email }) => {
+  const login = ({ username, email }: { username: string; email: string }) => {
     dispatch({ type: 'login', payload: { username, email } });
     navigate('/home/dashboard');
     localStorage.setItem("loggedInUser", JSON.stringify({ username, email }));
@@ -59,7 +83,7 @@ export const AuthProvider = ({ children }) => {
   const ModalClose = () => {
     setOpenModal(false)
   };
-  const updateUser = (username, email, image) => {
+  const updateUser = (username: string, email: string, image: string) => {
     dispatch({type: 'updateuser', payload: { username, email, image }})
     localStorage.setItem("loggedInUser", JSON.stringify({ 
       username: username || authState.username, 
@@ -81,5 +105,9 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  if (authContext === undefined) {
+    throw new Error("useAuth debe ser usado dentro de un AuthProvider");
+  }
+  return authContext;
 };
