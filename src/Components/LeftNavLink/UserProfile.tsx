@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuth } from "../Login-Logout/auth";
-
+import profileImage from '../../Img/18942381.jpg'
 export const UserProfile: React.FC = () => {
     const auth = useAuth()
     
@@ -13,8 +13,7 @@ export const UserProfile: React.FC = () => {
     return(
         <Wrapperprofile >
             <Wrapperimage>
-                {/* <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" /> */}
-                <Image src={process.env.PUBLIC_URL + '/images/18942381.jpg'} alt="User image" />
+                <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" />
             </Wrapperimage>
             <Wrapperspan>
                 <Name>{auth?.authState.username ? auth.authState.username : 'Name'}</Name>
@@ -29,7 +28,7 @@ export const UserProfile: React.FC = () => {
 
 const Wrapperprofile = styled.section`
     position: relative;
-    width: 60%;
+    width: 70%;
     margin: auto;
     margin-top: 50px;
     display: flex;
@@ -38,13 +37,13 @@ const Wrapperprofile = styled.section`
     justify-content: center;
     box-shadow: 0px 30px 30px #00000036;
     border-radius: 18px;
-    height: 185px;
+    height: 170px;
 `;
 const Wrapperimage = styled.div`
     display: flex;
     justify-content: center;
     position: absolute;
-    top: -40px;
+    top: -30px;
 `;
 const Image = styled.img`
     width: 75px;

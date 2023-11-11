@@ -15,7 +15,7 @@ export const Button = styled.button`
   background-color: transparent;
   color: inherit;
   font-family: Poppins;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: inherit;
 `;
 
@@ -34,7 +34,7 @@ export const Input = styled.input`
   border: 1px solid ${colors.filterGreenButton};
   color: ${colors.filterGreyButton};
   font-family: Poppins;
-  font-size: 13px;
+  font-size: 12px;
   padding-left: 30px;
 `
 export const Select = styled.select`
@@ -47,7 +47,7 @@ export const Select = styled.select`
   height: 35px;
   font-family: Poppins;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   margin-left: 30px;
 `;
 export const Option = styled.option`
@@ -60,6 +60,6 @@ export const Option = styled.option`
   height: 35px;
   font-family: Poppins;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 12px;
   margin-left: 25px;
 `;

@@ -24,7 +24,7 @@ export const LeftNavLink = () => {
                         <Logo src={logo} alt="Icon hotel" />
                     </Wrapperimg>
                     <Wrappertitle>
-                        <Title>Travelboard</Title>
+                        <Title>Travl</Title>
                         <Subtitle>Hotel Admin Dashboard</Subtitle>
                     </Wrappertitle>
                 </Wrappertitlecontainer>
@@ -71,12 +71,12 @@ const Wrappersection = styled.section<Wrappersection>`
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 25%;
+    width: 20%;
     height: 100vh;
     box-shadow: 13px 3px 40px #00000005;
     background-color: #ffffff;
     transition: width 1s ease;
-    display: ${(props) => (props.width === '75%' ? 'block' : 'none')};
+    display: ${(props) => (props.width === '80%' ? 'block' : 'none')};
     z-index: 1;
 `;
 const Wrappertitlecontainer = styled.section`
@@ -97,12 +97,12 @@ const Wrappertitle = styled.section`
     align-items: flex-start;
 `;
 const Logo = styled.img`
-    width: 60%;
-    max-width: 40px;
+    width: 40%;
+    max-width: 30px;
 `;
 const Title = styled.span`
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 30px;
+    font-weight: 800;
 `;
 const Subtitle = styled.span`
     font-size: 12px;
@@ -114,36 +114,36 @@ const Wrappernavlinks = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    margin-bottom: 110px;
+    margin-bottom: 70px;
 `;
 const IconDashboard = styled(BsFillClipboardDataFill)`
     color: inherit;
     width: 30%;
-    height: 30px;
+    height: 24px;
 `;
 const IconBooking = styled(MdEditCalendar)`
     color: inherit;
     width: 30%;
-    height: 30px;
+    height: 24px;
 `;
 const IconRooms = styled(MdVpnKey)`
     color: inherit;
     width: 30%;
-    height: 30px;
+    height: 24px;
 `;
 const IconContact = styled(MdPhone)`
     color: inherit;
     width: 30%;
-    height: 30px;
+    height: 24px;
 `;
 const IconUsers = styled(MdOutlinePermContactCalendar)`
     color: inherit;
     width: 30%;
-    height: 30px;
+    height: 24px;
 `;
 const Link = styled(NavLink)`
     display: flex;
-    height: 70px;
+    height: 50px;
     flex-direction: row;
     text-decoration: none;
     align-items: center;
@@ -154,10 +154,17 @@ const Link = styled(NavLink)`
     &:not(.active) {
         color: ${colors.primaryGreen};
     }
+    &:hover{
+        color: #ec776f;
+        border-left: 3px solid #ec776f;
+    }
 `;
 const Text = styled.span`
     color: inherit;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     font-family: Poppins;
+    &:hover{
+        transform: scale(1.01);
+    }
 `;

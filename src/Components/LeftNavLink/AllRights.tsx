@@ -12,12 +12,11 @@ export function AllRights(): JSX.Element {
   )
 }
 const AllRightsWrapper = styled.div`
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 215px;
+    height: 120px;
 `;
 const Title = styled.h1`
     font-family: Poppins;
@@ -27,11 +26,16 @@ const Title = styled.h1`
 `;
 const Paragraph = styled.span`
     font-family: Poppins;
-    font-size: 14px;
+    font-size: 12px;
     color: #799283;
     font-family: 300;
 `;
 const LinkTo = styled(NavLink)`
     text-decoration: none;
     color: #799283;
+    transition: transform 0.3s ease-in-out;
+    &:hover{
+        transform: scale(1.05);
+        color: red;
+    }
 `;

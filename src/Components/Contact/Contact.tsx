@@ -131,7 +131,7 @@ const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
   position: absolute;
   top: 53%;
   right: 2%;
-  width: ${(props) => (props.width === '75%' ? '70%' : '96%')};
+  width: ${(props) => (props.width === '80%' ? '75%' : '96%')};
   z-index: 999;
   background-color: #F8F8F8;
 `;

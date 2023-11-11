@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
+import logoHotel from '../../Img/icon-hotel.png';
 
 const userCode: string = 'gas';
 const emailCode: string = 'sio';
@@ -42,7 +43,7 @@ export const Login: React.FC = () => {
             <Wrapper>
             <Formcontainer>
                 <Wrapperimg>
-                    <Logo src={process.env.PUBLIC_URL + '/images/icon-hotel.png'} alt="Icon hotel" />
+                    <Logo src={logoHotel} alt="Icon hotel" />
                 </Wrapperimg>
                 <Title>Hello!</Title>
                 <Form onSubmit={handleLogin}>

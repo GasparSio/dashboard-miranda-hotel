@@ -6,7 +6,7 @@ interface CustomWrapperStylesProps {
 
 export const CustomWrapperStyles = styled.section<CustomWrapperStylesProps>`
   height: 275px;
-  top: 84px;
+  top: 45px;
   right: 0;
   position: relative;
   // width: ${(props) => (props.width === '75%' ? '70%' : '96%')} 

@@ -60,15 +60,15 @@ const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
     position: absolute;
     top: 110px;
     right: 0%;
-    width: ${(props) => props.width === '75%' ? '75%' : '100%'};
+    width: ${(props) => props.width === '80%' ? '80%' : '100%'};
     display: flex;
     justify-content: space-evenly;
 `;
 const CardContainer = styled.div`
     display: flex;
-    height: 125px;
+    height: 105px;
     align-items: center;
-    width: 300px;
+    width: 250px;
     box-shadow: 0px 4px 4px #00000005;
     background-color: #FFFFFF;
     justify-content: space-evenly;
@@ -95,7 +95,7 @@ const StatsContainer = styled.div`
 const NumberDetail = styled.span`
     font-family: Poppins;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 25px;
     color: #393939;
 `;
 const TextDetail = styled.span`

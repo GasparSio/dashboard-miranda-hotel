@@ -23,10 +23,10 @@ export const Reviews = () => {
     return(
         <Wrapperdashboardcontainer width={width} >
             <Title>Latest Review by Customers</Title>
-            <Swiper style={{width: '100%'}}
+            <SwiperWrap
                 modules={[Navigation, A11y]}
-                slidesPerView={width === '75%' ? 3 : 4} // Número de tarjetas visibles por vez
-                spaceBetween={0} // Espacio entre las tarjetas
+                slidesPerView={width === '80%' ? 3 : 4} // Número de tarjetas visibles por vez
+                spaceBetween={1} // Espacio entre las tarjetas
                 navigation
             >
             {data.map((item) => (
@@ -34,7 +34,7 @@ export const Reviews = () => {
                 <ReviewCard item={item} />
             </SwiperSlideContent>
         ))}
-            </Swiper >
+            </SwiperWrap >
         </Wrapperdashboardcontainer>
     )
 }
@@ -43,7 +43,7 @@ const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
     position: absolute;
     bottom: 0;
     right: 0;
-    width: ${(props) => props.width === '75%' ? '75%' : '100%'};
+    width: ${(props) => props.width === '80%' ? '80%' : '100%'};
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -53,7 +53,7 @@ const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
 `;
 const Title = styled.span`
     font-family: Poppins;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 400;
     color: #393939;
     margin-bottom: 20px;
@@ -63,6 +63,6 @@ const SwiperWrap = styled(Swiper)`
     width: 100%;
 `;
 const SwiperSlideContent = styled(SwiperSlide)<Wrapperdashboardcontainer>`
-    width: ${(props) => props.width === '75%' ? '450px' : '500px'};
+    width: ${(props) => props.width === '80%' ? '400px' : '450px'};
 `;
 

@@ -86,7 +86,7 @@ const TableHeaderCell = styled.div`
   flex-direction: column;
   flex: 1;
   font-family: Poppins;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: #393939;
   width: 12%;
@@ -99,7 +99,7 @@ const TableCell = styled.div`
   flex-direction: column;
   text-align: left;
   font-family: Poppins;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   color: #799283;
   width: 10%;

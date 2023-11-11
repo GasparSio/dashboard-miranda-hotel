@@ -36,10 +36,10 @@ const ModalContainer = styled.div`
     border: 1px solid #ccc;
     padding: 20px;
     top: 0%;
-    left: 0%;
+    left: 6%;
     border-radius: 18px;
     z-index: 999;
-    width: 327px;
+    width: 313px;
     height: 160px;
     position: absolute;
     display: flex;
@@ -61,14 +61,14 @@ const IconContainer = styled.div`
     height: 10%;
 `;
 const Title = styled.span`
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     margin-bottom: 10px;
     color: #393939;
     font-family: Poppins;
 `;
 const Text = styled.span`
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     margin-bottom: 10px;
     color: #393939;

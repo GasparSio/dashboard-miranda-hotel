@@ -95,7 +95,7 @@ const WrapperBookingDetail = styled.div`
     right: 2%;
     top: 105px;
     display: flex;
-    width: 70%;
+    width: 75%;
     border-radius: 25px;
     background-color: white;
     border: 1px solid #c5d6c7;

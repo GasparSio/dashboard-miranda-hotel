@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const visualSlice = createSlice({
     name: 'visual',
     initialState: {
-        width: '75%',
+        width: '80%',
     },
     reducers: {
         incrementWidthSupNav: (state) => {
             state.width = '100%'
         },
         decrementWidthSupNav: (state) => {
-            state.width = '75%'
+            state.width = '80%'
         },
         incrementWidthLeftNav: (state) => {
             state.width = '30%'

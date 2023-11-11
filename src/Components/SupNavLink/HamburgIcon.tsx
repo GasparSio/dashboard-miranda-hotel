@@ -19,8 +19,8 @@ export const HamburgIcon: React.FC<HamburgIconProps> = ({onClick}) => {
 
 const Button = styled(CgMenuLeft)`
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     color: ${props => props.width === '75%'? `${colors.primaryRed}` : `${colors.filterGreenButton}`};
     &:hover {
         transform: scale(1.2);

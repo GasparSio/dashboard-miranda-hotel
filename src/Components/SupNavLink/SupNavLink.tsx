@@ -30,12 +30,11 @@ export const SupNavLink = () => {
         logout();
     }
     const handleWidthChange = () => {
-        if (width === '75%'){
+        if (width === '80%'){
             dispatch(incrementWidthSupNav())
         }else{
             dispatch(decrementWidthSupNav())
         }
-        console.log('asdsad');
     }
 
     return(
@@ -64,6 +63,7 @@ const Wrappersupnavlink = styled.section<HeaderContainerProps>`
     box-shadow: 0px 3px 10px #00000005;
     transition: width 0.5s ease;
     background-color: #ffffff;
+    height: 45px;
 `;
 const Wrapperhambmenu = styled.section`
     display: flex;
@@ -75,6 +75,7 @@ const Title = styled.h1`
     width: 77%;
     font-family: Poppins;
     font-weight: 600;
+    font-size: 15px;
 `;
 const Wrappernavicons = styled.section`
     display: flex;
@@ -85,8 +86,8 @@ const Wrappernavicons = styled.section`
 const MdLogouticon = styled(MdLogout)`
     color: ${colors.primaryGreen};
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;   
     &:hover{
         transform: scale(1.1);
     }
@@ -94,8 +95,8 @@ const MdLogouticon = styled(MdLogout)`
 const LuBellRingicon = styled(LuBellRing)`
     color: ${colors.primaryGreen};
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     &:hover{
         transform: scale(1.1);
     }
@@ -103,8 +104,8 @@ const LuBellRingicon = styled(LuBellRing)`
 const MdMarkEmailUnreadicon = styled(MdMarkEmailUnread)`
     color: ${colors.primaryGreen};
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     &:hover{
         transform: scale(1.1);
     }

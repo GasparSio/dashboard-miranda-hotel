@@ -19,19 +19,24 @@ export const Bookings = () => {
   const dispatch = useCustomDispatch();
   const bookings = useCustomSelector(state => state.bookings.bookings);
   const width = useCustomSelector(state => state.visual.width);
-  
+
+  const [ bookingState, setBookingState ] = useState([]);
+  const [ searchTerm, setSearchTerm ] = useState('');
+  const [ page, setPage] = useState(0);
+  const [ perPage, setPerPage] = useState(0);
+  const [orderBy, setOrderBy] = useState("none");
+
   useEffect(() => {
     dispatch(fetchBookings())
   }, [dispatch])
-  
+
   const onDeleteBooking = (bookingId: number) => {
     dispatch(deleteBooking(bookingId))
   }
 
-const initialPopUpStates: PopUpStates = {};
-// Mantener un objeto para rastrear el estado del popup para cada reserva
-const [popUpStates, setPopUpStates] = useState<PopUpStates>(initialPopUpStates);
 // Función para abrir el popup de una reserva específica
+const initialPopUpStates: PopUpStates = {};
+const [popUpStates, setPopUpStates] = useState<PopUpStates>(initialPopUpStates);
 const handleOpenPopUp = (bookingId: number) => {
   setPopUpStates({ ...popUpStates, [bookingId]: true });
 }
@@ -40,6 +45,7 @@ const handleOpenPopUp = (bookingId: number) => {
 const handleClosePopUp = (bookingId: number) => {
   setPopUpStates({ ...popUpStates, [bookingId]: false });
 }
+
 
   const statusHandler = (row: Record<string, any>) => {
     if(row.status === 'check in'){
@@ -50,7 +56,8 @@ const handleClosePopUp = (bookingId: number) => {
       return <InProgress/>
     }
   }
-  
+
+  //Search by name guest
   const [clientName, setClientName] = useState('');
   const handleClientNameChange = (newClientName: string) => {
     setClientName(newClientName);
@@ -60,8 +67,8 @@ const handleClosePopUp = (bookingId: number) => {
     booking.fullname.toLowerCase().includes(clientName.toLowerCase())
   );
   
+  //filtrar por status
   const [filterNav, setFilterNav] = useState<string>('All Bookings');
-  
   const filteredBookings = bookings.filter((booking) => {
     switch(filterNav){
       case "All Bookings":
@@ -77,6 +84,7 @@ const handleClosePopUp = (bookingId: number) => {
     }
   })
 
+  //Data que traemos dependiendo los filtros
   const finalFilteredBookings = clientName ? searchBookings : filteredBookings;
 
   const cols = [
@@ -165,7 +173,7 @@ const handleClosePopUp = (bookingId: number) => {
 
   return(
       <Wrapperdashboardcontainer width={width}>
-        <BookingNav onClientNameChange={handleClientNameChange} onFilterButtonClick={setFilterNav} filter={filterNav}/>
+        <BookingNav onClientNameChange={handleClientNameChange} onFilterButtonClick={setFilterNav} filter={filterNav} />
         <Table cols={cols} data={finalFilteredBookings}/>
       </Wrapperdashboardcontainer>
   )
@@ -175,7 +183,7 @@ const Link = styled(NavLink)`
   cursor: pointer;
   text-decoration: none;
   color: #799283;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   font-family: 'Poppins';
 `;

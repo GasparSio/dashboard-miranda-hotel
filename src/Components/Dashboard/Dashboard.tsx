@@ -19,5 +19,5 @@ export const Dashboard = () => {
 }
 
 const WrapperDashboard = styled.section<WrapperDashboard>`
-    width: ${(props) => props.width === '75%' ? '75%' : '100%'};
+    width: ${(props) => props.width === '80%' ? '80%' : '100%'};
 `;

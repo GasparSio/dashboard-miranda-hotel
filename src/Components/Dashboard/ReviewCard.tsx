@@ -69,12 +69,16 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ item }) => {
 const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 350px;
     border-radius: 20px;
     border: 1px solid #EBEBEB;
     height: 200px;
     justify-content: space-evenly;
     margin-left: 25px;
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover{
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    }
 `;
 const ContentContainer = styled.div`
     display: flex;
@@ -90,22 +94,25 @@ const IconsContainer = styled.div`
   width: 17%;
 `;
 const Title = styled.span`
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     margin-bottom: 10px;
     color: #393939;
     font-family: Poppins;
     max-height: 50px;
     overflow: hidden;
+    text-align: center;
+    padding-top: 10px;
 `;
 const Text = styled.span`
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     margin-bottom: 10px;
     color: #393939;
     font-family: Poppins;
     max-height: 50px;
     overflow: hidden;
+    text-align: center;
 `;
 const CheckCircle = styled(BsCheckCircle)`
   color: #5ad07a;
@@ -142,19 +149,19 @@ const NameContainer = styled.div`
 `;
 const NameText = styled.span`
     font-family: Poppins;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: #262626;
 `;
 const EmailText = styled.span`
     font-family: Poppins;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     color: #799283;
 `;
 const Phone = styled.span`
     font-family: Poppins;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     color: #799283;
 `;
