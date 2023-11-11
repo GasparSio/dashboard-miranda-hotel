@@ -8,11 +8,10 @@ import { useCustomSelector } from '../../hooks/redux';
 interface BookingNavProps {
   onClientNameChange: (newClientName: string) => void;
   onFilterButtonClick: (filter: string) => void;
-  onOrderByChange: (orderBy: string) => void; // Nueva función para el cambio de orden
   filter: string;
 }
 
-export function BookingNav({ onClientNameChange, onFilterButtonClick, onOrderByChange, filter }: BookingNavProps) {
+export function BookingNav({ onClientNameChange, onFilterButtonClick, filter }: BookingNavProps) {
   const bookings = useCustomSelector(state => state.bookings.bookings);
   const [clientName, setClientName] = useState('');
   const [ bookingState, setBookingState ] = useState([]);
@@ -21,22 +20,22 @@ export function BookingNav({ onClientNameChange, onFilterButtonClick, onOrderByC
   const [ perPage, setPerPage] = useState(0);
   const [orderBy, setOrderBy] = useState("none");
 
-  useEffect(() => {
-    const orderedFilteredBookings = bookings.filter(booking => booking.fullname.toLowerCase().includes(searchTerm.toLowerCase()));
+  // useEffect(() => {
+  //   const orderedFilteredBookings = bookings.filter(booking => booking.fullname.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    orderedFilteredBookings.sort((a, b) => {
-      if(a[orderBy] > b[orderBy]){
-        return 1;
-      }else if(a[orderBy] > b[orderBy]){
-        return -1
-      }else{
-        return 0
-      }
-    })
-    const bookingsForPage = orderedFilteredBookings.slice(page * perPage, (page * perPage) + perPage);
-    setBookingState(bookingsForPage);
+  //   orderedFilteredBookings.sort((a, b) => {
+  //     if(a[orderBy] > b[orderBy]){
+  //       return 1;
+  //     }else if(a[orderBy] > b[orderBy]){
+  //       return -1
+  //     }else{
+  //       return 0
+  //     }
+  //   })
+  //   const bookingsForPage = orderedFilteredBookings.slice(page * perPage, (page * perPage) + perPage);
+  //   setBookingState(bookingsForPage);
 
-  }, [bookings, orderBy, searchTerm, page, perPage])
+  // }, [bookings, orderBy, searchTerm, page, perPage])
 
 
 
@@ -91,7 +90,9 @@ export function BookingNav({ onClientNameChange, onFilterButtonClick, onOrderByC
             </WrapperInput>
         </LeftNavContainer>
         <RightNavContainer>
-            <Select value={orderBy} onChange={event => onOrderByChange(event.target.value)} >
+            <Select value={orderBy} 
+            // onChange={event => onOrderByChange(event.target.value)} 
+            >
                 <Option value="none">Sort by</Option>
                 <Option value="guest-asc">Guest A-Z</Option>
                 <Option value="date-asc">Order Date</Option>

@@ -13,7 +13,7 @@ export const UserProfile: React.FC = () => {
     return(
         <Wrapperprofile >
             <Wrapperimage>
-                <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" />
+                {/* <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" /> */}
             </Wrapperimage>
             <Wrapperspan>
                 <Name>{auth?.authState.username ? auth.authState.username : 'Name'}</Name>
