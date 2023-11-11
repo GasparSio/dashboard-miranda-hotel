@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { deleteBooking, fetchBookings } from '../../features/bookings/bookingSlice';
 import Table from "../Table";
 import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
@@ -55,8 +55,9 @@ const handleClosePopUp = (bookingId: number) => {
 
   //Search by name guest
   const [clientName, setClientName] = useState('');
-  const handleClientNameChange = () => {
-    setClientName(clientName);
+  const handleClientNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setClientName(newValue);
   };
 
   const searchBookings = bookings.filter((booking) =>
@@ -207,7 +208,6 @@ if (selected === "Orderdate") {
 
   return(
       <Wrapperdashboardcontainer width={width}>
-        {/* <BookingNav onClientNameChange={handleClientNameChange} onFilterButtonClick={setFilterNav} filter={filterNav} /> */}
         <WrapperBookingNavContainer>
         <LeftNavContainer>
           <WrapperButton >
@@ -252,8 +252,12 @@ if (selected === "Orderdate") {
             </WrapperInput>
         </LeftNavContainer>
         <RightNavContainer>
-            <Select value={orderBy} 
-            // onChange={event => onOrderByChange(event.target.value)} 
+            <Select 
+            value={orderBy} 
+            onInput={(event) => {
+              const selectedValue = (event.target as HTMLSelectElement).value;
+              setSelected(selectedValue);
+            }}
             >
                 <Option value="none">Sort by</Option>
                 <Option value="Guest">Guest A-Z</Option>
