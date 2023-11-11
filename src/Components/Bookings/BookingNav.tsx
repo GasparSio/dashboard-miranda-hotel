@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Button, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
+import { FilterButton, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
 import { colors } from '../theme';
 import { ChangeEvent } from 'react';
 import { useCustomSelector } from '../../hooks/redux';
@@ -20,25 +20,6 @@ export function BookingNav({ onClientNameChange, onFilterButtonClick, filter }: 
   const [ perPage, setPerPage] = useState(0);
   const [orderBy, setOrderBy] = useState("none");
 
-  // useEffect(() => {
-  //   const orderedFilteredBookings = bookings.filter(booking => booking.fullname.toLowerCase().includes(searchTerm.toLowerCase()));
-
-  //   orderedFilteredBookings.sort((a, b) => {
-  //     if(a[orderBy] > b[orderBy]){
-  //       return 1;
-  //     }else if(a[orderBy] > b[orderBy]){
-  //       return -1
-  //     }else{
-  //       return 0
-  //     }
-  //   })
-  //   const bookingsForPage = orderedFilteredBookings.slice(page * perPage, (page * perPage) + perPage);
-  //   setBookingState(bookingsForPage);
-
-  // }, [bookings, orderBy, searchTerm, page, perPage])
-
-
-
   const handleClientNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setClientName(newValue);
@@ -49,36 +30,36 @@ export function BookingNav({ onClientNameChange, onFilterButtonClick, filter }: 
       <WrapperBookingNavContainer>
         <LeftNavContainer>
           <WrapperButton >
-            <Button style={{
+            <FilterButton style={{
               color: filter === 'All Bookings' ? colors.filterGreenButton : undefined,
               borderBottom: filter === 'All Bookings' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filter === 'All Bookings' ? 600 : undefined,
             }} 
-            onClick={() => onFilterButtonClick('All Bookings')}>All Bookings</Button>
+            onClick={() => onFilterButtonClick('All Bookings')}>All Bookings</FilterButton>
           </WrapperButton>
           <WrapperButton >
-            <Button style={{
+            <FilterButton style={{
               color: filter === 'Check In' ? colors.filterGreenButton : undefined,
               borderBottom: filter === 'Check In' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filter === 'Check In' ? 600 : undefined,
             }} 
-            onClick={() => onFilterButtonClick('Check In')}>Check In</Button>
+            onClick={() => onFilterButtonClick('Check In')}>Check In</FilterButton>
           </WrapperButton>
           <WrapperButton >
-            <Button style={{
+            <FilterButton style={{
               color: filter === 'Check Out' ? colors.filterGreenButton : undefined,
               borderBottom: filter === 'Check Out' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filter === 'Check Out' ? 600 : undefined,
             }}
-            onClick={() => onFilterButtonClick('Check Out')}>Check Out</Button>
+            onClick={() => onFilterButtonClick('Check Out')}>Check Out</FilterButton>
           </WrapperButton>
           <WrapperButton >
-            <Button style={{
+            <FilterButton style={{
               color: filter === 'In Progress' ? `${colors.filterGreenButton}` : undefined,
               borderBottom: filter === 'In Progress' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filter === 'In Progress' ? 600 : undefined,
             }} 
-            onClick={() => onFilterButtonClick('In Progress')}>In Progress</Button>
+            onClick={() => onFilterButtonClick('In Progress')}>In Progress</FilterButton>
           </WrapperButton>
             <WrapperInput>
               <SearchIcon/>

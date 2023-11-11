@@ -16,7 +16,7 @@ export const StatsCards = () => {
 
     return (
         <Wrapperdashboardcontainer width={width}>
-            <CardContainer>
+            <BedCardContainer>
                 <IconBedContainer>
                     <IconBed />
                 </IconBedContainer>
@@ -24,8 +24,8 @@ export const StatsCards = () => {
                     <NumberDetail>8461</NumberDetail>
                     <TextDetail>New Booking</TextDetail>
                 </StatsContainer>
-            </CardContainer>
-            <CardContainer>
+            </BedCardContainer>
+            <CalendarCardContainer>
                 <IconCalendarContainer>
                     <IconCalendar />
                 </IconCalendarContainer>
@@ -33,8 +33,8 @@ export const StatsCards = () => {
                     <NumberDetail>963</NumberDetail>
                     <TextDetail>Scheduled Room</TextDetail>
                 </StatsContainer>
-            </CardContainer>
-            <CardContainer>
+            </CalendarCardContainer>
+            <CheckInCalendarCardContainer>
                 <IconCheckInContainer>
                     <IconCkeckIn />
                 </IconCheckInContainer>
@@ -42,8 +42,8 @@ export const StatsCards = () => {
                     <NumberDetail>753</NumberDetail>
                     <TextDetail>Check in</TextDetail>
                 </StatsContainer>
-            </CardContainer>
-            <CardContainer>
+            </CheckInCalendarCardContainer>
+            <CheckOutCardContainer>
                 <IconCheckOutContainer>
                     <IconCkeckOut />
                 </IconCheckOutContainer>
@@ -51,7 +51,7 @@ export const StatsCards = () => {
                     <NumberDetail>516</NumberDetail>
                     <TextDetail>Check out</TextDetail>
                 </StatsContainer>
-            </CardContainer>
+            </CheckOutCardContainer>
         </Wrapperdashboardcontainer>
     )
 }
@@ -64,16 +64,7 @@ const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
     display: flex;
     justify-content: space-evenly;
 `;
-const CardContainer = styled.div`
-    display: flex;
-    height: 105px;
-    align-items: center;
-    width: 250px;
-    box-shadow: 0px 4px 4px #00000005;
-    background-color: #FFFFFF;
-    justify-content: space-evenly;
-    border-radius: 10px;
-`;
+
 const IconBedContainer = styled.div`
     width: 20%;
     height: 61px;
@@ -91,9 +82,7 @@ const StatsContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 50%;
-    &:hover{
-        ${}
-    }
+    
 `;
 const NumberDetail = styled.span`
     font-family: Poppins;
@@ -110,14 +99,14 @@ const TextDetail = styled.span`
 const IconCalendarContainer = styled.div`
     width: 20%;
     height: 61px;
-    background-color: ${colors.primaryRed};
+    background-color: red;
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 const IconCalendar = styled(BsFillCalendar2CheckFill)`
-    color: ${colors.backgroundWhite};
+    color: white;
     width: 20px;
 `;
 const IconCheckInContainer = styled.div`
@@ -145,4 +134,79 @@ const IconCheckOutContainer = styled.div`
 const IconCkeckOut = styled(TbLogout2)`
     color: ${colors.backgroundWhite};
     width: 20px;
+`;
+const BedCardContainer = styled.div`
+    display: flex;
+    height: 105px;
+    align-items: center;
+    width: 250px;
+    box-shadow: 0px 4px 4px #00000005;
+    background-color: #FFFFFF;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    &:hover{
+        ${IconBedContainer}{
+            background-color: ${colors.primaryRed};
+        }
+        ${IconBed}{
+            color: #FFEDEC;
+        }
+    }
+`;
+
+const CalendarCardContainer = styled.div`
+    display: flex;
+    height: 105px;
+    align-items: center;
+    width: 250px;
+    box-shadow: 0px 4px 4px #00000005;
+    background-color: #FFFFFF;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    &:hover{
+        ${IconCalendarContainer}{
+            background-color: #FFEDEC;
+        }
+        ${IconCalendar}{
+            color: ${colors.primaryRed};
+        }
+    }
+`;
+
+const CheckInCalendarCardContainer = styled.div`
+    display: flex;
+    height: 105px;
+    align-items: center;
+    width: 250px;
+    box-shadow: 0px 4px 4px #00000005;
+    background-color: #FFFFFF;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    &:hover{
+        ${IconCheckInContainer}{
+            background-color: ${colors.primaryRed};
+        }
+        ${IconCkeckIn}{
+            color: #FFEDEC;
+        }
+    }
+`;
+
+const CheckOutCardContainer = styled.div`
+    display: flex;
+    height: 105px;
+    align-items: center;
+    width: 250px;
+    box-shadow: 0px 4px 4px #00000005;
+    background-color: #FFFFFF;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    &:hover{
+        ${IconCheckOutContainer}{
+            background-color: #FFEDEC;
+        }
+        ${IconCkeckOut}{
+            color: ${colors.primaryRed};
+        }
+    }
 `;

@@ -10,7 +10,7 @@ export const WrapperButton = styled.div`
   justify-content: center;
 `;
     
-export const Button = styled.button`
+export const FilterButton = styled.button`
   border: none;
   background-color: transparent;
   color: inherit;

@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect} from "react";
 import styled from "styled-components";
 import { Reviews } from "../Dashboard/Reviews";
-import { WrapperButton, Button } from '../StyledFilterButtons';
+import { WrapperButton, FilterButton } from '../StyledFilterButtons';
 import Table from '../Table';
 import { fetchContacts, updateContact } from "../../features/contact/contactSlice";
 import { CustomWrapperStyles, CellContainer, PropertyText } from '../StyledTable';
@@ -102,20 +102,20 @@ export const Contact = () => {
       </CustomWrapperStyles>
       <WrapperContactNav>
         <WrapperButton >
-            <Button style={{
+            <FilterButton style={{
               color: filterNav === 'All Contacts' ? colors.filterGreenButton : undefined,
               borderBottom: filterNav === 'All Contacts' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filterNav === 'All Contacts' ? 600 : undefined,
             }} 
-            onClick={() => onFilterButtonClick('All Contacts')}>All Contacts</Button>
+            onClick={() => onFilterButtonClick('All Contacts')}>All Contacts</FilterButton>
         </WrapperButton>
         <WrapperButton>
-            <Button style={{
+            <FilterButton style={{
               color: filterNav === 'Archived' ? colors.filterGreenButton : undefined,
               borderBottom: filterNav === 'Archived' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filterNav === 'Archived' ? 600 : undefined,
             }} 
-            onClick={() => onFilterButtonClick('Archived')}>Archived</Button>
+            onClick={() => onFilterButtonClick('Archived')}>Archived</FilterButton>
         </WrapperButton>
       </WrapperContactNav>
       <Wrapperdashboardcontainer width={width}>

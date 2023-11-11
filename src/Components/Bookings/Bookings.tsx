@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteBooking, fetchBookings } from '../../features/bookings/bookingSlice';
-import { BookingNav } from './BookingNav';
 import Table from "../Table";
 import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
@@ -10,6 +9,8 @@ import { CheckIn, CheckOut, InProgress } from "./StatusButton";
 import { MdDelete } from 'react-icons/md';
 import { NavLink } from "react-router-dom";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
+import { FilterButton, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
+import { colors } from '../theme';
 
 interface PopUpStates {
   [bookingId: number]: boolean;
@@ -19,11 +20,6 @@ export const Bookings = () => {
   const dispatch = useCustomDispatch();
   const bookings = useCustomSelector(state => state.bookings.bookings);
   const width = useCustomSelector(state => state.visual.width);
-
-  const [ bookingState, setBookingState ] = useState([]);
-  const [ searchTerm, setSearchTerm ] = useState('');
-  const [ page, setPage] = useState(0);
-  const [ perPage, setPerPage] = useState(0);
   const [orderBy, setOrderBy] = useState("none");
 
   useEffect(() => {
@@ -59,15 +55,15 @@ const handleClosePopUp = (bookingId: number) => {
 
   //Search by name guest
   const [clientName, setClientName] = useState('');
-  const handleClientNameChange = (newClientName: string) => {
-    setClientName(newClientName);
+  const handleClientNameChange = () => {
+    setClientName(clientName);
   };
 
   const searchBookings = bookings.filter((booking) =>
     booking.fullname.toLowerCase().includes(clientName.toLowerCase())
   );
 
-  
+
   
   //filtrar por status
   const [filterNav, setFilterNav] = useState<string>('All Bookings');
@@ -85,6 +81,42 @@ const handleClosePopUp = (bookingId: number) => {
         return false;
     }
   })
+
+  const [selected, setSelected] = useState("Orderdate");
+//Ordenar por...
+if (selected === "Orderdate") {
+  filteredBookings.sort((a, b) => {
+    const dateA = new Date(a.orderdate);
+    const dateB = new Date(b.orderdate);
+    return dateB.getTime() - dateA.getTime();
+  });
+} else if (selected === "Checkin") {
+  filteredBookings.sort((a, b) => {
+    const dateA = new Date(a.checkin);
+    const dateB = new Date(b.checkin);
+    return dateB.getTime() - dateA.getTime();
+  });
+} else if (selected === "Checkout") {
+  filteredBookings.sort((a, b) => {
+    const dateA = new Date(a.checkout);
+    const dateB = new Date(b.checkout);
+    return dateB.getTime() - dateA.getTime();
+  });
+} else if (selected === "Guest") {
+  filteredBookings.sort((a, b) => {
+    const nombreA = a.fullname.toUpperCase();
+    const nombreB = b.fullname.toUpperCase();
+    if (nombreA < nombreB) {
+      return -1;
+    }
+    if (nombreA > nombreB) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
+
 
   //Data que traemos dependiendo los filtros
   const finalFilteredBookings = clientName ? searchBookings : filteredBookings;
@@ -175,7 +207,63 @@ const handleClosePopUp = (bookingId: number) => {
 
   return(
       <Wrapperdashboardcontainer width={width}>
-        <BookingNav onClientNameChange={handleClientNameChange} onFilterButtonClick={setFilterNav} filter={filterNav} />
+        {/* <BookingNav onClientNameChange={handleClientNameChange} onFilterButtonClick={setFilterNav} filter={filterNav} /> */}
+        <WrapperBookingNavContainer>
+        <LeftNavContainer>
+          <WrapperButton >
+            <FilterButton style={{
+              color: filterNav === 'All Bookings' ? colors.filterGreenButton : undefined,
+              borderBottom: filterNav === 'All Bookings' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filterNav === 'All Bookings' ? 600 : undefined,
+            }} 
+            onClick={() => setFilterNav('All Bookings')}>All Bookings</FilterButton>
+          </WrapperButton>
+          <WrapperButton >
+            <FilterButton style={{
+              color: filterNav === 'Check In' ? colors.filterGreenButton : undefined,
+              borderBottom: filterNav === 'Check In' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filterNav === 'Check In' ? 600 : undefined,
+            }} 
+            onClick={() => setFilterNav('Check In')}>Check In</FilterButton>
+          </WrapperButton>
+          <WrapperButton >
+            <FilterButton style={{
+              color: filterNav === 'Check Out' ? colors.filterGreenButton : undefined,
+              borderBottom: filterNav === 'Check Out' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filterNav === 'Check Out' ? 600 : undefined,
+            }}
+            onClick={() => setFilterNav('Check Out')}>Check Out</FilterButton>
+          </WrapperButton>
+          <WrapperButton >
+            <FilterButton style={{
+              color: filterNav === 'In Progress' ? `${colors.filterGreenButton}` : undefined,
+              borderBottom: filterNav === 'In Progress' ? `3px solid ${colors.filterGreenButton}` : undefined,
+              fontWeight: filterNav === 'In Progress' ? 600 : undefined,
+            }} 
+            onClick={() => setFilterNav('In Progress')}>In Progress</FilterButton>
+          </WrapperButton>
+            <WrapperInput>
+              <SearchIcon/>
+              <Input 
+                placeholder='Search Client Name'
+                value={clientName}
+                onChange={handleClientNameChange}
+              />
+            </WrapperInput>
+        </LeftNavContainer>
+        <RightNavContainer>
+            <Select value={orderBy} 
+            // onChange={event => onOrderByChange(event.target.value)} 
+            >
+                <Option value="none">Sort by</Option>
+                <Option value="Guest">Guest A-Z</Option>
+                <Option value="Orderdate">Order Date</Option>
+                <Option value="Checkin">Check In</Option>
+                <Option value="Checkout">Check out</Option>
+            </Select>
+        </RightNavContainer>
+      
+      </WrapperBookingNavContainer>
         <Table cols={cols} data={finalFilteredBookings}/>
       </Wrapperdashboardcontainer>
   )
@@ -213,4 +301,27 @@ const Button = styled.button`
   &:hover{
     transform: scale(1.03);
   }
-`
+`;
+
+const WrapperBookingNavContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100px;
+`;
+const LeftNavContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 85%;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const RightNavContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 15%;
+  align-items: center;
+`;
+

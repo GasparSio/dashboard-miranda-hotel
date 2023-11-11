@@ -1,8 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
 import styled from 'styled-components';
-import { WrapperButton, Button, WrapperInput, SearchIcon, Input, Select, Option } from '../StyledFilterButtons';
+import { WrapperButton, FilterButton, WrapperInput, SearchIcon, Input, Select, Option } from '../StyledFilterButtons';
 import { colors } from '../theme';
-
 
 interface UsersNavProps {
   onUserNameChange: (newUserName: string) => void;
@@ -24,28 +23,28 @@ export function UsersNav({onUserNameChange, onFilterButtonClick, filter}: UsersN
       <WrapperBookingNavContainer>
         <LeftNavContainer>
           <WrapperButton >
-            <Button style={{
+            <FilterButton style={{
               color: filter === 'All Employee' ? colors.filterGreenButton : undefined,
               borderBottom: filter === 'All Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filter === 'All Employee' ? 600 : undefined,
             }} 
-            onClick={() => onFilterButtonClick('All Employee')}>All Employee</Button>
+            onClick={() => onFilterButtonClick('All Employee')}>All Employee</FilterButton>
           </WrapperButton>
           <WrapperButton>
-            <Button style={{
+            <FilterButton style={{
               color: filter === 'Active Employee' ? colors.filterGreenButton : undefined,
               borderBottom: filter === 'Active Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filter === 'Active Employee' ? 600 : undefined,
             }} 
-            onClick={() => onFilterButtonClick('Active Employee')}>Active Employee</Button>
+            onClick={() => onFilterButtonClick('Active Employee')}>Active Employee</FilterButton>
           </WrapperButton>
           <WrapperButton>
-            <Button style={{
+            <FilterButton style={{
               color: filter === 'Inactive Employee' ? colors.filterGreenButton : undefined,
               borderBottom: filter === 'Inactive Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
               fontWeight: filter === 'Inactive Employee' ? 600 : undefined,
             }} 
-            onClick={() => onFilterButtonClick('Inactive Employee')}>Inactive Employee</Button>
+            onClick={() => onFilterButtonClick('Inactive Employee')}>Inactive Employee</FilterButton>
           </WrapperButton>
           <WrapperInput>
             <SearchIcon/>

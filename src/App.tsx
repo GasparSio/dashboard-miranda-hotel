@@ -18,7 +18,6 @@ function App(): JSX.Element{
         <Routes>
           <Route path='/' element={<Login/>} />
           <Route path='/login' element={<Login/>} />
-          <Route path='/dashboard-miranda-hotel' element={<Login/>} />
           <Route path='/home' element={<Home/>}>
             <Route path='dashboard' element={<Dashboard/>} />  
             <Route path='bookings' element={<Bookings />} />  
@@ -27,7 +26,7 @@ function App(): JSX.Element{
             <Route path='contacts' element={<Contact />} />  
             <Route path='users' element={<Users />} />  
           </Route>
-          <Route path='*' element={<Login/>} />
+          <Route path='/*' element={<Login/>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
