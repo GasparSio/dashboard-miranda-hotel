@@ -10,8 +10,8 @@ export interface RoomsType {
     id: number,
     bedType: string,
     facilities: string,
-    price: string,
-    offerprice: string,
+    price: number,
+    offerprice: number,
     status: string,
 }
 

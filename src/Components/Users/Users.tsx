@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { deleteUser, fetchUsers} from '../../features/users/userSlice';
-import { UsersNav } from "./UsersNav";
 import Table from "../Table";
 import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
@@ -8,6 +7,8 @@ import { MdDelete } from "react-icons/md";
 import { Active, Inactive } from "./StatusButton";
 import styled from "styled-components";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
+import { WrapperButton, FilterButton, WrapperInput, SearchIcon, Input, Select, Option } from '../StyledFilterButtons';
+import { colors } from '../theme';
 
 export const Users = () => {
   const dispatch = useCustomDispatch()
@@ -31,16 +32,15 @@ export const Users = () => {
   }
 
   const [userName, setuserName] = useState('');
-  const handleUserNameChange = (newUserName: string) => {
-    setuserName(newUserName);
+  const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setuserName(newValue);
   };
-
-  const searchUsers = users.filter((user) =>
+    const searchUsers = users.filter((user) =>
     user.fullname.toLowerCase().includes(userName.toLowerCase())
   );
 
   const [filterNav, setFilterNav] = useState('All Employee');
-  
   const filteredUsers = users.filter((booking) => {
     switch(filterNav){
       case "All Employee":
@@ -54,6 +54,37 @@ export const Users = () => {
     }
   })
 
+  const [orderBy, setOrderBy] = useState("none");
+  const [selected, setSelected] = useState("guest-asc");
+  //Ordenar por...
+  if (selected === "guest-asc") {
+    filteredUsers.sort((a, b) => {
+      const nombreA = a.fullname.toUpperCase();
+      const nombreB = b.fullname.toUpperCase();
+      if (nombreA < nombreB) {
+        return -1;
+      }
+      if (nombreA > nombreB) {
+        return 1;
+      }
+      return 0;
+    });
+  } else if (selected === "guest-des") {
+    filteredUsers.sort((a, b) => {
+      const nombreA = a.fullname.toUpperCase();
+      const nombreB = b.fullname.toUpperCase();
+      if (nombreA > nombreB) {
+        return -1;
+      }
+      if (nombreA < nombreB) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+
+
   const finalFilteredUsers = userName ? searchUsers : filteredUsers;
 
   const cols = [
@@ -64,7 +95,7 @@ export const Users = () => {
         <CellContainer>
           <PropertyText>{row.fullname}</PropertyText>
           <PropertyText>Id: {row.id}</PropertyText>
-          <PropertyText>{row.email}</PropertyText>
+          <EmailText>{row.email}</EmailText>
         </CellContainer>
       ),
     },
@@ -117,11 +148,55 @@ export const Users = () => {
     return(
       <>
         <Wrapperdashboardcontainer width={width}>
-          <UsersNav 
-            onUserNameChange={handleUserNameChange}
-            onFilterButtonClick={setFilterNav} 
-            filter={filterNav}
-          />
+            <WrapperBookingNavContainer>
+            <LeftNavContainer>
+              <WrapperButton >
+                <FilterButton style={{
+                  color: filterNav === 'All Employee' ? colors.filterGreenButton : undefined,
+                  borderBottom: filterNav === 'All Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
+                  fontWeight: filterNav === 'All Employee' ? 600 : undefined,
+                }} 
+                onClick={() => setFilterNav('All Employee')}>All Employee</FilterButton>
+              </WrapperButton>
+              <WrapperButton>
+                <FilterButton style={{
+                  color: filterNav === 'Active Employee' ? colors.filterGreenButton : undefined,
+                  borderBottom: filterNav === 'Active Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
+                  fontWeight: filterNav === 'Active Employee' ? 600 : undefined,
+                }} 
+                onClick={() => setFilterNav('Active Employee')}>Active Employee</FilterButton>
+              </WrapperButton>
+              <WrapperButton>
+                <FilterButton style={{
+                  color: filterNav === 'Inactive Employee' ? colors.filterGreenButton : undefined,
+                  borderBottom: filterNav === 'Inactive Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
+                  fontWeight: filterNav === 'Inactive Employee' ? 600 : undefined,
+                }} 
+                onClick={() => setFilterNav('Inactive Employee')}>Inactive Employee</FilterButton>
+              </WrapperButton>
+              <WrapperInput>
+                <SearchIcon/>
+                <Input 
+                  placeholder='Search Employee Name'
+                  value={userName}
+                  onChange={handleUserNameChange}
+                />
+              </WrapperInput>
+            </LeftNavContainer>
+            <RightNavContainer>
+                <Select 
+                value={orderBy} 
+                onInput={(event) => {
+                  const selectedValue = (event.target as HTMLSelectElement).value;
+                  setSelected(selectedValue);
+                }}
+                >
+                    <Option value="none">Sort by</Option>
+                    <Option value="guest-asc">Name A-Z</Option>
+                    <Option value="guest-des">Name Z-A</Option>
+                </Select>
+            </RightNavContainer>
+          </WrapperBookingNavContainer>
           <Table cols={cols} data={finalFilteredUsers}/>
         </Wrapperdashboardcontainer>
       </>
@@ -138,4 +213,27 @@ const DeleteIcon = styled(MdDelete)`
 const DeleteIconContainer = styled.span`
   text-align: center;
 `;
+const WrapperBookingNavContainer = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+  height: 100px;
+  `;
+  const LeftNavContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  height: 40px;
+  justify-content: space-between;
+    align-items: center;
+    `;
+    const RightNavContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 15%;
+    align-items: center;
+`;
 
+const EmailText = styled.span`
+  font-size: 12px;
+`;

@@ -117,9 +117,7 @@ if (selected === "Orderdate") {
   });
 }
 
-
-
-  //Data que traemos dependiendo los filtros
+//Data que traemos dependiendo los filtros
   const finalFilteredBookings = clientName ? searchBookings : filteredBookings;
 
   const cols = [
