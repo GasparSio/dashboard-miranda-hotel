@@ -6,7 +6,7 @@ interface WrapperdashboardcontainerProps {
 
 export const Wrapperdashboardcontainer = styled.section<WrapperdashboardcontainerProps>`
   position: absolute;
-  top: 66px;
+  top: 50px;
   right: 2%;
   width: ${(props) => (props.width === '80%' ? '75%' : '96%')};
   z-index: 999;

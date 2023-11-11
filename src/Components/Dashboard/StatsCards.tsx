@@ -91,6 +91,9 @@ const StatsContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 50%;
+    &:hover{
+        ${}
+    }
 `;
 const NumberDetail = styled.span`
     font-family: Poppins;

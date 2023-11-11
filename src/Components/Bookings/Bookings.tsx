@@ -66,6 +66,8 @@ const handleClosePopUp = (bookingId: number) => {
   const searchBookings = bookings.filter((booking) =>
     booking.fullname.toLowerCase().includes(clientName.toLowerCase())
   );
+
+  
   
   //filtrar por status
   const [filterNav, setFilterNav] = useState<string>('All Bookings');

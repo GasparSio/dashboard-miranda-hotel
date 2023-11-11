@@ -101,7 +101,7 @@ const Logo = styled.img`
     max-width: 30px;
 `;
 const Title = styled.span`
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 800;
 `;
 const Subtitle = styled.span`

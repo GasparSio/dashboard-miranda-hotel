@@ -78,8 +78,8 @@ const Wrapperimg = styled.section`
     justify-content: center;
 `;
 const Logo = styled.img`
-    width: 60%;
-    max-width: 40px;
+    width: 70%;
+    max-width: 50px;
 `;
 const Wrapper = styled.section`
     background-color: #ffffff;
