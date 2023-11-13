@@ -4,18 +4,18 @@ import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 import logoHotel from '../../Img/icon-hotel.png';
-
-const userCode: string = 'gas';
-const emailCode: string = 'sio';
+import { useCustomDispatch, useCustomSelector } from "../../hooks/redux";
+import { userLogin } from "../../features/login/loginSlice";
 
 export const Login: React.FC = () => {
     const navigate = useNavigate();
     const auth = useAuth();
-    const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
     const [wrongUser, setwrongUser] = useState<boolean>(false);
-    
     const { authState, login } = auth;
+    // const token = useCustomSelector(state => state.login.token)
+    const loginState = useCustomSelector((state) => state.login);
 
     useEffect(() => {
         if (authState.isAuthenticated) {
@@ -25,19 +25,32 @@ export const Login: React.FC = () => {
         }
       }, [authState.isAuthenticated, navigate]);
 
+const dispatch = useCustomDispatch();
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
-    if (username === userCode && email === emailCode) {
-      login({ username, email });
-      localStorage.setItem("loggedInUser", JSON.stringify({ username, email }));
-      console.log('Datos guardados en localstorage al hace rlogin', username, email);
-    } else {
+    dispatch(userLogin({email: email, password: password}))
+    const token = localStorage.getItem('token');
+    if(token){
+        login({email, password})
+        localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
+    }else{
         setwrongUser(true)
         setTimeout(() => {
             setwrongUser(false)
         }, 3000)
     }
+
+    // if (email === emailCode && password === passwordCode) {
+    //   login({ email, password });
+    //   localStorage.setItem("loggedInUser", JSON.stringify({ email, password }));
+    //   console.log('Datos guardados en localstorage al hacer login', email, password);
+    // } else {
+    //     setwrongUser(true)
+    //     setTimeout(() => {
+    //         setwrongUser(false)
+    //     }, 3000)
+    // }
   };
     return(
             <Wrapper>
@@ -48,23 +61,23 @@ export const Login: React.FC = () => {
                 <Title>Hello!</Title>
                 <Form onSubmit={handleLogin}>
                     <Input 
-                        value={username}
+                        value={email}
                         data-cy="username-input"
-                        placeholder="Username"
-                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Email"
+                        onChange={(e) => setEmail(e.target.value)}
                         />
                     <Input
                         type="password"
-                        value={email}
+                        value={password}
                         data-cy="email-input"
-                        placeholder="Email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button type="submit">Submit</Button>
                 </Form>
                 <Hardpasscontainer>
-                    <Span>Username: Gaspar</Span>
-                    <Span>Email: Sio</Span>
+                    <Span>Email: sio.gaspar@gmail.com</Span>
+                    <Span>Password: admin</Span>
                 </Hardpasscontainer>
                     {wrongUser ? <SpanWrong>Wrong Username or Email</SpanWrong> : ''}
             </Formcontainer>

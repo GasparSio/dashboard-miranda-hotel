@@ -7,7 +7,7 @@ const rooms: RoomsType[] = roomsData;
 export interface RoomsType {
     photo: string,
     roomNumber: number,
-    id: number,
+    id: string,
     bedType: string,
     facilities: string,
     price: number,
@@ -24,24 +24,37 @@ const delay = (data: RoomsType[] | RoomsType, time: number = 200) => {
     })
 }
 
+
 //Async functions
 export const fetchRooms = createAsyncThunk<RoomsType[], void>(
     'rooms/fetchRooms',
-    async (): Promise<RoomsType[]> => {
-        return await delay(rooms) as RoomsType[];
+    async () => {
+      const response = (await fetch(
+        'http://localhost:3000/rooms', {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            token: `${localStorage.getItem('token')}`
+          },
+        }
+      ))
+      return await response.json();
     } 
 );
-export const fetchRoom = createAsyncThunk<RoomsType, number>(
-    'rooms/fetchRoom',
-    async (roomId: number): Promise<RoomsType> => {
-        const roomById: RoomsType | undefined = rooms.find((room) => room.id === roomId)
-        
-        if (roomById !== undefined) {
-            return await delay(roomById) as RoomsType;
-        } else {
-            throw new Error('No se encontró la reserva con el ID proporcionado');
-        }
 
+export const fetchRoom = createAsyncThunk(
+    'rooms/fetchRoom',
+    async (id: string) => {
+      const response = (await fetch(
+        `http://localhost:3000/rooms/${id}`, {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            token: `${localStorage.getItem('token')}`
+          },
+        }
+      ))
+      return await response.json();
     } 
 );
 
@@ -61,9 +74,17 @@ export const fetchRoom = createAsyncThunk<RoomsType, number>(
 // );
 export const deleteRoom = createAsyncThunk(
     'rooms/deleteRoom',
-    async (roomId: number) => {
-        await delay(rooms);
-        return roomId; // Devuelve el ID de la habitación a eliminar
+    async (id: string) => {
+      const response = (await fetch(
+        `http://localhost:3000/rooms/${id}`, {
+          method: 'DELETE',
+          mode: 'cors',
+          headers: {
+            token: `${localStorage.getItem('token')}`
+          },
+        }
+      ))
+      return await response.json();
     } 
 );
 

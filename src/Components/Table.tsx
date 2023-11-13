@@ -74,7 +74,7 @@ const TableRow = styled.div`
   align-items: center;
   background-color: #FFFFFF;
   height: auto;
-  min-height: 120px;
+  min-height: 145px;
   transition: transform 0.2s;
   &:hover {
     background-color: #effff0;

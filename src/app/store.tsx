@@ -4,6 +4,7 @@ import visualReducer from '../features/visual/visualSlice';
 import bookingsReducer from '../features/bookings/bookingSlice';
 import contactReducer from '../features/contact/contactSlice';
 import usersReducer from '../features/users/userSlice';
+import loginReducer from '../features/login/loginSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     bookings: bookingsReducer,
     contact: contactReducer,
     users: usersReducer,
+    login: loginReducer,
   }
 })
 

@@ -6,9 +6,9 @@ const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 
 interface AuthContextType {
   authState: AuthState;
-  login: (userData: { username: string; email: string }) => void;
+  login: (userData: { password: string; email: string }) => void;
   logout: () => void;
-  updateUser: (username: string, email: string, image: string) => void;
+  updateUser: (password: string, email: string, image: string) => void;
   ModalOpen: () => void;
   ModalClose: () => void;
   openModal: boolean;
@@ -17,32 +17,32 @@ interface AuthContextType {
 
 interface AuthState {
   isAuthenticated: boolean;
-  username: string | null;
+  password: string | null;
   email: string | null;
   image: string;
 }
 
 const initialState: AuthState  = {
   isAuthenticated: false,
-  username: null,
+  password: null,
   email: null,
   image: profileImage,
 }
 
 type AuthAction =
-  | { type: 'login'; payload: { username: string; email: string } }
+  | { type: 'login'; payload: { password: string; email: string } }
   | { type: 'logout' }
-  | { type: 'updateuser'; payload: { username: string; email: string; image: string } };
+  | { type: 'updateuser'; payload: { password: string; email: string; image: string } };
 
 
   const authReducer = (state: AuthState, action: AuthAction) => {
     switch (action.type) {
       case 'login':
-        return { isAuthenticated: true, username: action.payload.username, email: action.payload.email, image: initialState.image };
+        return { isAuthenticated: true, password: action.payload.password, email: action.payload.email, image: initialState.image };
       case 'logout':
-        return { isAuthenticated: false, username: null, email: null, image: initialState.image };
+        return { isAuthenticated: false, password: null, email: null, image: initialState.image };
       case 'updateuser':
-        return { isAuthenticated: true, username: action.payload.username, email: action.payload.email, image: action.payload.image };
+        return { isAuthenticated: true, password: action.payload.password, email: action.payload.email, image: action.payload.image };
       default:
         return state;
     }
@@ -58,17 +58,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (loggedInUser) {
       const user = JSON.parse(loggedInUser);
-      dispatch({ type: 'login', payload: { username: user.username, email: user.email } });
+      dispatch({ type: 'login', payload: { password: user.password, email: user.email } });
     }
 
   }, []);
 
   //funcion de login
-  const login = ({ username, email }: { username: string; email: string }) => {
-    dispatch({ type: 'login', payload: { username, email } });
+  const login = ({ password, email }: { password: string; email: string }) => {
+    dispatch({ type: 'login', payload: { password, email } });
     navigate('/home/dashboard');
-    localStorage.setItem("loggedInUser", JSON.stringify({ username, email }));
-    console.log(username, email);
+    localStorage.setItem("loggedInUser", JSON.stringify({ password, email }));
+    console.log(password, email);
   };
 
   //funcion de logout
@@ -83,10 +83,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const ModalClose = () => {
     setOpenModal(false)
   };
-  const updateUser = (username: string, email: string, image: string) => {
-    dispatch({type: 'updateuser', payload: { username, email, image }})
+  const updateUser = (password: string, email: string, image: string) => {
+    dispatch({type: 'updateuser', payload: { password, email, image }})
     localStorage.setItem("loggedInUser", JSON.stringify({ 
-      username: username || authState.username, 
+      password: password || authState.password, 
       email: email || authState.email,
     }));
     localStorage.getItem("avatarImage")

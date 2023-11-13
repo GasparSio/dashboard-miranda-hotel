@@ -8,11 +8,6 @@ import styled from "styled-components";
 import { Available, Booked } from "./StatusButton";
 import { MdDelete } from "react-icons/md";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
-import image1 from '../../Img/room-1.avif';
-import image2 from '../../Img/room-2.avif';
-import image3 from '../../Img/room-3.avif';
-import image7 from '../../Img/room-7.avif';
-import image8 from '../../Img/room-8.avif';
 import { colors } from "../theme";
 
 export const Rooms = () => {
@@ -26,7 +21,7 @@ export const Rooms = () => {
   }, [dispatch])
 
   const statusHandler = (row: Record<string, any>) => {
-    if(row.status === 'booked'){
+    if(row.status === 'Booked'){
       return <Booked/> 
     }else{
       return <Available/>
@@ -44,9 +39,9 @@ export const Rooms = () => {
       case "All Rooms":
         return true;
       case "Booked":
-        return room.status === "booked"
+        return room.status === "Booked"
       case "Available":
-        return room.status === "available"
+        return room.status === "Available"
       default:
         return false;
     }
@@ -75,24 +70,19 @@ if (selected === "Room-Number-Asc") {
   });
 }
 
-  const images = [image1, image2, image3, image7, image8]
+
 
   const cols = [
     {
       property: 'roomname',
-      label: 'Room Name',
+      label: 'Room',
       display: (row: Record<string, any>) => {
-        // Mueve la generación del índice y la selección de la imagen aquí
-        const getRandomIndex = () => Math.floor(Math.random() * images.length);
-        const randomIndex = getRandomIndex();
-        const selectedImage = images[randomIndex];
-  
-        return (
+         return (
           <ImageContainer>
-            <img src={selectedImage} alt="Room" />
+            <img src={row.photo} alt="Room" />
             <TextContainer>
-              <PropertyText>{row.roomNumber}</PropertyText>
-              <PropertyText>Id: {row.id}</PropertyText>
+              <PropertyText>Nº: {row.roomNumber}</PropertyText>
+              <TextId>Id: {row.id}</TextId>
             </TextContainer>
           </ImageContainer>
         );
@@ -112,7 +102,9 @@ if (selected === "Room-Number-Asc") {
       label: 'Facilities',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.facilities}</PropertyText>
+          {row.facilities.map((facility: string, index: number) => (
+            <PropertyText>{facility}</PropertyText>
+          ))}
         </CellContainer>
       ),
     },
@@ -236,15 +228,17 @@ const DeleteIcon = styled(MdDelete)`
 `;
 const ImageContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   img{
-    width: 50%;
+    width: 90%;
+    border-radius: 5px;
   }
 `;
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 40%;
+  padding-left: 2px;
 `;
 
 const NewButton = styled.button`
@@ -258,4 +252,10 @@ const NewButton = styled.button`
   font-family: Poppins;
   font-weight: 400;
   font-size: 16px;
+`;
+const TextId = styled.span`
+  text-overflow: ellipsis;
+  width: 59px;
+  overflow: hidden;
+  white-space: nowrap;
 `;
