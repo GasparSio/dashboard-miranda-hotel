@@ -15,7 +15,7 @@ export const BookingDetail = (): JSX.Element => {
   const booking: BookingType | null = useCustomSelector(state => state.bookings.booking);
 
   // Verificar si id es undefined o null antes de la conversión
-  const bookingId: string | undefined = id ? parseInt(id, 10) : undefined;
+  const bookingId: string | undefined = id || undefined;
   
   console.log(booking);
   
@@ -59,8 +59,8 @@ export const BookingDetail = (): JSX.Element => {
             <p>{booking?.room_type}</p>
           </CheckInContainer>
           <CheckInContainer>
-            <span>Price</span>
-            <p>{booking?.price}</p>
+            {/* <span>Price</span> */}
+            {/* <p>{booking?.price}</p> */}
           </CheckInContainer>
         </RoomContainer>
         <RequestContainer>
@@ -240,6 +240,7 @@ const RightContainer = styled.div`
   flex-direction: column;
   width: 50%;
   position: relative;
+  overflow: hidden;
 `;
 const Photo = styled.div`
   display: flex;
@@ -258,12 +259,18 @@ const RoomTypeContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom: 0;
-  left: 24%;
+  background-color: #7884a3;
+  transform: rotate(45deg);
+  width: 229px;
+  top: 43px;
+  right: -48px;
+  justify-content: center;
   span{
     color: white;
-    font-size: 26px;
+    font-size: 22px;
     font-family: Poppins;
     font-weight: 600;
+    text-align: center;
+    letter-spacing: -2px;
   }
 `;
