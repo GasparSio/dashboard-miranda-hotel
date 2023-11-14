@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { bookingData } from './BookingData';
+import { FetchDataParams } from '../../../util/fetchData';
+import { apiBaseUrl } from '../../../util/fetchData';
 
-const bookingsData: BookingType[] = bookingData;
 
 export interface BookingType {
     fullname: string,
@@ -17,14 +17,24 @@ export interface BookingType {
     photo: string
 }
 
-//Function to delay the loading data
-const delay = (data: BookingType[] | BookingType, time: number = 200) => {
-    return new Promise((resolve) => {
-        setTimeout(()=> {
-            resolve(data)
-        }, time)
-    })
-}
+const fetchData = async ({ endpoint, method, body }: FetchDataParams) => {
+  const response = await fetch(`${apiBaseUrl}${endpoint}`, {
+    method,
+    mode: 'cors',
+    headers: {
+      token: `${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error ${response.status}: ${response.statusText}`);
+  }
+  const result = await response.json();
+  return await result;
+};
+
 
 //Async functions
 export const fetchBookings = createAsyncThunk<BookingType[], void>(

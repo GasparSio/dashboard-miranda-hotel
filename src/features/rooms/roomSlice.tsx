@@ -1,13 +1,11 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { roomsData } from './rooms-data';
-
-
-const rooms: RoomsType[] = roomsData;
+import { FetchDataParams } from '../../../util/fetchData';
+import { apiBaseUrl } from '../../../util/fetchData';
 
 export interface RoomsType {
     photo: string,
     roomNumber: number,
-    id: string,
+    _id?: string,
     bedType: string,
     facilities: string,
     price: number,
@@ -15,48 +13,43 @@ export interface RoomsType {
     status: string,
 }
 
-//Function to delay the loading data
-const delay = (data: RoomsType[] | RoomsType, time: number = 200) => {
-    return new Promise((resolve) => {
-        setTimeout(()=> {
-            resolve(data)
-        }, time)
-    })
-}
+const fetchData = async ({ endpoint, method, body }: FetchDataParams) => {
+  const response = await fetch(`${apiBaseUrl}${endpoint}`, {
+    method,
+    mode: 'cors',
+    headers: {
+      token: `${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error ${response.status}: ${response.statusText}`);
+  }
+  const result = await response.json();
+  return await result;
+};
+
+export const fetchAllRooms = createAsyncThunk<RoomsType[], void>(
+  'rooms/fetchRooms',
+  async () => fetchData({ endpoint: 'rooms', method: 'GET' })
+);
+export const fetchOneRoom = createAsyncThunk<RoomsType, string>(
+  'rooms/fetchRoom',
+  async (id: string) => fetchData({ endpoint: `rooms/${id}`, method: 'GET', id })
+);
+export const deleteOneRoom = createAsyncThunk<string, string>(
+  'rooms/deleteOneRoom',
+  async (id: string) => {
+    await fetchData({ endpoint: `rooms/${id}`, method: 'DELETE'});
+    return id; // Retornamos el id para utilizarlo en el reducer
+  }
+);
 
 
+//FUNCIONAN PERO SE REPITE CODIGO
 //Async functions
-export const fetchRooms = createAsyncThunk<RoomsType[], void>(
-    'rooms/fetchRooms',
-    async () => {
-      const response = (await fetch(
-        'http://localhost:3000/rooms', {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-            token: `${localStorage.getItem('token')}`
-          },
-        }
-      ))
-      return await response.json();
-    } 
-);
-
-export const fetchRoom = createAsyncThunk(
-    'rooms/fetchRoom',
-    async (id: string) => {
-      const response = (await fetch(
-        `http://localhost:3000/rooms/${id}`, {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-            token: `${localStorage.getItem('token')}`
-          },
-        }
-      ))
-      return await response.json();
-    } 
-);
 
 // export const createRoom = createAsyncThunk(
 //     'rooms/createRoom',
@@ -72,21 +65,6 @@ export const fetchRoom = createAsyncThunk(
 //         return updated;
 //     } 
 // );
-export const deleteRoom = createAsyncThunk(
-    'rooms/deleteRoom',
-    async (id: string) => {
-      const response = (await fetch(
-        `http://localhost:3000/rooms/${id}`, {
-          method: 'DELETE',
-          mode: 'cors',
-          headers: {
-            token: `${localStorage.getItem('token')}`
-          },
-        }
-      ))
-      return await response.json();
-    } 
-);
 
 interface RoomsState {
     rooms: RoomsType[],
@@ -97,7 +75,7 @@ interface RoomsState {
 }
 const initialState: RoomsState = {
     rooms: [],
-    room: null,
+    room: {} as RoomsType,
     status: 'idle',
     isloading: false,
     haserror: false,
@@ -108,72 +86,72 @@ export const roomSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchRooms.pending, (state) => {
+        builder.addCase(fetchAllRooms.pending, (state) => {
             state.status = 'loading';
             state.isloading = true;
           });
-          builder.addCase(fetchRooms.fulfilled, (state, action) => {
+          builder.addCase(fetchAllRooms.fulfilled, (state, action) => {
             state.rooms = action.payload;
             state.status = 'success';
           });
-          builder.addCase(fetchRooms.rejected, (state, action) => {
+          builder.addCase(fetchAllRooms.rejected, (state, action) => {
             state.isloading = false;
             state.haserror = true;
             state.status = 'failed';
           });
-        //   builder.addCase(createRoom.pending, (state) => {
-        //     state.status = 'loading';
-        //     state.isloading = true;
-        //   });
-        //   builder.addCase(createRoom.fulfilled, (state, { payload }) => {
-        //     state.room.push(payload);
-        //     state.status = 'success';
-        //   });
-        //   builder.addCase(createRoom.rejected, (state, action) => {
-        //     state.haserror = true;
-        //     state.status = 'failed';
-        //   });
-        builder.addCase(fetchRoom.pending, (state) => {
+          builder.addCase(fetchOneRoom.pending, (state) => {
             state.status = 'loading';
             state.isloading = true;
           });
-          builder.addCase(fetchRoom.fulfilled, (state, action: PayloadAction<RoomsType>) => {
+          builder.addCase(fetchOneRoom.fulfilled, (state, action: PayloadAction<RoomsType>) => {
             state.room = action.payload;
             state.status = 'success';
           });
-          builder.addCase(fetchRoom.rejected, (state, action) => {
+          builder.addCase(fetchOneRoom.rejected, (state, action) => {
             state.haserror = true;
             state.status = 'failed';
           });
-        //   builder.addCase(updateRoom.pending, (state) => {
-        //     state.status = 'loading';
-        //     state.isloading = true;
-        //   });
-        //   builder.addCase(updateRoom.fulfilled, (state, action) => {
-        //     const index = state.rooms.findIndex(room => room.id === action.payload.id);
-        //     if (index !== -1) {
-        //         state.rooms[index] = action.payload;
-        //     }
-        //     state.status = 'success'
-        //     state.isloading = false
-        //   });
-        //   builder.addCase(updateRoom.rejected, (state, action) => {
-        //     state.haserror = true;
-        //     state.status = 'failed';
-        //   });
-        builder.addCase(deleteRoom.pending, (state) => {
+          builder.addCase(deleteOneRoom.pending, (state) => {
             state.status = 'loading';
             state.isloading = true;
           });
-          builder.addCase(deleteRoom.fulfilled, (state, action) => {
-            state.status = 'success';
-            state.isloading = false;
-            state.rooms = state.rooms.filter(room => room.id !== action.payload);
+          builder.addCase(deleteOneRoom.fulfilled, (state, action) => {
+              state.status = 'success';
+              state.isloading = false;
+              state.rooms = state.rooms.filter(room => room._id !== action.payload);
           });
-          builder.addCase(deleteRoom.rejected, (state, action) => {
+          builder.addCase(deleteOneRoom.rejected, (state, action) => {
             state.haserror = true;
             state.status = 'failed';
           });
+      //   builder.addCase(createRoom.pending, (state) => {
+      //     state.status = 'loading';
+      //     state.isloading = true;
+      //   });
+      //   builder.addCase(createRoom.fulfilled, (state, { payload }) => {
+      //     state.room.push(payload);
+      //     state.status = 'success';
+      //   });
+      //   builder.addCase(createRoom.rejected, (state, action) => {
+      //     state.haserror = true;
+      //     state.status = 'failed';
+      //   });
+      //   builder.addCase(updateRoom.pending, (state) => {
+      //     state.status = 'loading';
+      //     state.isloading = true;
+      //   });
+      //   builder.addCase(updateRoom.fulfilled, (state, action) => {
+      //     const index = state.rooms.findIndex(room => room.id === action.payload.id);
+      //     if (index !== -1) {
+      //         state.rooms[index] = action.payload;
+      //     }
+      //     state.status = 'success'
+      //     state.isloading = false
+      //   });
+      //   builder.addCase(updateRoom.rejected, (state, action) => {
+      //     state.haserror = true;
+      //     state.status = 'failed';
+      //   });
     }
 })
 

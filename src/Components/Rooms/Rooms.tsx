@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { deleteRoom, fetchRooms } from '../../features/rooms/roomSlice';
+import { deleteOneRoom, fetchAllRooms } from '../../features/rooms/roomSlice';
 import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
 import { FilterButton, Select, WrapperButton, Option } from '../StyledFilterButtons';
 import Table from "../Table";
 import styled from "styled-components";
 import { Available, Booked } from "./StatusButton";
+import { MdOutlineEuroSymbol } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { colors } from "../theme";
@@ -17,7 +18,8 @@ export const Rooms = () => {
 
 
   useEffect(() => {
-    dispatch(fetchRooms())
+    dispatch(fetchAllRooms())
+
   }, [dispatch])
 
   const statusHandler = (row: Record<string, any>) => {
@@ -27,10 +29,12 @@ export const Rooms = () => {
       return <Available/>
     }
   }
-  const onDeleteRoom = (roomId: number) => {
-    dispatch(deleteRoom(roomId))
-  }
 
+  const onDeleteRoom = (roomId: string) => {
+    dispatch(deleteOneRoom(roomId))
+    console.log(roomId);
+  }
+  
 
   //filtrar por status
   const [filterNav, setFilterNav] = useState<string>('All Rooms');
@@ -70,8 +74,11 @@ if (selected === "Room-Number-Asc") {
   });
 }
 
-
-
+const getRandomFacilities = (facilitiesArray: string[], count: number): string[] => {
+  const copiedArray = [...facilitiesArray]; // Crear una copia del array original
+  const shuffledArray = copiedArray.sort(() => 0.5 - Math.random());
+  return shuffledArray.slice(0, count);
+};
   const cols = [
     {
       property: 'roomname',
@@ -82,7 +89,7 @@ if (selected === "Room-Number-Asc") {
             <img src={row.photo} alt="Room" />
             <TextContainer>
               <PropertyText>Nº: {row.roomNumber}</PropertyText>
-              <TextId>Id: {row.id}</TextId>
+              <TextId>Id: {row._id}</TextId>
             </TextContainer>
           </ImageContainer>
         );
@@ -102,8 +109,8 @@ if (selected === "Room-Number-Asc") {
       label: 'Facilities',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          {row.facilities.map((facility: string, index: number) => (
-            <PropertyText>{facility}</PropertyText>
+          {row.facilities && getRandomFacilities(row.facilities, 4).map((facility, index) => (
+            <AmenityText key={index}>{facility}</AmenityText>
           ))}
         </CellContainer>
       ),
@@ -112,19 +119,22 @@ if (selected === "Room-Number-Asc") {
       property: 'price',
       label: 'Price',
       display: (row: Record<string, any>) => (
-        <CellContainer>
-          <PropertyText>{row.price}</PropertyText>
-        </CellContainer>
+        <OfferPriceContainer>
+          <PriceText>{row.price}</PriceText><MdOutlineEuroSymbol/>
+        </OfferPriceContainer>
       ),
     },
     {
       property: 'offerprice',
       label: 'Offer Price',
-      display: (row: Record<string, any>) => (
-        <CellContainer>
-          <PropertyText>{row.offerprice}</PropertyText>
-        </CellContainer>
-      ),
+      display: (row: Record<string, any>) => {
+        const discountedPrice = (row.price * 0.8).toFixed(0); // Redondear a cero decimales
+        return (
+          <OfferPriceContainer>
+            <OfferPriceText>{discountedPrice}</OfferPriceText><MdOutlineEuroSymbol/>
+          </OfferPriceContainer>
+        );
+      },
     },
     {
       property: 'status',
@@ -140,7 +150,9 @@ if (selected === "Room-Number-Asc") {
       label: '',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteRoom(row.id)}/></DeleteIconContainer>
+          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteRoom(row._id)}/></DeleteIconContainer>
+          
+          
         </CellContainer>
       ),
     },
@@ -258,4 +270,28 @@ const TextId = styled.span`
   width: 59px;
   overflow: hidden;
   white-space: nowrap;
+`;
+const AmenityText = styled.span`
+  background-color: #4759b7;
+  margin-bottom: 5px;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+`;
+const PriceText = styled.span`
+  color: #8f8e8e;
+  text-align: center;
+  text-decoration: line-through;
+`;
+const OfferPriceText = styled.span`
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
+`;
+const OfferPriceContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 25px;
+  justify-content: space-evenly;
+  width: 60px;
 `;
