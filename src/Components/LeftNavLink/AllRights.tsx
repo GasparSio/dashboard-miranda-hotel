@@ -23,6 +23,7 @@ const Title = styled.h1`
     font-size: 16px;
     color: #212121;
     font-family: 600;
+    text-align: center;
 `;
 const Paragraph = styled.span`
     font-family: Poppins;

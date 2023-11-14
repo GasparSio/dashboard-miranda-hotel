@@ -12,9 +12,6 @@ import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { FilterButton, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
 import { colors } from '../theme';
 
-interface PopUpStates {
-  [bookingId: number]: boolean;
-}
 
 export const Bookings = () => {
   const dispatch = useCustomDispatch();
@@ -22,31 +19,34 @@ export const Bookings = () => {
   const width = useCustomSelector(state => state.visual.width);
   const [orderBy, setOrderBy] = useState("none");
 
-  useEffect(() => {
-    dispatch(fetchBookings())
-  }, [dispatch])
+useEffect(() => {
+  dispatch(fetchBookings())
+}, [dispatch])
 
-  const onDeleteBooking = (bookingId: number) => {
-    dispatch(deleteBooking(bookingId))
-  }
+const onDeleteBooking = (bookingId: string) => {
+  dispatch(deleteBooking(bookingId))
+}
 
+interface PopUpStates {
+  [bookingId: string]: boolean;
+}
 // Función para abrir el popup de una reserva específica
 const initialPopUpStates: PopUpStates = {};
 const [popUpStates, setPopUpStates] = useState<PopUpStates>(initialPopUpStates);
-const handleOpenPopUp = (bookingId: number) => {
+const handleOpenPopUp = (bookingId: string) => {
   setPopUpStates({ ...popUpStates, [bookingId]: true });
 }
 
 // Función para cerrar el popup de una reserva específica
-const handleClosePopUp = (bookingId: number) => {
+const handleClosePopUp = (bookingId: string) => {
   setPopUpStates({ ...popUpStates, [bookingId]: false });
 }
 
-
+//Dependiendo el status me muestra uno de los botones estilizados.
   const statusHandler = (row: Record<string, any>) => {
-    if(row.status === 'check in'){
+    if(row.status === 'Check In'){
       return <CheckIn/> 
-    }else if(row.status === 'check out'){
+    }else if(row.status === 'Check Out'){
       return <CheckOut/>
     }else{
       return <InProgress/>
@@ -59,13 +59,10 @@ const handleClosePopUp = (bookingId: number) => {
     const newValue = event.target.value;
     setClientName(newValue);
   };
-
   const searchBookings = bookings.filter((booking) =>
-    booking.fullname.toLowerCase().includes(clientName.toLowerCase())
-  );
+  booking.guest?.toLowerCase().includes(clientName.toLowerCase())
+);
 
-
-  
   //filtrar por status
   const [filterNav, setFilterNav] = useState<string>('All Bookings');
   const filteredBookings = bookings.filter((booking) => {
@@ -73,40 +70,41 @@ const handleClosePopUp = (bookingId: number) => {
       case "All Bookings":
         return true;
       case "Check In":
-        return booking.status === "check in"
+        return booking.status === "Check In"
       case "Check Out":
-        return booking.status === "check out"
+        return booking.status === "Check Out"
       case "In Progress":
-        return booking.status === "in progress"
+        return booking.status === "In Progress"
       default:
         return false;
     }
   })
 
-  const [selected, setSelected] = useState("Orderdate");
+
+const [selected, setSelected] = useState("Orderdate");
 //Ordenar por...
 if (selected === "Orderdate") {
   filteredBookings.sort((a, b) => {
-    const dateA = new Date(a.orderdate);
-    const dateB = new Date(b.orderdate);
+    const dateA = new Date(a.order_date);
+    const dateB = new Date(b.order_date);
     return dateB.getTime() - dateA.getTime();
   });
 } else if (selected === "Checkin") {
   filteredBookings.sort((a, b) => {
-    const dateA = new Date(a.checkin);
-    const dateB = new Date(b.checkin);
+    const dateA = new Date(a.check_in);
+    const dateB = new Date(b.check_in);
     return dateB.getTime() - dateA.getTime();
   });
 } else if (selected === "Checkout") {
   filteredBookings.sort((a, b) => {
-    const dateA = new Date(a.checkout);
-    const dateB = new Date(b.checkout);
+    const dateA = new Date(a.check_out);
+    const dateB = new Date(b.check_out);
     return dateB.getTime() - dateA.getTime();
   });
 } else if (selected === "Guest") {
   filteredBookings.sort((a, b) => {
-    const nombreA = a.fullname.toUpperCase();
-    const nombreB = b.fullname.toUpperCase();
+    const nombreA = a.guest.toUpperCase();
+    const nombreB = b.guest.toUpperCase();
     if (nombreA < nombreB) {
       return -1;
     }
@@ -117,6 +115,11 @@ if (selected === "Orderdate") {
   });
 }
 
+// if (orderBy === "guest") {
+//   filteredArray.sort((a: BookingsInterface, b: BookingsInterface) =>
+//     a.guest.localeCompare(b.guest, undefined, { sensitivity: "base" })
+//   );
+
 //Data que traemos dependiendo los filtros
   const finalFilteredBookings = clientName ? searchBookings : filteredBookings;
 
@@ -126,8 +129,8 @@ if (selected === "Orderdate") {
       label: 'Guest',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <span>{row.fullname}</span>
-          <Link to={`/home/bookings/${row.id}`} >ID: {row.id}</Link>
+          <span>{row.guest}</span>
+          <Link to={`/home/bookings/${row._id}`} >ID: {row._id}</Link>
         </CellContainer>
       ),
     },
@@ -135,7 +138,10 @@ if (selected === "Orderdate") {
       property: 'orderdate',
       label: 'Order Date',
       display: (row: Record<string, any>) => (
-        <PropertyText>{row.orderdate}</PropertyText>
+        <PropertyText>{row.order_date.replace(
+          /\d{2}:\d{2}:\d{2} GMT\+0000 \(GMT\)/,
+          ''
+        )}</PropertyText>
       ),
     },
     {
@@ -143,7 +149,10 @@ if (selected === "Orderdate") {
       label: 'Check In',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.checkin}</PropertyText>
+          <PropertyText>{row.check_in.replace(
+						/\d{2}:\d{2}:\d{2} GMT\+0000 \(GMT\)/,
+						''
+					)}</PropertyText>
         </CellContainer>
       ),
     },
@@ -152,7 +161,10 @@ if (selected === "Orderdate") {
       label: 'Check Out',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.checkout}</PropertyText>
+          <PropertyText>{row.check_out.replace(
+						/\d{2}:\d{2}:\d{2} GMT\+0000 \(GMT\)/,
+						''
+					)}</PropertyText>
         </CellContainer>
       ),
     },
@@ -161,12 +173,12 @@ if (selected === "Orderdate") {
       label: 'Special Request',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <Button onClick={() => handleOpenPopUp(row.id)}>View Notes</Button>
-          {popUpStates[row.id] && 
+          <Button onClick={() => handleOpenPopUp(row._id)}>View Notes</Button>
+          {popUpStates[row._id] && 
           <RequestPopUp
-            data={row.specialrequest}
+            data={row.special_request}
             onClose={() => {
-              handleClosePopUp(row.id);
+              handleClosePopUp(row._id);
             }}
           />}
         </CellContainer>
@@ -198,7 +210,7 @@ if (selected === "Orderdate") {
       label: '',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteBooking(row.id)}/></DeleteIconContainer>
+          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteBooking(row._id)}/></DeleteIconContainer>
         </CellContainer>
       ),
     },

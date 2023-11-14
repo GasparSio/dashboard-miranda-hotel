@@ -19,7 +19,6 @@ export const Rooms = () => {
 
   useEffect(() => {
     dispatch(fetchAllRooms())
-
   }, [dispatch])
 
   const statusHandler = (row: Record<string, any>) => {
@@ -88,7 +87,7 @@ const getRandomFacilities = (facilitiesArray: string[], count: number): string[]
           <ImageContainer>
             <img src={row.photo} alt="Room" />
             <TextContainer>
-              <PropertyText>Nº: {row.roomNumber}</PropertyText>
+              <PropertyText>Room: {row.roomNumber}</PropertyText>
               <TextId>Id: {row._id}</TextId>
             </TextContainer>
           </ImageContainer>
@@ -242,14 +241,14 @@ const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   img{
-    width: 90%;
-    border-radius: 5px;
+    width: 100%;
+    border-radius: 6px;
   }
 `;
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 100%;
   padding-left: 2px;
 `;
 
@@ -267,7 +266,7 @@ const NewButton = styled.button`
 `;
 const TextId = styled.span`
   text-overflow: ellipsis;
-  width: 59px;
+  width: 80px;
   overflow: hidden;
   white-space: nowrap;
 `;

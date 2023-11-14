@@ -6,13 +6,13 @@ import { UsersType } from "../src/features/users/userSlice";
 export interface FetchDataParams {
     endpoint: string;
     method: string;
-    body?: RoomsType | BookingType | UsersType | ContactType ;
+    body?: RoomsType | BookingType | UsersType | ContactType | {};
     id?: string;
 }
 
 export const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-export const fetchData = async ({ endpoint, method, body }: FetchDataParams) => {
+export const fetchData = async ({ endpoint, method, body, id }: FetchDataParams) => {
   const response = await fetch(`${apiBaseUrl}${endpoint}`, {
     method,
     mode: 'cors',

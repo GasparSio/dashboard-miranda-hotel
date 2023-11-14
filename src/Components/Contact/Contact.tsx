@@ -17,16 +17,12 @@ export const Contact = () => {
 
   useEffect(() => {
     dispatch(fetchContacts())
-
   }, [dispatch])
 
-  const handleArchive = (contactId: number) => {
-    dispatch(
-      updateContact({
-        contactId: contactId,
-        update: { archived: true }, // Specify the property to update
-      })
+  const handleArchive = (contactId: string) => {
+    dispatch(updateContact(contactId)
     );
+    console.log(contactId);
   }
   const cols = [
     {
@@ -35,7 +31,7 @@ export const Contact = () => {
       display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>{row.date}</PropertyText>
-          <PropertyText>Id: {row.id}</PropertyText>
+          <PropertyText>Id: {row._id}</PropertyText>
         </CellContainer>
       ),
     },
@@ -44,9 +40,9 @@ export const Contact = () => {
       label: 'Customers',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.fullname}</PropertyText>
+          <PropertyText>{row.full_name}</PropertyText>
           <PropertyText>{row.email}</PropertyText>
-          <PropertyText>{row.phone}</PropertyText>
+          <PropertyText>{row.phone_number}</PropertyText>
         </CellContainer>
       ),
     },
@@ -65,10 +61,10 @@ export const Contact = () => {
       label: 'Action',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          {row.archived ? (
-            <Archived>Archivado</Archived>
+          {row.status === 'Archived' ? (
+            <Archived>Archived</Archived>
           ) : (
-            <ArchiveButton onClick={() => handleArchive(row.id)} >
+            <ArchiveButton onClick={() => handleArchive(row._id)} >
               Archive
             </ArchiveButton>
           )}
@@ -89,7 +85,7 @@ export const Contact = () => {
       case 'All Contacts':
         return true;
       case 'Archived':
-        return contact.archived === true;
+        return contact.status === 'Archived';
       default:
         return false;
     }

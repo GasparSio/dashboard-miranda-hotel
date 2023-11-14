@@ -24,7 +24,7 @@ const CheckInButton = styled.button`
 `
 export const CheckOut = (): React.JSX.Element => {
   return (
-    <CheckOutButton>Check In</CheckOutButton>
+    <CheckOutButton>Check Out</CheckOutButton>
   )
 }
 
