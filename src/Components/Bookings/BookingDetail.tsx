@@ -15,7 +15,7 @@ export const BookingDetail = (): JSX.Element => {
   const booking: BookingType | null = useCustomSelector(state => state.bookings.booking);
 
   // Verificar si id es undefined o null antes de la conversión
-  const bookingId: number | undefined = id ? parseInt(id, 10) : undefined;
+  const bookingId: string | undefined = id ? parseInt(id, 10) : undefined;
   
   console.log(booking);
   
@@ -39,24 +39,24 @@ export const BookingDetail = (): JSX.Element => {
     <WrapperBookingDetail>
       <LeftContainer>
         <NameContainer>
-          <span>{booking?.fullname}</span>
-          <p>ID: {booking?.id}</p>
+          <span>{booking?.guest}</span>
+          <p>ID: {booking?._id}</p>
         </NameContainer>
         <DateContainer>
           <CheckInContainer>
             <span>Check in</span>
-            <p>{booking?.checkin}</p>
+            <p>{booking?.check_in}</p>
           </CheckInContainer>
           <CheckOutContainer>
             <span>Check out</span>
-            <p>{booking?.checkout}</p>
+            <p>{booking?.check_out}</p>
           </CheckOutContainer>
         </DateContainer>
         <Line></Line>
         <RoomContainer>
           <CheckInContainer>
             <span>Room Info</span>
-            <p>{booking?.roomtype}</p>
+            <p>{booking?.room_type}</p>
           </CheckInContainer>
           <CheckInContainer>
             <span>Price</span>
@@ -64,7 +64,7 @@ export const BookingDetail = (): JSX.Element => {
           </CheckInContainer>
         </RoomContainer>
         <RequestContainer>
-          <span>{booking?.specialrequest}</span>
+          <span>{booking?.special_request}</span>
         </RequestContainer>
         <FacilitiesContainer>
           <h1>Facilities</h1>
@@ -79,10 +79,10 @@ export const BookingDetail = (): JSX.Element => {
       </LeftContainer>
       <RightContainer>
         <Photo>
-          <img src={booking?.photo} alt='booking room'/>
+          <img src={booking?.photos} alt='booking room'/>
         </Photo>
         <RoomTypeContainer>
-          <span>{booking?.roomtype}</span>
+          <span>{booking?.room_type}</span>
           {/* <span>{booking.status}</span> */}
         </RoomTypeContainer>
       </RightContainer>

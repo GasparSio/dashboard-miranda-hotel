@@ -1,5 +1,4 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { apiBaseUrl } from '../../../util/fetchData';
 import { fetchData } from '../../../util/fetchData';
 
 
@@ -73,10 +72,8 @@ export const bookingSlice = createSlice({
             state.isloading = true;
           });
           builder.addCase(fetchBookings.fulfilled, (state, action) => {
-            console.log('action.payload', action.payload);
             state.bookings = action.payload;
             state.status = 'fulfilled';
-            console.log('state.bookings', state.bookings);
           });
           builder.addCase(fetchBookings.rejected, (state, action) => {
             state.isloading = false;
@@ -101,7 +98,6 @@ export const bookingSlice = createSlice({
           });
           builder.addCase(deleteBooking.fulfilled, (state, action) => {
             state.status = 'fulfilled';
-            state.isloading = false;
             state.bookings = state.bookings.filter(booking => booking._id !== action.payload);
           });
           builder.addCase(deleteBooking.rejected, (state, action) => {

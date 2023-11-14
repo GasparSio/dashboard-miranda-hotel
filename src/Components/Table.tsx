@@ -84,26 +84,28 @@ const TableRow = styled.div`
 const TableHeaderCell = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   flex: 1;
   font-family: Poppins;
   font-size: 14px;
   font-weight: 600;
   color: #393939;
   width: 12%;
-  padding-left: 20px;
+  text-align: center;
 `;
 
 const TableCell = styled.div`
   display: flex;  
   flex: 1;
   flex-direction: column;
+  align-items: center;
   text-align: left;
   font-family: Poppins;
   font-size: 12px;
   font-weight: 400;
   color: #799283;
   width: 10%;
-  padding-left: 20px;
+  // padding-left: 20px;
   transition: transform 0.2s;
   &:hover {
     background-color: #effff0;

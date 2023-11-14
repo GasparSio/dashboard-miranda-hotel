@@ -16,7 +16,7 @@ export const UserProfile: React.FC = () => {
                 {/* <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" /> */}
             </Wrapperimage>
             <Wrapperspan>
-                <Name>{auth?.authState.username ? auth.authState.username : 'Name'}</Name>
+                <Name>{auth?.authState.username ? auth.authState.username : 'Admin'}</Name>
                 <Email>{auth?.authState.email ? auth.authState.email : 'Email'}</Email>
             </Wrapperspan>
             <Wrapperbutton >
@@ -30,7 +30,7 @@ const Wrapperprofile = styled.section`
     position: relative;
     width: 70%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;

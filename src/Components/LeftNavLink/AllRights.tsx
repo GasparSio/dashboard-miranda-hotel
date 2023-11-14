@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export function AllRights(): JSX.Element {
   return (
     <AllRightsWrapper>
-        <Title>Travl Hotel Admin Dashboard</Title>
+        <Title>Travl Admin Dashboard</Title>
         <Paragraph>© 2023 All Rights Reserved</Paragraph>
         <Paragraph>Made with ♥ by <LinkTo to="https://github.com/GasparSio" target="_blank" rel="noopener noreferrer">Gaspar Sio</LinkTo></Paragraph>
     </AllRightsWrapper>

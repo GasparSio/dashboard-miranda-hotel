@@ -25,7 +25,6 @@ export const LeftNavLink = () => {
                     </Wrapperimg>
                     <Wrappertitle>
                         <Title>Travl</Title>
-                        <Subtitle>Hotel Admin Dashboard</Subtitle>
                     </Wrappertitle>
                 </Wrappertitlecontainer>
                 <Wrappernavlinks>
@@ -80,12 +79,16 @@ const Wrappersection = styled.section<Wrappersection>`
     z-index: 1;
 `;
 const Wrappertitlecontainer = styled.section`
+    flex-direction: column;
+    align-items: center;
+    height: 70px;
+    justify-content: space-evenly;
     width: 100%;
     display: flex;
     margin-top: 10px;
 `;
 const Wrapperimg = styled.section`
-    width: 25%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,28 +96,23 @@ const Wrapperimg = styled.section`
 const Wrappertitle = styled.section`
     width: 60%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
 `;
 const Logo = styled.img`
-    width: 40%;
-    max-width: 30px;
+    width: 50px;
+    height: 50px;
 `;
 const Title = styled.span`
-    font-size: 20px;
+    font-size: 25px;
+    letter-spacing: 3px;
     font-weight: 800;
-`;
-const Subtitle = styled.span`
-    font-size: 12px;
-    color: #5D5449;
-    font-weight: 300;
-    font-family: Poppins;
 `;
 const Wrappernavlinks = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
-    margin-bottom: 70px;
+    margin-top: 15px;
+    height: 300px;
+    justify-content: space-evenly;
 `;
 const IconDashboard = styled(BsFillClipboardDataFill)`
     color: inherit;

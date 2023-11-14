@@ -16,7 +16,9 @@ export const CustomWrapperStyles = styled.section<CustomWrapperStylesProps>`
 `;
 export const CellContainer = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
+  width: 100%;
 `;
 export const LineContainer = styled.div`
   display: flex;
@@ -36,5 +38,6 @@ export const PropertyText = styled.span`
   font-size: 14px;
   font-weight: 400;
   font-family: Poppins;
+  text-align: center;
   color: #393939;
 `;

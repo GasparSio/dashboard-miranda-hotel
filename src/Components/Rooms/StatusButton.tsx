@@ -9,7 +9,7 @@ export const Booked = (): JSX.Element  => {
 }
 const SpanBooked = styled.span`
   display: flex;
-  width: 70%;
+  width: 100%;
   justify-content: center;
   background-color: ${colors.primaryRed};
   color: ${colors.backgroundWhite};
@@ -32,7 +32,7 @@ export const Available = (): JSX.Element  => {
 }
 const SpanAvailable = styled.span`
   display: flex;
-  width: 70%;
+  width: 100%;
   justify-content: center;
   background-color: #5AD07A;
   color: ${colors.backgroundWhite};

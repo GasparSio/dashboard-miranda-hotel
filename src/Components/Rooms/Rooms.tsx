@@ -140,7 +140,7 @@ const getRandomFacilities = (facilitiesArray: string[], count: number): string[]
       label: 'Status',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <LineContainerComment><PropertyText>{statusHandler(row)}</PropertyText></LineContainerComment>
+          <BotonStatusText>{statusHandler(row)}</BotonStatusText>
         </CellContainer>
       ),
     },
@@ -240,16 +240,17 @@ const DeleteIcon = styled(MdDelete)`
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   img{
-    width: 100%;
+    width: 95%;
     border-radius: 6px;
   }
 `;
 const TextContainer = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   width: 100%;
-  padding-left: 2px;
 `;
 
 const NewButton = styled.button`
@@ -271,6 +272,7 @@ const TextId = styled.span`
   white-space: nowrap;
 `;
 const AmenityText = styled.span`
+  width: 95%;
   background-color: #4759b7;
   margin-bottom: 5px;
   color: white;
@@ -293,4 +295,7 @@ const OfferPriceContainer = styled.div`
   height: 25px;
   justify-content: space-evenly;
   width: 60px;
+`;
+const BotonStatusText = styled.span`
+  width: 95%;
 `;

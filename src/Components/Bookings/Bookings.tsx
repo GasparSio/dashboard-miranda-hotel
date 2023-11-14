@@ -138,10 +138,12 @@ if (selected === "Orderdate") {
       property: 'orderdate',
       label: 'Order Date',
       display: (row: Record<string, any>) => (
-        <PropertyText>{row.order_date.replace(
-          /\d{2}:\d{2}:\d{2} GMT\+0000 \(GMT\)/,
-          ''
-        )}</PropertyText>
+        <CellContainer>
+          <OrderDateText>{row.order_date.replace(
+            /\d{2}:\d{2}:\d{2} GMT\+0000 \(GMT\)/,''
+          )}
+          </OrderDateText>
+        </CellContainer>
       ),
     },
     {
@@ -149,10 +151,10 @@ if (selected === "Orderdate") {
       label: 'Check In',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.check_in.replace(
+          <CheckInText>{row.check_in.replace(
 						/\d{2}:\d{2}:\d{2} GMT\+0000 \(GMT\)/,
 						''
-					)}</PropertyText>
+					)}</CheckInText>
         </CellContainer>
       ),
     },
@@ -161,10 +163,10 @@ if (selected === "Orderdate") {
       label: 'Check Out',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.check_out.replace(
+          <CheckOutText>{row.check_out.replace(
 						/\d{2}:\d{2}:\d{2} GMT\+0000 \(GMT\)/,
 						''
-					)}</PropertyText>
+					)}</CheckOutText>
         </CellContainer>
       ),
     },
@@ -190,8 +192,7 @@ if (selected === "Orderdate") {
       display: (row: Record<string, any>) => (
         <CellContainer>
           <PropertyText>
-            {row.roomtype}
-            Room Numer: {row.roominfo}
+            {row.room_type}
           </PropertyText>
         </CellContainer>
       ),
@@ -286,10 +287,14 @@ if (selected === "Orderdate") {
 const Link = styled(NavLink)`
   cursor: pointer;
   text-decoration: none;
-  color: #799283;
+  color: #787f9d;
   font-size: 12px;
   font-weight: 600;
   font-family: 'Poppins';
+  text-overflow: ellipsis;
+  width: 80px;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 const DeleteIconContainer = styled.span`
   text-align: center;
@@ -337,5 +342,41 @@ const RightNavContainer = styled.div`
   justify-content: flex-end;
   width: 15%;
   align-items: center;
+`;
+const OrderDateText = styled.span`
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  background-color: #7884a3;
+  border-radius: 3px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 0.4px;
+`;
+const CheckInText = styled.span`
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  background-color: #7884a3;
+  border-radius: 3px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 0.4px;
+`;
+const CheckOutText = styled.span`
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  background-color: #7884a3;
+  border-radius: 3px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 0.4px;
 `;
 

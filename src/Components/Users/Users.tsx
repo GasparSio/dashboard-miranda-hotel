@@ -19,7 +19,7 @@ export const Users = () => {
     dispatch(fetchUsers({}))
   }, [dispatch])
   
-  const onDeleteUser = (userId: number) => {
+  const onDeleteUser = (userId: string) => {
     dispatch(deleteUser(userId))
   }
 
@@ -37,7 +37,7 @@ export const Users = () => {
     setuserName(newValue);
   };
     const searchUsers = users.filter((user) =>
-    user.fullname.toLowerCase().includes(userName.toLowerCase())
+    user.full_name.toLowerCase().includes(userName.toLowerCase())
   );
 
   const [filterNav, setFilterNav] = useState('All Employee');
@@ -59,8 +59,8 @@ export const Users = () => {
   //Ordenar por...
   if (selected === "guest-asc") {
     filteredUsers.sort((a, b) => {
-      const nombreA = a.fullname.toUpperCase();
-      const nombreB = b.fullname.toUpperCase();
+      const nombreA = a.full_name.toUpperCase();
+      const nombreB = b.full_name.toUpperCase();
       if (nombreA < nombreB) {
         return -1;
       }
@@ -71,8 +71,8 @@ export const Users = () => {
     });
   } else if (selected === "guest-des") {
     filteredUsers.sort((a, b) => {
-      const nombreA = a.fullname.toUpperCase();
-      const nombreB = b.fullname.toUpperCase();
+      const nombreA = a.full_name.toUpperCase();
+      const nombreB = b.full_name.toUpperCase();
       if (nombreA > nombreB) {
         return -1;
       }
@@ -93,8 +93,8 @@ export const Users = () => {
       label: 'Full Name',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.fullname}</PropertyText>
-          <PropertyText>Id: {row.id}</PropertyText>
+          <PropertyText>{row.full_name}</PropertyText>
+          <PropertyText>Id: {row._id}</PropertyText>
           <EmailText>{row.email}</EmailText>
         </CellContainer>
       ),
@@ -104,7 +104,7 @@ export const Users = () => {
       label: 'Start Date',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.startdate}</PropertyText>
+          <PropertyText>{row.start_date}</PropertyText>
         </CellContainer>
       ),
     },
@@ -119,10 +119,10 @@ export const Users = () => {
     },
     {
       property: 'contact',
-      label: 'Contact',
+      label: 'Phone Number',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.contact}</PropertyText>
+          <PropertyText>{row.phone_number}</PropertyText>
         </CellContainer>
       ),
     },
@@ -140,7 +140,7 @@ export const Users = () => {
       label: '',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteUser(row.id)}/></DeleteIconContainer>
+          <DeleteIconContainer ><DeleteIcon onClick={() => onDeleteUser(row._id)}/></DeleteIconContainer>
         </CellContainer>
       ),
     },
