@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profileImage from '../../Img/18942381.jpg';
+import { resetStatus } from '../../features/login/loginSlice';
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 
@@ -24,8 +25,8 @@ interface AuthState {
 
 const initialState: AuthState  = {
   isAuthenticated: false,
-  password: null,
   email: null,
+  password: null,
   image: profileImage,
 }
 
@@ -74,8 +75,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   //funcion de logout
   const logout = () => {
     dispatch({ type: 'logout' });
+    
     navigate('/login');
     localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("token");
   };
   const ModalOpen = () => {
     setOpenModal(true)

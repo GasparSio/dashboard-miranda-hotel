@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
@@ -8,7 +7,7 @@ import '../../styles/StyleSwiperButton.css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import { useCustomSelector } from '../../hooks/redux/index';
-import { ReviewCard, ReviewItem } from "./ReviewCard";
+import { ReviewCard } from "./ReviewCard";
 
 
 interface Wrapperdashboardcontainer {

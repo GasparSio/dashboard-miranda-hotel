@@ -3,19 +3,29 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const userLogin = createAsyncThunk(
     'login/user', 
     async (data: loginInterface)=> {
-        const response = (await fetch(
-            'http://localhost:3000/login', {
-                method: "POST", 
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: data.email,
-                    password: data.password
-                }),
-            }))
-            return response.json();
+        try {
+            const response = (await fetch(
+                'http://localhost:3000/login', {
+                    method: "POST", 
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: data.email,
+                        password: data.password
+                    }),
+                }))
+                if(!response.ok){
+                    throw new Error(`${response.status}`)
+                }else{
+                    const dataResponse = await response.json()
+                    localStorage.setItem('token', dataResponse.token)
+                    return dataResponse;
+                }
+        } catch (error) {
+            throw new Error(`${error}`)
+        }
 })
 
 interface loginInterface{
@@ -37,7 +47,11 @@ const initialState: LoginState = {
 export const loginSlice = createSlice({
     name: 'login',
     initialState,
-    reducers: {},
+    reducers: {
+        resetStatus: (state) => {
+            state.status = 'idle';
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(userLogin.pending, (state) => {
             state.status = 'pending';
@@ -48,12 +62,9 @@ export const loginSlice = createSlice({
         builder.addCase(userLogin.fulfilled, (state, action,) => {
             state.status = 'fulfilled';
             state.initialData.push(action.payload);
-            localStorage.setItem('token', action.payload.token)
-            console.log('payload', action.payload);//{email: 'sio.gaspar@gmail.com', password: 'admin'}
-            console.log('token', action.payload.token);//"JAZ21haWoyMDE1NDYzMTE5fQ.rIkh-mg6uOemjs1iDo_CPJgAOEEAhbKa21dBPHFGKhM"
-
         })
     }
 })
 
 export default loginSlice.reducer;
+export const { resetStatus } = loginSlice.actions;

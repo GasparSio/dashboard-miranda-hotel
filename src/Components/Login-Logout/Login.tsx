@@ -5,7 +5,7 @@ import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 import logoHotel from '../../Img/icon-hotel.png';
 import { useCustomDispatch, useCustomSelector } from "../../hooks/redux";
-import { userLogin } from "../../features/login/loginSlice";
+import { resetStatus, userLogin } from "../../features/login/loginSlice";
 
 export const Login: React.FC = () => {
     const navigate = useNavigate();
@@ -14,8 +14,7 @@ export const Login: React.FC = () => {
     const [password, setPassword] = useState<string>('');
     const [wrongUser, setwrongUser] = useState<boolean>(false);
     const { authState, login } = auth;
-    // const token = useCustomSelector(state => state.login.token)
-    const loginState = useCustomSelector((state) => state.login);
+    const loginStatus = useCustomSelector((state) => state.login.status);
 
     useEffect(() => {
         if (authState.isAuthenticated) {
@@ -23,34 +22,25 @@ export const Login: React.FC = () => {
         }else{
             navigate('/login')
         }
-      }, [authState.isAuthenticated, navigate]);
+        if(loginStatus === 'fulfilled'){
+            login({email, password})
+            localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
+            dispatch(resetStatus())
+        }else if(loginStatus === 'rejected'){
+            setwrongUser(true)
+                setTimeout(() => {
+            setwrongUser(false)
+        }, 3000)
+        }
+      }, [authState.isAuthenticated, navigate, loginStatus]);
 
 const dispatch = useCustomDispatch();
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     dispatch(userLogin({email: email, password: password}))
-    const token = localStorage.getItem('token');
-    if(token){
-        login({email, password})
-        localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
-    }else{
-        setwrongUser(true)
-        setTimeout(() => {
-            setwrongUser(false)
-        }, 3000)
-    }
-
-    // if (email === emailCode && password === passwordCode) {
-    //   login({ email, password });
-    //   localStorage.setItem("loggedInUser", JSON.stringify({ email, password }));
-    //   console.log('Datos guardados en localstorage al hacer login', email, password);
-    // } else {
-    //     setwrongUser(true)
-    //     setTimeout(() => {
-    //         setwrongUser(false)
-    //     }, 3000)
-    // }
+    console.log(email, password);
+    
   };
     return(
             <Wrapper>

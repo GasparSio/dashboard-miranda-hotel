@@ -52,7 +52,7 @@ export const Contact = () => {
       display: (row: Record<string, any>) => (
         <SubjectContainer>
           <SubjecText>{row.subject_of_review}</SubjecText>
-          <PropertyText>{row.review_body}</PropertyText>
+          <ReviewText>{row.review_body}</ReviewText>
         </SubjectContainer>
       ),
     },
@@ -148,6 +148,14 @@ const SubjecText = styled.span`
   color: black;
   text-align: center;
 `;
+const ReviewText = styled.span`
+  font-family: Poppins;
+  width: 90%;
+  font-weight: 400;
+  font-size: 14px;
+  color: #928d96;
+  text-align: center;
+`;
 const DateText = styled.span`
   font-family: Poppins;
   font-weight: 400;
@@ -163,7 +171,7 @@ const NameText = styled.span`
 const EmailText = styled.span`
   font-family: Poppins;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 14px;
   color: black;
 `;
 const PhoneText = styled.span`
@@ -185,6 +193,7 @@ const IdText = styled.span`
 const SubjectContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: auto
 `;
 const Archived = styled.span`
