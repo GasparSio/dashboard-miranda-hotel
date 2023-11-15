@@ -78,6 +78,8 @@ const TableRow = styled.div`
   transition: transform 0.2s;
   &:hover {
     background-color: #effff0;
+    transform: scale(1.003);
+    box-shadow: 2px 2px 10px rgb(79 152 117 / 45%);
   }
 `;
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { deleteOneRoom, fetchAllRooms } from '../../features/rooms/roomSlice';
-import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
+import { CellContainer, PropertyText } from '../StyledTable';
 import { Wrapperdashboardcontainer } from '../StyledComponent';
 import { FilterButton, Select, WrapperButton, Option } from '../StyledFilterButtons';
 import Table from "../Table";
@@ -10,6 +10,7 @@ import { MdOutlineEuroSymbol } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { colors } from "../theme";
+import Swal from "sweetalert2";
 
 export const Rooms = () => {
   const dispatch = useCustomDispatch()
@@ -29,9 +30,28 @@ export const Rooms = () => {
     }
   }
 
+
   const onDeleteRoom = (roomId: string) => {
-    dispatch(deleteOneRoom(roomId))
-    console.log(roomId);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Si el usuario confirma, ejecuta la eliminación
+        dispatch(deleteOneRoom(roomId));
+        // Muestra la alerta de éxito después de eliminar
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'The room has been deleted.',
+          icon: 'success',
+        });
+      }
+    });
   }
   
 

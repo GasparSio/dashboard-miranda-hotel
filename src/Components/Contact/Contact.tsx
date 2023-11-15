@@ -8,6 +8,8 @@ import { fetchContacts, updateContact } from "../../features/contact/contactSlic
 import { CustomWrapperStyles, CellContainer, PropertyText } from '../StyledTable';
 import { colors } from "../theme";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Contact = () => {
   
@@ -20,9 +22,12 @@ export const Contact = () => {
   }, [dispatch])
 
   const handleArchive = (contactId: string) => {
-    dispatch(updateContact(contactId)
-    );
-    console.log(contactId);
+    dispatch(updateContact(contactId));
+    toast.success('Contacto archivado exitosamente', {
+      position: toast.POSITION.TOP_RIGHT,
+      pauseOnFocusLoss: false,
+      autoClose: 2000
+    });
   }
   const cols = [
     {
@@ -113,6 +118,7 @@ export const Contact = () => {
       <Wrapperdashboardcontainer width={width}>
         <Table cols={cols} data={filteredContacts}/>
       </Wrapperdashboardcontainer>
+      <ToastContainer />
     </>
   )
 }

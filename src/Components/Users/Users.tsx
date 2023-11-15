@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { WrapperButton, FilterButton, WrapperInput, SearchIcon, Input, Select, Option } from '../StyledFilterButtons';
 import { colors } from '../theme';
+import Swal from "sweetalert2";
 
 export const Users = () => {
   const dispatch = useCustomDispatch()
@@ -19,8 +20,28 @@ export const Users = () => {
     dispatch(fetchUsers({}))
   }, [dispatch])
   
+  
   const onDeleteUser = (userId: string) => {
-    dispatch(deleteUser(userId))
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Si el usuario confirma, ejecuta la eliminación
+        dispatch(deleteUser(userId))
+        // Muestra la alerta de éxito después de eliminar
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'The room has been deleted.',
+          icon: 'success',
+        });
+      }
+    });
   }
 
   const statusHandler = (row: Record<string, any>) => {
@@ -93,6 +114,7 @@ export const Users = () => {
       label: 'Full Name',
       display: (row: Record<string, any>) => (
         <CellContainer>
+          <Image src={row.photo} alt="random image"/>
           <NameText>{row.full_name}</NameText>
           <EmailText>{row.email}</EmailText>
           <IdText>Id: {row._id}</IdText>
@@ -254,4 +276,8 @@ const EmailText = styled.span`
 `;
 const Number = styled.a`
   text-decoration: none;
+`;
+const Image = styled.img`
+  width: 90px;
+  border-radius: 8px;
 `;

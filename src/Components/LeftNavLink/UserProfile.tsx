@@ -1,30 +1,103 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "../Login-Logout/auth";
-import profileImage from '../../Img/18942381.jpg'
+import Swal from "sweetalert2";
+
+
 export const UserProfile: React.FC = () => {
-    const auth = useAuth()
+    const { authState } = useAuth();
     
-    const onHandleClick = () => {
-        if(auth){
-            auth.ModalOpen()
+    const [name, setName] = useState(localStorage.getItem('name') || authState.username);
+    const [email, setEmail] = useState(localStorage.getItem('email') || authState.email);
+    const [image, setImage] = useState(localStorage.getItem('image') || authState.image);
+
+    useEffect(() => {
+    localStorage.setItem('name', name);
+    localStorage.setItem('email', email);
+    localStorage.setItem('image', image);
+    }, [name, email, image]);
+
+    const onHandleClickPhoto = async () => {
+        Swal.fire({
+            title: "Submit your Github username",
+            input: "text",
+            inputAttributes: {
+              autocapitalize: "off"
+            },
+            showCancelButton: true,
+            confirmButtonText: "Look up",
+            showLoaderOnConfirm: true,
+            preConfirm: async (login) => {
+              try {
+                const githubUrl = `
+                  https://api.github.com/users/${login}
+                `;
+                const response = await fetch(githubUrl);
+                if (!response.ok) {
+                  return Swal.showValidationMessage(`
+                    ${JSON.stringify(await response.json())}
+                  `);
+                }
+                return response.json();
+              } catch (error) {
+                Swal.showValidationMessage(`
+                  Request failed: ${error}
+                `);
+              }
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: `${result.value.login}'s avatar`,
+                imageUrl: result.value.avatar_url
+            });
+            localStorage.setItem('image', result.value.avatar_url)
+            setImage(result.value.avatar_url)
         }
+        
+        });
     }
-    return(
-        <Wrapperprofile >
-            <Wrapperimage>
-                {/* <Image src={localStorage.getItem("avatarImage") ? localStorage.getItem("avatarImage") : profileImage} alt="User image" /> */}
-            </Wrapperimage>
-            <Wrapperspan>
-                <Name>{auth?.authState.username ? auth.authState.username : 'Admin'}</Name>
-                <Email>{auth?.authState.email ? auth.authState.email : 'Email'}</Email>
-            </Wrapperspan>
-            <Wrapperbutton >
-                <Button onClick={onHandleClick}>Edit</Button>
-            </Wrapperbutton>
-        </Wrapperprofile>
-    )
-}
+
+    const onHandleClick = async () => {
+      const { value: formValues } = await Swal.fire({
+        title: 'Edit User Profile',
+        html: `
+          <input id="swal-input1" class="swal2-input" placeholder="Username" value="${name}">
+          <input id="swal-input2" class="swal2-input" placeholder="Email" value="${email}">
+        `,
+        focusConfirm: false,
+        preConfirm: () => {
+          return [
+            (document.getElementById('swal-input1') as HTMLInputElement).value,
+            (document.getElementById('swal-input2') as HTMLInputElement).value,
+          ];
+        },
+      });
+  
+      if (formValues) {
+        const [newName, newEmail, newImage] = formValues;
+        setName(newName);
+        setEmail(newEmail);
+      }
+    };
+  
+    return (
+      <Wrapperprofile>
+        <Wrapperimage>
+          <Image src={image} alt="User image"/>
+        </Wrapperimage>
+        <Wrapperspan>
+          <Name>{authState.username}</Name>
+          <Email>{email}</Email>
+        </Wrapperspan>
+        <Wrapperbutton>
+          <Button onClick={onHandleClick}>Edit Profile</Button>
+          <Button onClick={onHandleClickPhoto}>Edit Photo</Button>
+        </Wrapperbutton>
+      </Wrapperprofile>
+    );
+  };
 
 const Wrapperprofile = styled.section`
     position: relative;
@@ -43,11 +116,11 @@ const Wrapperimage = styled.div`
     display: flex;
     justify-content: center;
     position: absolute;
-    top: -30px;
+    top: -40px;
 `;
 const Image = styled.img`
-    width: 75px;
-    height: 75px;
+    width: 60px;
+    height: 60px;
     border-radius: 8px;
 `;
 const Wrapperspan = styled.div`
@@ -71,19 +144,22 @@ const Email = styled.span`
 `;
 const Wrapperbutton = styled.div`
     margin-top: 10px;
-    width: 50%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 54px;
 `;
 const Button = styled.button`
-    width: 158px;
-    height: 47px;
+    height: 25px;
     background-color: #EBF1EF;
-    border-radius: 8px;
+    border-radius: 6px;
     color: #135846;
-    font-size: 14px;
+    font-size: 12px;
     font-family: Poppins;
     font-weight: 400;
     text-align: center;
     border: none;
-    letter-spacing: 2px;
-    width: 100%;
+    width: 80%;
 `;
