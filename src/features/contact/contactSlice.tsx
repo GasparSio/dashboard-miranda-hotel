@@ -4,11 +4,11 @@ import { fetchData } from '../../../util/fetchData';
 export interface ContactType {
     date: string,
     _id?: string,
-    fullname: string,
+    full_name: string,
     email: string,
-    phone: string,
-    asunto: string,
-    comment: string,
+    phone_number: string,
+    subject_of_review: string,
+    review_body: string,
     status: string,
 }
 

@@ -6,12 +6,12 @@ import { ModalReview } from './ModalReview';
 import styled from 'styled-components';
 
 export interface ReviewItem {
-  fullName: string;
+  full_name: string;
   email: string;
-  phone: string;
-  subject: string;
-  need: string;
-  status: boolean;
+  phone_number: string;
+  subject_of_review: string;
+  review_body: string;
+  status: string;
 }
 
 interface ReviewCardProps {
@@ -39,14 +39,14 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ item }) => {
   return (
     <CardContainer >
         <ContentContainer>
-            <Title>{item.subject} </Title>
-            <Text>{item.need} </Text>
+            <Title>{item.subject_of_review} </Title>
+            <Text>{item.review_body} </Text>
         </ContentContainer>
         <ProfileContainer>
             <NameContainer>
-                <NameText>{item.fullName}</NameText>
+                <NameText>{item.full_name}</NameText>
                 <EmailText>{item.email}</EmailText>
-                <Phone>{item.phone}</Phone>
+                <Phone>{item.phone_number}</Phone>
             </NameContainer>
             <IconsContainer>
                 <ExpandIcon onClick={handleOpenModal} />

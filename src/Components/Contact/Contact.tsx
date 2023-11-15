@@ -30,8 +30,8 @@ export const Contact = () => {
       label: 'Date',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.date}</PropertyText>
-          <PropertyText>Id: {row._id}</PropertyText>
+          <DateText>{row.date}</DateText>
+          <IdText>Id: {row._id}</IdText>
         </CellContainer>
       ),
     },
@@ -40,9 +40,9 @@ export const Contact = () => {
       label: 'Customers',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.full_name}</PropertyText>
-          <PropertyText>{row.email}</PropertyText>
-          <PropertyText>{row.phone_number}</PropertyText>
+          <NameText>{row.full_name}</NameText>
+          <EmailText>{row.email}</EmailText>
+          <PhoneText>{row.phone_number}</PhoneText>
         </CellContainer>
       ),
     },
@@ -51,8 +51,8 @@ export const Contact = () => {
       label: 'Comment',
       display: (row: Record<string, any>) => (
         <SubjectContainer>
-          <SubjecText>{row.asunto}</SubjecText>
-          <PropertyText>{row.comment}</PropertyText>
+          <SubjecText>{row.subject_of_review}</SubjecText>
+          <PropertyText>{row.review_body}</PropertyText>
         </SubjectContainer>
       ),
     },
@@ -72,7 +72,6 @@ export const Contact = () => {
       ),
     },
   ]
-
 
   const [filterNav, setFilterNav] = useState<string>('All Contacts');
   
@@ -147,6 +146,41 @@ const SubjecText = styled.span`
   font-weight: 600;
   font-size: 16px;
   color: black;
+  text-align: center;
+`;
+const DateText = styled.span`
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+`;
+const NameText = styled.span`
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+`;
+const EmailText = styled.span`
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 15px;
+  color: black;
+`;
+const PhoneText = styled.span`
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 15px;
+  color: black;
+`;
+const IdText = styled.span`
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 16px;
+  color: #c08b8b;
+  text-overflow: ellipsis;
+  width: 90px;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 const SubjectContainer = styled.div`
   display: flex;

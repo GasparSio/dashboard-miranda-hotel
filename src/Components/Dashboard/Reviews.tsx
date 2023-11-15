@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { dashboardData } from './dashboard-data';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
@@ -18,7 +17,7 @@ interface Wrapperdashboardcontainer {
 
 export const Reviews = () => {
     const width = useCustomSelector(state => state.visual.width)
-    const data: ReviewItem[] = dashboardData;
+    const data = useCustomSelector(state => state.contact.contacts)
 
     return(
         <Wrapperdashboardcontainer width={width} >

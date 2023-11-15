@@ -6,12 +6,12 @@ import styled from 'styled-components';
 interface ModalReviewProps {
   onClose: () => void; // Esta función no recibe argumentos y no devuelve nada
   review: {
-    fullName: string;
+    full_name: string;
     email: string;
-    phone: string;
-    subject: string;
-    need: string;
-    status: boolean;
+    phone_number: string;
+    subject_of_review: string;
+    review_body: string;
+    status: string;
   };
 }
 
@@ -20,8 +20,8 @@ export const ModalReview: React.FC<ModalReviewProps> = ({onClose, review}) => {
   return (
     <ModalContainer>
         <TextContainer>
-            <Title>{review.subject}</Title>
-            <Text>{review.need}</Text>
+            <Title>{review.subject_of_review}</Title>
+            <Text>{review.review_body}</Text>
         </TextContainer>
         <IconContainer>
             <CrossCircled onClick={onClose}/>
