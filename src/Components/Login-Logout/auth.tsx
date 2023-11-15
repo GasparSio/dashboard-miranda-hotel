@@ -7,7 +7,9 @@ interface AuthContextType {
   authState: AuthState;
   login: (userData: { password: string; email: string }) => void;
   logout: () => void;
+  updateUser: (password: string, email: string, image: string) => void;
 }
+
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -16,11 +18,10 @@ interface AuthState {
   image?: string | null;
   username?: string;
 }
-
 const initialImage = localStorage.getItem('image') ? localStorage.getItem('image') : 'https://robohash.org/gasparsio.png?set=any';
 const initialState: AuthState  = {
   isAuthenticated: false,
-  email: localStorage.getItem('email') || null,
+  email: null,
   password: null,
   image: initialImage,
   username: 'admin',
@@ -29,7 +30,8 @@ const initialState: AuthState  = {
 type AuthAction =
   | { type: 'login'; payload: { password: string; email: string } }
   | { type: 'logout' }
-;
+  | { type: 'updateuser'; payload: { password: string; email: string; image: string } };
+
 
   const authReducer = (state: AuthState, action: AuthAction) => {
     switch (action.type) {
@@ -37,6 +39,8 @@ type AuthAction =
         return { isAuthenticated: true, password: action.payload.password, email: action.payload.email };
       case 'logout':
         return { isAuthenticated: false, password: null, email: null };
+      case 'updateuser':
+        return { isAuthenticated: true, password: action.payload.password, email: action.payload.email, image: action.payload.image };
       default:
         return state;
     }
@@ -59,8 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = ({ password, email }: { password: string; email: string }) => {
     dispatch({ type: 'login', payload: { password, email } });
     navigate('/home/dashboard');
-    localStorage.setItem("email", email );
-    // localStorage.setItem("loggedInUser", JSON.stringify({ password, email }));
+    localStorage.setItem("loggedInUser", JSON.stringify({ password, email }));
   };
 
   //funcion de logout
@@ -72,14 +75,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem("token");
   };
 
-  // const updateUser = (password: string, email: string, image: string) => {
-  //   dispatch({type: 'updateuser', payload: { password, email }})
-  //   localStorage.setItem("loggedInUser", JSON.stringify({ password, email }));
-  //   localStorage.setItem('image', image);
-  // };
+  const updateUser = (password: string, email: string, image: string) => {
+    dispatch({type: 'updateuser', payload: { password, email, image }})
+    localStorage.setItem("loggedInUser", JSON.stringify({ password, email }));
+    localStorage.setItem('image', image);
+  };
 
 
-  const auth = { authState, login, logout};
+  const auth = { authState, login, logout, updateUser };
 
   return (
     <AuthContext.Provider value={auth}>

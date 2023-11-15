@@ -1,10 +1,12 @@
 import React from 'react'
 import { RxCrossCircled } from "react-icons/rx";
 import styled from 'styled-components';
-
+import { IoArchiveSharp } from "react-icons/io5";
+import { IoChevronBackOutline } from "react-icons/io5";
 
 interface ModalReviewProps {
   onClose: () => void; // Esta función no recibe argumentos y no devuelve nada
+  onArchive: () => void; // Esta función no recibe argumentos y no devuelve nada
   review: {
     full_name: string;
     email: string;
@@ -15,7 +17,7 @@ interface ModalReviewProps {
   };
 }
 
-export const ModalReview: React.FC<ModalReviewProps> = ({onClose, review}) => {
+export const ModalReview: React.FC<ModalReviewProps> = ({onClose, onArchive, review}) => {
 
   return (
     <ModalContainer>
@@ -24,7 +26,8 @@ export const ModalReview: React.FC<ModalReviewProps> = ({onClose, review}) => {
             <Text>{review.review_body}</Text>
         </TextContainer>
         <IconContainer>
-            <CrossCircled onClick={onClose}/>
+            <ButtonBack onClick={onClose}/>
+            <ArchivedIcon onClick={onArchive}/>
         </IconContainer>
     </ModalContainer>
   )
@@ -51,14 +54,15 @@ const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 90%;
+    height: 80%;
 `;
 const IconContainer = styled.div`
     display: flex;
-    justify-content: flex-end;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    height: 10%;
+    height: 15%;
 `;
 const Title = styled.span`
     font-size: 14px;
@@ -76,8 +80,18 @@ const Text = styled.span`
     font-family: Poppins;
     text-align: center;
 `;
-const CrossCircled = styled(RxCrossCircled)`
+const ArchivedIcon = styled(IoArchiveSharp)`
   color: #e23428;
+  cursor: pointer;
+  transition: transform;
+  &:hover{
+    transform: scale(1.2);
+  }
+`;
+const ButtonBack = styled(IoChevronBackOutline)`
+  color: #000000;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   transition: transform;
   &:hover{

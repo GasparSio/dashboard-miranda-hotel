@@ -6,8 +6,11 @@ import 'swiper/css/navigation';
 import '../../styles/StyleSwiperButton.css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
-import { useCustomSelector } from '../../hooks/redux/index';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { ReviewCard } from "./ReviewCard";
+import { useEffect } from "react";
+import { fetchContacts } from "../../features/contact/contactSlice";
+import { ToastContainer } from "react-toastify";
 
 
 interface Wrapperdashboardcontainer {
@@ -17,22 +20,30 @@ interface Wrapperdashboardcontainer {
 export const Reviews = () => {
     const width = useCustomSelector(state => state.visual.width)
     const data = useCustomSelector(state => state.contact.contacts)
+    const dispatch = useCustomDispatch()
+
+    useEffect(() => {
+        dispatch(fetchContacts())
+      }, [dispatch])
 
     return(
         <Wrapperdashboardcontainer width={width} >
-            <Title>Latest Review by Customers</Title>
+            <Title>Latest Reviews by Customers</Title>
             <SwiperWrap
                 modules={[Navigation, A11y]}
                 slidesPerView={width === '80%' ? 3 : 4} // Número de tarjetas visibles por vez
                 spaceBetween={1} // Espacio entre las tarjetas
                 navigation
             >
-            {data.map((item) => (
+            {data
+                .filter((item) => item.status !== 'Archived') // Filtra los contactos con status diferente a 'Archived'
+                .map((item) => (
             <SwiperSlideContent key={item.email} width={width}>
-                <ReviewCard item={item} />
+              <ReviewCard item={item} />
             </SwiperSlideContent>
-        ))}
+          ))}
             </SwiperWrap >
+            <ToastContainer />
         </Wrapperdashboardcontainer>
     )
 }
@@ -48,13 +59,13 @@ const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
     box-shadow: 0px 4px 4px #00000005;
     border-radius: 20px;
     background-color: #FFFFFF;
+    height: 309px;
 `;
 const Title = styled.span`
     font-family: Poppins;
     font-size: 17px;
     font-weight: 400;
     color: #393939;
-    margin-bottom: 20px;
     padding-left: 50px;
 `;
 const SwiperWrap = styled(Swiper)`

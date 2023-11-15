@@ -4,8 +4,12 @@ import { BsCheckCircle } from 'react-icons/bs';
 import { RxCrossCircled } from 'react-icons/rx';
 import { ModalReview } from './ModalReview';
 import styled from 'styled-components';
+import { useCustomDispatch } from '../../hooks/redux';
+import { updateContact } from '../../features/contact/contactSlice';
+import { toast } from 'react-toastify';
 
 export interface ReviewItem {
+  _id?: string | undefined,
   full_name: string;
   email: string;
   phone_number: string;
@@ -20,10 +24,11 @@ interface ReviewCardProps {
 
 
 export const ReviewCard: React.FC<ReviewCardProps> = ({ item }) => {
+  const dispatch = useCustomDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [crossCircleVisible, setCrossCircleVisible] = useState(true);
   const [checkCircleVisible, setCheckCircleVisible] = useState(false);
-
+  
   const handleOpenModal = () => {
     setOpenModal(true);
     setCrossCircleVisible(false);
@@ -32,8 +37,23 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ item }) => {
 
   const handleCloseModal = () => {
     setOpenModal(false);
-    setCrossCircleVisible(false);
-    setCheckCircleVisible(true);
+    setCrossCircleVisible(true);
+    setCheckCircleVisible(false);
+  };
+  const handleArchive = (contactId: string | undefined) => {
+    if (contactId) {
+      setOpenModal(false);
+      setCrossCircleVisible(false);
+      setCheckCircleVisible(true);
+      dispatch(updateContact(contactId));
+      toast.success('Archived success', {
+        position: toast.POSITION.TOP_RIGHT,
+        pauseOnFocusLoss: false,
+        autoClose: 2000,
+      });
+    } else {
+      console.error('ID de contacto indefinido');
+    }
   };
 
   return (
@@ -57,6 +77,9 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ item }) => {
                     review={item}
                     onClose={() => {
                     handleCloseModal();
+                    }}
+                    onArchive={() => {
+                    handleArchive(item._id);
                     }}
                 />
                 )}

@@ -26,7 +26,7 @@ const loginStatus = useCustomSelector((state) => state.login.status);
         if(loginStatus === 'fulfilled'){
             login({email, password})
             setwrongUser(false)
-            // localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
+            localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
             dispatch(resetStatus())
         }else if(loginStatus === 'rejected'){
             setwrongUser(true)
