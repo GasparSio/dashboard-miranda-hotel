@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profileImage from '../../Img/18942381.jpg';
-import { resetStatus } from '../../features/login/loginSlice';
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 

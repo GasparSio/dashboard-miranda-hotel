@@ -1,4 +1,5 @@
 import React, { FormEvent, useEffect, useState } from "react";
+import Swal from 'sweetalert2';
 import styled from 'styled-components';
 import { colors } from '../theme';
 import { useAuth } from "./auth";
@@ -8,13 +9,13 @@ import { useCustomDispatch, useCustomSelector } from "../../hooks/redux";
 import { resetStatus, userLogin } from "../../features/login/loginSlice";
 
 export const Login: React.FC = () => {
-    const navigate = useNavigate();
-    const auth = useAuth();
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [wrongUser, setwrongUser] = useState<boolean>(false);
-    const { authState, login } = auth;
-    const loginStatus = useCustomSelector((state) => state.login.status);
+const navigate = useNavigate();
+const auth = useAuth();
+const [email, setEmail] = useState<string>('');
+const [password, setPassword] = useState<string>('');
+const [wrongUser, setwrongUser] = useState<boolean>(false);
+const { authState, login } = auth;
+const loginStatus = useCustomSelector((state) => state.login.status);
 
     useEffect(() => {
         if (authState.isAuthenticated) {
@@ -24,24 +25,33 @@ export const Login: React.FC = () => {
         }
         if(loginStatus === 'fulfilled'){
             login({email, password})
+            setwrongUser(false)
             localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
             dispatch(resetStatus())
         }else if(loginStatus === 'rejected'){
             setwrongUser(true)
-                setTimeout(() => {
-            setwrongUser(false)
-        }, 3000)
+            setTimeout(() => {
+                setwrongUser(false)
+            }, 300)
         }
       }, [authState.isAuthenticated, navigate, loginStatus]);
 
 const dispatch = useCustomDispatch();
 
-  const handleLogin = (e: FormEvent) => {
+const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     dispatch(userLogin({email: email, password: password}))
     console.log(email, password);
-    
-  };
+};
+
+if (wrongUser) {
+Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Wrong Username or Password',
+    timer: 2000,
+    });
+}
     return(
             <Wrapper>
             <Formcontainer>
@@ -69,7 +79,6 @@ const dispatch = useCustomDispatch();
                     <Span>Email: sio.gaspar@gmail.com</Span>
                     <Span>Password: admin</Span>
                 </Hardpasscontainer>
-                    {wrongUser ? <SpanWrong>Wrong Username or Email</SpanWrong> : ''}
             </Formcontainer>
         </Wrapper>
     )
