@@ -92,9 +92,6 @@ export const Contact = () => {
 
   return(
     <>
-      <CustomWrapperStyles width={width}>
-        <Reviews />
-      </CustomWrapperStyles>
       <WrapperContactNav>
         <WrapperButton >
             <FilterButton style={{
@@ -114,7 +111,7 @@ export const Contact = () => {
         </WrapperButton>
       </WrapperContactNav>
       <Wrapperdashboardcontainer width={width}>
-       <Table cols={cols} data={filteredContacts}/>
+        <Table cols={cols} data={filteredContacts}/>
       </Wrapperdashboardcontainer>
     </>
   )
@@ -124,7 +121,7 @@ interface Wrapperdashboardcontainer {
 }
 const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
   position: absolute;
-  top: 53%;
+  top: 150px;
   right: 2%;
   width: ${(props) => (props.width === '80%' ? '75%' : '96%')};
   z-index: 999;
@@ -132,12 +129,12 @@ const Wrapperdashboardcontainer = styled.section<Wrapperdashboardcontainer>`
 `;
 const WrapperContactNav = styled.div`
     position: absolute;
-    top: 46%;
+    top: 50px;
     right: 47%;
     display: flex;
     flex-direction: row;
     width: 280px;
-    height: 40px;
+    height: 100px;
     justify-content: space-between;
     align-items: center;
 `;
@@ -172,19 +169,19 @@ const EmailText = styled.span`
   font-family: Poppins;
   font-weight: 400;
   font-size: 14px;
-  color: black;
+  color: #c08b8b;
 `;
 const PhoneText = styled.span`
   font-family: Poppins;
   font-weight: 400;
   font-size: 15px;
-  color: black;
+  color: #c08b8b;
 `;
 const IdText = styled.span`
   font-family: Poppins;
   font-weight: 400;
-  font-size: 16px;
-  color: #c08b8b;
+  font-size: 11px;
+  color: #958383;
   text-overflow: ellipsis;
   width: 90px;
   overflow: hidden;

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatsCards } from "./StatsCards";
 import { Reviews } from "./Reviews";
 import styled from "styled-components";
-import { useCustomSelector } from '../../hooks/redux/index';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
+import { fetchContacts } from "../../features/contact/contactSlice";
 
 interface WrapperDashboard {
     width: string;
@@ -10,6 +11,13 @@ interface WrapperDashboard {
 
 export const Dashboard = () => {
     const width = useCustomSelector(state => state.visual.width)
+    const dispatch = useCustomDispatch();
+
+    useEffect(() => {
+        dispatch(fetchContacts())
+      }, [dispatch])
+    
+    
     return(
         <WrapperDashboard width={width}>
             <StatsCards/>

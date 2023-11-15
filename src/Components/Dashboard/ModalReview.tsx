@@ -66,6 +66,7 @@ const Title = styled.span`
     margin-bottom: 10px;
     color: #393939;
     font-family: Poppins;
+    text-align: center;
 `;
 const Text = styled.span`
     font-size: 12px;
@@ -73,6 +74,7 @@ const Text = styled.span`
     margin-bottom: 10px;
     color: #393939;
     font-family: Poppins;
+    text-align: center;
 `;
 const CrossCircled = styled(RxCrossCircled)`
   color: #e23428;

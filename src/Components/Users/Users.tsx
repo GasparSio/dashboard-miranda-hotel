@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { deleteUser, fetchUsers} from '../../features/users/userSlice';
 import Table from "../Table";
 import { CellContainer, LineContainerComment, PropertyText } from '../StyledTable';
@@ -24,7 +24,7 @@ export const Users = () => {
   }
 
   const statusHandler = (row: Record<string, any>) => {
-    if(row.status === 'active'){
+    if(row.status === 'Active'){
       return <Active/> 
     }else {
       return <Inactive/>
@@ -40,15 +40,15 @@ export const Users = () => {
     user.full_name.toLowerCase().includes(userName.toLowerCase())
   );
 
-  const [filterNav, setFilterNav] = useState('All Employee');
+  const [filterNav, setFilterNav] = useState('All');
   const filteredUsers = users.filter((booking) => {
     switch(filterNav){
-      case "All Employee":
+      case "All":
         return true;
-      case "Active Employee":
-        return booking.status === "active"
-      case "Inactive Employee":
-        return booking.status === "inactive"
+      case "Active":
+        return booking.status === "Active"
+      case "Not Active":
+        return booking.status === "Not Active"
       default:
         return false;
     }
@@ -93,9 +93,9 @@ export const Users = () => {
       label: 'Full Name',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.full_name}</PropertyText>
-          <PropertyText>Id: {row._id}</PropertyText>
+          <NameText>{row.full_name}</NameText>
           <EmailText>{row.email}</EmailText>
+          <IdText>Id: {row._id}</IdText>
         </CellContainer>
       ),
     },
@@ -122,7 +122,7 @@ export const Users = () => {
       label: 'Phone Number',
       display: (row: Record<string, any>) => (
         <CellContainer>
-          <PropertyText>{row.phone_number}</PropertyText>
+          <Number href={`tel:${row.phone_number}`}>{row.phone_number}</Number>
         </CellContainer>
       ),
     },
@@ -152,27 +152,27 @@ export const Users = () => {
             <LeftNavContainer>
               <WrapperButton >
                 <FilterButton style={{
-                  color: filterNav === 'All Employee' ? colors.filterGreenButton : undefined,
-                  borderBottom: filterNav === 'All Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
-                  fontWeight: filterNav === 'All Employee' ? 600 : undefined,
+                  color: filterNav === 'All' ? colors.filterGreenButton : undefined,
+                  borderBottom: filterNav === 'All' ? `3px solid ${colors.filterGreenButton}` : undefined,
+                  fontWeight: filterNav === 'All' ? 600 : undefined,
                 }} 
-                onClick={() => setFilterNav('All Employee')}>All Employee</FilterButton>
+                onClick={() => setFilterNav('All')}>All Employee</FilterButton>
               </WrapperButton>
               <WrapperButton>
                 <FilterButton style={{
-                  color: filterNav === 'Active Employee' ? colors.filterGreenButton : undefined,
-                  borderBottom: filterNav === 'Active Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
-                  fontWeight: filterNav === 'Active Employee' ? 600 : undefined,
+                  color: filterNav === 'Active' ? colors.filterGreenButton : undefined,
+                  borderBottom: filterNav === 'Active' ? `3px solid ${colors.filterGreenButton}` : undefined,
+                  fontWeight: filterNav === 'Active' ? 600 : undefined,
                 }} 
-                onClick={() => setFilterNav('Active Employee')}>Active Employee</FilterButton>
+                onClick={() => setFilterNav('Active')}>Active Employee</FilterButton>
               </WrapperButton>
               <WrapperButton>
                 <FilterButton style={{
-                  color: filterNav === 'Inactive Employee' ? colors.filterGreenButton : undefined,
-                  borderBottom: filterNav === 'Inactive Employee' ? `3px solid ${colors.filterGreenButton}` : undefined,
-                  fontWeight: filterNav === 'Inactive Employee' ? 600 : undefined,
+                  color: filterNav === 'Not Active' ? colors.filterGreenButton : undefined,
+                  borderBottom: filterNav === 'Not Active' ? `3px solid ${colors.filterGreenButton}` : undefined,
+                  fontWeight: filterNav === 'Not Active' ? 600 : undefined,
                 }} 
-                onClick={() => setFilterNav('Inactive Employee')}>Inactive Employee</FilterButton>
+                onClick={() => setFilterNav('Not Active')}>Inactive Employee</FilterButton>
               </WrapperButton>
               <WrapperInput>
                 <SearchIcon/>
@@ -214,26 +214,44 @@ const DeleteIconContainer = styled.span`
   text-align: center;
 `;
 const WrapperBookingNavContainer = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-  height: 100px;
-  `;
-  const LeftNavContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+    height: 100px;
+`;
+const LeftNavContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 85%;
   height: 40px;
   justify-content: space-between;
-    align-items: center;
-    `;
-    const RightNavContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 15%;
-    align-items: center;
+  align-items: center;
+  `;
+const RightNavContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 15%;
+  align-items: center;
 `;
 
-const EmailText = styled.span`
+const NameText = styled.span`
+  color: black;
+  font-weight: 600;
   font-size: 12px;
+`;
+const IdText = styled.span`
+  font-size: 10px;
+  text-overflow: ellipsis;
+  width: 80px;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+const EmailText = styled.span`
+  color: black;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: -1px;
+`;
+const Number = styled.a`
+  text-decoration: none;
 `;
