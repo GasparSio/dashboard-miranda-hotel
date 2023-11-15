@@ -46,7 +46,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ item }) => {
       setCrossCircleVisible(false);
       setCheckCircleVisible(true);
       dispatch(updateContact(contactId));
-      toast.success('Archived success', {
+      toast.success('Successful save', {
         position: toast.POSITION.TOP_RIGHT,
         pauseOnFocusLoss: false,
         autoClose: 2000,

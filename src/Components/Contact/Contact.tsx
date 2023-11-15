@@ -23,7 +23,7 @@ export const Contact = () => {
 
   const handleArchive = (contactId: string) => {
     dispatch(updateContact(contactId));
-    toast.success('Contacto archivado exitosamente', {
+    toast.success('Successful save', {
       position: toast.POSITION.TOP_RIGHT,
       pauseOnFocusLoss: false,
       autoClose: 2000
