@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+export const apiBaseUrl = import.meta.env.VITE_API_URL;
+
 
 export const userLogin = createAsyncThunk(
     'login/user', 
     async (data: loginInterface)=> {
         try {
             const response = (await fetch(
-                'http://localhost:3000/login', {
+                `${apiBaseUrl}/login`, {
                     method: "POST", 
                     mode: "cors",
                     headers: {

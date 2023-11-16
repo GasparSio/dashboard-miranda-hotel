@@ -69,7 +69,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     dispatch({ type: 'login', payload: { password, email } });
     navigate('/home/dashboard');
     localStorage.setItem("loggedInMailUser", JSON.stringify({ email }));
-    // localStorage.setItem("loggedInPassUser", JSON.stringify({ password}));
+    localStorage.setItem("loggedInPassUser", JSON.stringify({ password}));
   };
 
   //funcion de logout

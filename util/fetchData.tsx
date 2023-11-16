@@ -13,7 +13,7 @@ export interface FetchDataParams {
 export const apiBaseUrl = import.meta.env.VITE_API_URL;
 
 export const fetchData = async ({ endpoint, method, body, id }: FetchDataParams) => {
-  const response = await fetch(`${apiBaseUrl}${endpoint}`, {
+  const response = await fetch(`${apiBaseUrl}/${endpoint}`, {
     method,
     mode: 'cors',
     headers: {

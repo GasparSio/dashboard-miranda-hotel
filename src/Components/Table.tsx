@@ -57,6 +57,7 @@ const StyledTable = styled.div`
   width: 98%;
   table-layout: fixed;
   margin: auto;
+  border-collapse: collapse;
 `;
 
 const TableHeader = styled.div`
@@ -76,6 +77,7 @@ const TableRow = styled.div`
   height: auto;
   min-height: 145px;
   transition: transform 0.2s;
+  border: 1px solid #ddd;
   &:hover {
     background-color: #effff0;
     transform: scale(1.003);

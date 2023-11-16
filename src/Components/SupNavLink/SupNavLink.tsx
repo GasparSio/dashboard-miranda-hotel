@@ -44,8 +44,8 @@ export const SupNavLink = () => {
                 <Title>{sectionName}</Title>
             </Wrapperhambmenu>
             <Wrappernavicons>
-                <MdMarkEmailUnreadicon/>
-                <LuBellRingicon/>
+                {/* <MdMarkEmailUnreadicon/>
+                <LuBellRingicon/> */}
                 <MdLogouticon
                     onClick={onlogoutUser}
                 />
