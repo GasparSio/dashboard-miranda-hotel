@@ -11,11 +11,12 @@ import { resetStatus, userLogin } from "../../features/login/loginSlice";
 export const Login: React.FC = () => {
 const navigate = useNavigate();
 const auth = useAuth();
+const { authState, login } = auth;
+const loginStatus = useCustomSelector((state) => state.login.status);
 const [email, setEmail] = useState<string>('');
 const [password, setPassword] = useState<string>('');
 const [wrongUser, setwrongUser] = useState<boolean>(false);
-const { authState, login } = auth;
-const loginStatus = useCustomSelector((state) => state.login.status);
+const dispatch = useCustomDispatch();
 
     useEffect(() => {
         if (authState.isAuthenticated) {
@@ -26,7 +27,7 @@ const loginStatus = useCustomSelector((state) => state.login.status);
         if(loginStatus === 'fulfilled'){
             login({email, password})
             setwrongUser(false)
-            localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
+            // localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
             dispatch(resetStatus())
         }else if(loginStatus === 'rejected'){
             setwrongUser(true)
@@ -36,7 +37,6 @@ const loginStatus = useCustomSelector((state) => state.login.status);
         }
       }, [authState.isAuthenticated, navigate, loginStatus]);
 
-const dispatch = useCustomDispatch();
 
 const handleLogin = (e: FormEvent) => {
     e.preventDefault();

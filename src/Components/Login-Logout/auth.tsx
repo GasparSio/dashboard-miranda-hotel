@@ -7,7 +7,7 @@ interface AuthContextType {
   authState: AuthState;
   login: (userData: { password: string; email: string }) => void;
   logout: () => void;
-  updateUser: (password: string, email: string, image: string) => void;
+  updateUser: (password: string, email: string, image: string, username: string) => void;
 }
 
 
@@ -16,15 +16,19 @@ interface AuthState {
   password: string | null;
   email: string | null;
   image?: string | null;
-  username?: string;
+  username?: string | null;
 }
 const initialImage = localStorage.getItem('image') ? localStorage.getItem('image') : 'https://robohash.org/gasparsio.png?set=any';
+const initialEmail = localStorage.getItem('loggedInMailUser') ? localStorage.getItem('loggedInMailUser') : null;
+const initialPassword = localStorage.getItem('loggedInPassUser') ? localStorage.getItem('loggedInPassUser') : null;
+const initialUsername = localStorage.getItem('loggedInUsername') ? localStorage.getItem('loggedInUsername') : 'Username';
+
 const initialState: AuthState  = {
   isAuthenticated: false,
-  email: null,
-  password: null,
   image: initialImage,
-  username: 'admin',
+  email: initialEmail,
+  password: initialPassword,
+  username: initialUsername,
 }
 
 type AuthAction =
@@ -52,33 +56,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Cargar la información de inicio de sesión desde localStorage
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("loggedInUser");
-    if (loggedInUser) {
-      const user = JSON.parse(loggedInUser);
-      dispatch({ type: 'login', payload: { password: user.password, email: user.email } });
+    const loggedInMailUser = localStorage.getItem("loggedInMailUser");
+    const loggedInPassUser = localStorage.getItem("loggedInPassUser");
+    if (loggedInMailUser && loggedInPassUser) {
+        const user = { email: loggedInMailUser, password: loggedInPassUser };
+        dispatch({ type: 'login', payload: user });
     }
-  }, []);
+}, []);
 
   //funcion de login
   const login = ({ password, email }: { password: string; email: string }) => {
     dispatch({ type: 'login', payload: { password, email } });
     navigate('/home/dashboard');
-    localStorage.setItem("loggedInUser", JSON.stringify({ password, email }));
+    localStorage.setItem("loggedInMailUser", JSON.stringify({ email }));
+    localStorage.setItem("loggedInPassUser", JSON.stringify({ password}));
   };
 
   //funcion de logout
   const logout = () => {
     dispatch({ type: 'logout' });
-    
     navigate('/login');
-    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("loggedInMailUser");
+    localStorage.removeItem("loggedInPassUser");
+    localStorage.removeItem("loggedInUsername");
     localStorage.removeItem("token");
   };
 
-  const updateUser = (password: string, email: string, image: string) => {
-    dispatch({type: 'updateuser', payload: { password, email, image }})
-    localStorage.setItem("loggedInUser", JSON.stringify({ password, email }));
-    localStorage.setItem('image', image);
+  const updateUser = (userData: { password: string; email: string; image: string; username: string }) => {
+    dispatch({ type: 'updateuser', payload: userData });
+  localStorage.setItem("loggedInMailUser", JSON.stringify({ email: userData.email }));
+  localStorage.setItem("loggedInPassUser", JSON.stringify({ password: userData.password }));
+  localStorage.setItem("loggedInUsername", JSON.stringify({ username: userData.username }));
+  localStorage.setItem('image', userData.image);
   };
 
 

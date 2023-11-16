@@ -5,16 +5,26 @@ import Swal from "sweetalert2";
 
 
 export const UserProfile: React.FC = () => {
-    const { authState } = useAuth();
+    const { authState, updateUser } = useAuth();
     
     const [name, setName] = useState(localStorage.getItem('name') || authState.username);
     const [email, setEmail] = useState(localStorage.getItem('email') || authState.email);
     const [image, setImage] = useState(localStorage.getItem('image') || authState.image);
 
     useEffect(() => {
-    localStorage.setItem('name', name);
-    localStorage.setItem('email', email);
-    localStorage.setItem('image', image);
+      if (name) {
+        localStorage.setItem('name', name);
+      }
+      if (email) {
+        localStorage.setItem('email', email);
+      }
+      if (image) {
+        localStorage.setItem('image', image);
+      }
+      const storedName = localStorage.getItem('name');
+      setName(storedName || 'Username');
+      const storedImage = localStorage.getItem('image');
+      setImage(storedImage || 'https://robohash.org/gasparsio.png?set=any');
     }, [name, email, image]);
 
     const onHandleClickPhoto = async () => {
@@ -42,7 +52,7 @@ export const UserProfile: React.FC = () => {
               } catch (error) {
                 Swal.showValidationMessage(`
                   Request failed: ${error}
-                `);
+              `);
               }
             },
             allowOutsideClick: () => !Swal.isLoading()
@@ -54,9 +64,14 @@ export const UserProfile: React.FC = () => {
             });
             localStorage.setItem('image', result.value.avatar_url)
             setImage(result.value.avatar_url)
+            if (authState.password && authState.email && authState.username) {
+              updateUser(authState.password, authState.email, result.value.avatar_url, authState.username);
+            } else {
+              console.error('Error: authState.password, email, or username is null');
+            }
         }
         
-        });
+      });
     }
 
     const onHandleClick = async () => {
@@ -79,16 +94,21 @@ export const UserProfile: React.FC = () => {
         const [newName, newEmail, newImage] = formValues;
         setName(newName);
         setEmail(newEmail);
+        if (authState.password && authState.username) {
+          updateUser(authState.password, newEmail, newImage, authState.username);
+        } else {
+          console.error('Error: authState.password or username is null');
+        }
       }
     };
   
     return (
       <Wrapperprofile>
         <Wrapperimage>
-          <Image src={image} alt="User image"/>
+          <Image src={image || undefined} alt="User image"/>
         </Wrapperimage>
         <Wrapperspan>
-          <Name>{authState.username}</Name>
+          <Name>{name}</Name>
           <Email>{email}</Email>
         </Wrapperspan>
         <Wrapperbutton>
