@@ -206,7 +206,7 @@ const getRandomFacilities = (facilitiesArray: string[], count: number): string[]
             </WrapperButton>
           </LeftNavContainer>
           <RightNavContainer>
-                  <NewButton >+ New Room</NewButton>
+                  {/* <NewButton >+ New Room</NewButton> */}
                   <Select 
                   value={orderBy} 
                   onInput={(event) => {
