@@ -9,6 +9,7 @@ import { Available, Booked } from "./StatusButton";
 import { MdOutlineEuroSymbol } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
+import { ClimbingBoxLoader } from 'react-spinners';
 import { colors } from "../theme";
 import Swal from "sweetalert2";
 
@@ -16,12 +17,21 @@ export const Rooms = () => {
   const dispatch = useCustomDispatch()
   const rooms = useCustomSelector(state => state.rooms.rooms);
   const width = useCustomSelector(state => state.visual.width);
-
+  const loadingStatus = useCustomSelector((state) => state.rooms.status);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllRooms())
   }, [dispatch])
 
+  useEffect(() => {
+        if(loadingStatus === 'pending'){
+            setIsLoading(true)
+        }else{
+            setIsLoading(false)
+        }
+    }, [loadingStatus])
+  
   const statusHandler = (row: Record<string, any>) => {
     if(row.status === 'Booked'){
       return <Booked/> 
@@ -223,6 +233,11 @@ const getRandomFacilities = (facilitiesArray: string[], count: number): string[]
               </RightNavContainer>
           </WrapperBookingNavContainer>
           <Table cols={cols} data={filteredRooms}/>
+          {isLoading && (
+          <LoaderContainer>
+              <ClimbingBoxLoader color="#7884a3" />
+          </LoaderContainer>
+        )}
         </Wrapperdashboardcontainer>
     )
 }
@@ -318,4 +333,10 @@ const OfferPriceContainer = styled.div`
 `;
 const BotonStatusText = styled.span`
   width: 95%;
+`;
+const LoaderContainer = styled.div`
+    position: absolute;
+    left: 50%;
+    bottom: -50%;
+    transform: translate(-50%);
 `;

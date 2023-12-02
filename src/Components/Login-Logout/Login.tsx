@@ -5,6 +5,7 @@ import { colors } from '../theme';
 import { useAuth } from "./auth";
 import { useNavigate } from "react-router-dom";
 import logoHotel from '../../Img/icon-hotel.png';
+import { PacmanLoader } from 'react-spinners';
 import { useCustomDispatch, useCustomSelector } from "../../hooks/redux";
 import { resetStatus, userLogin } from "../../features/login/loginSlice";
 
@@ -13,9 +14,11 @@ const navigate = useNavigate();
 const auth = useAuth();
 const { authState, login } = auth;
 const loginStatus = useCustomSelector((state) => state.login.status);
-const [email, setEmail] = useState<string>('');
-const [password, setPassword] = useState<string>('');
+const [email, setEmail] = useState<string>('sio.gaspar@gmail.com');
+const [password, setPassword] = useState<string>('admin');
 const [wrongUser, setwrongUser] = useState<boolean>(false);
+const [isButtonDisabled, setButtonDisabled] = useState(false);
+const [isLoading, setIsLoading] = useState(false);
 const dispatch = useCustomDispatch();
 
     useEffect(() => {
@@ -27,21 +30,27 @@ const dispatch = useCustomDispatch();
         if(loginStatus === 'fulfilled'){
             login({email, password})
             setwrongUser(false)
-            // localStorage.setItem("loggedInUser", JSON.stringify({ email, password }))
             dispatch(resetStatus())
-        }else if(loginStatus === 'rejected'){
+            setIsLoading(false);
+        }else if(loginStatus === 'pending'){
+            setIsLoading(true);
+        }
+        else if(loginStatus === 'rejected'){
             setwrongUser(true)
             setTimeout(() => {
                 setwrongUser(false)
             }, 300)
+            setIsLoading(false);
         }
-      }, [authState.isAuthenticated, navigate, loginStatus]);
-
-
-const handleLogin = (e: FormEvent) => {
-    e.preventDefault();
-    dispatch(userLogin({email: email, password: password}))
-    console.log(email, password);
+    }, [authState.isAuthenticated, navigate, loginStatus]);
+    
+    
+    const handleLogin = (e: FormEvent) => {
+        e.preventDefault();
+        dispatch(userLogin({email: email, password: password}))
+        setButtonDisabled(true);
+        setIsLoading(true);
+        setButtonDisabled(false);
 };
 
 if (wrongUser) {
@@ -73,7 +82,13 @@ Swal.fire({
                         placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit" disabled={isButtonDisabled || isLoading}>
+                    {isLoading ? (
+                        <PacmanLoader color="#36d7b7" size={14} />
+                        ) : (
+                        'Submit'
+                    )}
+                    </Button>
                 </Form>
                 <Hardpasscontainer>
                     <Span>Email: sio.gaspar@gmail.com</Span>
@@ -148,7 +163,6 @@ const Button = styled.button`
     margin: auto;
     height: 30px;
     margin-bottom: 15px;
-    border: none;
     background-color: #EBF1EF;
     color: ${colors.primaryGreen};
     font-size: 15px;
@@ -156,6 +170,16 @@ const Button = styled.button`
     padding: 0;
     border-radius: 4px;
     font-family: Poppins;
+    transition: transform;
+    border: 1px solid #799283;
+    &:hover{
+        cursor: pointer;
+    }
+    &:disabled{
+        background-color: #ebefeb;
+        color: #c6d0ca;
+        cursor: not-allowed;
+    }
 `;
 const Hardpasscontainer = styled.section`
     display: flex;
@@ -170,14 +194,4 @@ color: ${colors.primaryGreen};
     font-weight: 300;
     font-family: Poppins;
     margin-top: 10px;
-`;
-const SpanWrong = styled.span`
-    color: ${colors.primaryRed};
-    margin-bottom: 10px;
-    font-weight: 300;
-    font-family: Poppins;
-    text-align: center;
-    margin-top: 25px;
-    position: absolute;
-    bottom: 7%;
 `;

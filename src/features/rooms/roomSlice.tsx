@@ -65,16 +65,16 @@ export const roomSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchAllRooms.pending, (state) => {
-            state.status = 'loading';
+            state.status = 'pending';
           });
           builder.addCase(fetchAllRooms.fulfilled, (state, action) => {
             state.rooms = action.payload;
-            state.status = 'success';
+            state.status = 'fulfilled';
             console.log('action payload', action.payload);
             
           });
           builder.addCase(fetchAllRooms.rejected, (state, action) => {
-            state.status = 'failed';
+            state.status = 'rejected';
           });
           builder.addCase(fetchOneRoom.pending, (state) => {
             state.status = 'loading';

@@ -55,18 +55,18 @@ export const roomSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(fetchContacts.pending, (state) => {
-            state.status = 'loading';
+            state.status = 'pending';
             state.isloading = true;
           })
           .addCase(fetchContacts.fulfilled, (state, action) => {
             state.contacts = action.payload;
-            state.status = 'success';
+            state.status = 'fulfilled';
             state.isloading = false;
           })
           .addCase(fetchContacts.rejected, (state) => {
             state.isloading = false;
             state.haserror = true;
-            state.status = 'failed';
+            state.status = 'rejected';
           })
           .addCase(updateContact.pending, (state) => {
             state.status = 'loading';

@@ -8,6 +8,7 @@ import { Active, Inactive } from "./StatusButton";
 import styled from "styled-components";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { WrapperButton, FilterButton, WrapperInput, SearchIcon, Input, Select, Option } from '../StyledFilterButtons';
+import { ClimbingBoxLoader } from 'react-spinners';
 import { colors } from '../theme';
 import Swal from "sweetalert2";
 
@@ -15,11 +16,20 @@ export const Users = () => {
   const dispatch = useCustomDispatch()
   const users = useCustomSelector(state => state.users.users);
   const width = useCustomSelector(state => state.visual.width);
-  
+  const loadingStatus = useCustomSelector((state) => state.users.status);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     dispatch(fetchUsers({}))
   }, [dispatch])
   
+  useEffect(() => {
+  if(loadingStatus === 'pending'){
+    setIsLoading(true)
+  }else{
+    setIsLoading(false)
+  }
+}, [loadingStatus])
   
   const onDeleteUser = (userId: string) => {
     Swal.fire({
@@ -220,6 +230,11 @@ export const Users = () => {
             </RightNavContainer>
           </WrapperBookingNavContainer>
           <Table cols={cols} data={finalFilteredUsers}/>
+          {isLoading && (
+          <LoaderContainer>
+              <ClimbingBoxLoader color="#7884a3" />
+          </LoaderContainer>
+        )}
         </Wrapperdashboardcontainer>
       </>
     )
@@ -280,4 +295,10 @@ const Number = styled.a`
 const Image = styled.img`
   width: 90px;
   border-radius: 8px;
+`;
+const LoaderContainer = styled.div`
+    position: absolute;
+    left: 50%;
+    bottom: -50%;
+    transform: translate(-50%);
 `;

@@ -10,6 +10,7 @@ import { MdDelete } from 'react-icons/md';
 import { NavLink } from "react-router-dom";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { FilterButton, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
+import { ClimbingBoxLoader } from 'react-spinners';
 import { colors } from '../theme';
 import Swal from "sweetalert2";
 
@@ -19,10 +20,21 @@ export const Bookings = () => {
   const bookings = useCustomSelector(state => state.bookings.bookings);
   const width = useCustomSelector(state => state.visual.width);
   const [orderBy, setOrderBy] = useState("none");
+  const loadingStatus = useCustomSelector((state) => state.bookings.status);
+  const [isLoading, setIsLoading] = useState(false);
 
 useEffect(() => {
   dispatch(fetchBookings())
 }, [dispatch])
+
+useEffect(() => {
+  if(loadingStatus === 'pending'){
+    setIsLoading(true)
+  }else{
+    setIsLoading(false)
+  }
+}, [loadingStatus])
+
 
 const onDeleteBooking = (bookingId: string) => {
   // Muestra la alerta de confirmación antes de eliminar
@@ -136,12 +148,7 @@ if (selected === "Orderdate") {
   });
 }
 
-// if (orderBy === "guest") {
-//   filteredArray.sort((a: BookingsInterface, b: BookingsInterface) =>
-//     a.guest.localeCompare(b.guest, undefined, { sensitivity: "base" })
-//   );
 
-//Data que traemos dependiendo los filtros
   const finalFilteredBookings = clientName ? searchBookings : filteredBookings;
 
   const cols = [
@@ -298,9 +305,13 @@ if (selected === "Orderdate") {
                 <Option value="Checkout">Check out</Option>
             </Select>
         </RightNavContainer>
-      
       </WrapperBookingNavContainer>
         <Table cols={cols} data={finalFilteredBookings}/>
+        {isLoading && (
+          <LoaderContainer>
+              <ClimbingBoxLoader color="#7884a3" />
+          </LoaderContainer>
+        )}
       </Wrapperdashboardcontainer>
   )
 }
@@ -400,4 +411,9 @@ const CheckOutText = styled.span`
   color: #ffffff;
   letter-spacing: 0.4px;
 `;
-
+const LoaderContainer = styled.div`
+    position: absolute;
+    left: 50%;
+    bottom: -50%;
+    transform: translate(-50%);
+`;

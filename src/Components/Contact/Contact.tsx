@@ -5,21 +5,31 @@ import { Reviews } from "../Dashboard/Reviews";
 import { WrapperButton, FilterButton } from '../StyledFilterButtons';
 import Table from '../Table';
 import { fetchContacts, updateContact } from "../../features/contact/contactSlice";
-import { CustomWrapperStyles, CellContainer, PropertyText } from '../StyledTable';
+import { CellContainer } from '../StyledTable';
 import { colors } from "../theme";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { ToastContainer, toast } from 'react-toastify';
+import { ClimbingBoxLoader } from 'react-spinners';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const Contact = () => {
-  
   const dispatch = useCustomDispatch()
   const contacts = useCustomSelector(state => state.contact.contacts);
   const width = useCustomSelector(state => state.visual.width);
-
+  const loadingStatus = useCustomSelector((state) => state.contact.status);
+  const [isLoading, setIsLoading] = useState(false);
+  
   useEffect(() => {
     dispatch(fetchContacts())
   }, [dispatch])
+
+  useEffect(() => {
+  if(loadingStatus === 'pending'){
+    setIsLoading(true)
+  }else{
+    setIsLoading(false)
+  }
+}, [loadingStatus])
 
   const handleArchive = (contactId: string) => {
     dispatch(updateContact(contactId));
@@ -117,6 +127,11 @@ export const Contact = () => {
       </WrapperContactNav>
       <Wrapperdashboardcontainer width={width}>
         <Table cols={cols} data={filteredContacts}/>
+        {isLoading && (
+          <LoaderContainer>
+              <ClimbingBoxLoader color="#7884a3" />
+          </LoaderContainer>
+        )}
       </Wrapperdashboardcontainer>
       <ToastContainer />
     </>
@@ -217,7 +232,7 @@ const Archived = styled.span`
   &:hover {
     transform: scale(1.05);
 }
-`
+`;
 const ArchiveButton = styled.button`
   background-color: ${colors.primaryRed};
   color: white;
@@ -236,4 +251,10 @@ const ArchiveButton = styled.button`
   &:hover {
     transform: scale(1.05);
 }
-`
+`;
+const LoaderContainer = styled.div`
+    position: absolute;
+    left: 50%;
+    bottom: -50%;
+    transform: translate(-50%);
+`;

@@ -24,21 +24,6 @@ export const fetchUser = createAsyncThunk(
     async (userId: string) => fetchData({ endpoint: `users/${userId}`, method: 'GET' })
 );
 
-// export const createUser = createAsyncThunk(
-//     'users/createUser',
-//     async (newUser) => {
-//         const createdUser = await delay(newUser)
-//         return createdUser;
-//     } 
-// );
-// export const updateUser = createAsyncThunk(
-//     'users/updateUser',
-//     async (userId, updatedUser) => {
-//         const updated = await delay(updateUser)
-//         return updated;
-//     } 
-// );
-
 export const deleteUser = createAsyncThunk(
     'users/deleteUser',
     async (userId: string) => {
@@ -84,56 +69,28 @@ export const roomSlice = createSlice({
             state.status = 'rejected';
           })
           .addCase(fetchUser.pending, (state) => {
-            state.status = 'loading';
+            state.status = 'pending';
             state.isloading = true;
           })
           .addCase(fetchUser.fulfilled, (state, action) => {
             state.user = action.payload;
-            state.status = 'success';
+            state.status = 'fulfilled';
           })
-          //   .addCase(createUser.pending, (state) => {
-          //     state.status = 'loading';
-          //     state.isloading = true;
-          //   })
-          //   .addCase(createUser.fulfilled, (state, action) => {
-          //     state.users.push(action.payload);
-          //     state.status = 'success';
-          //   })
-          //   .addCase(createUser.rejected, (state) => {
-          //     state.haserror = true;
-          //     state.status = 'failed';
-          //   })
           .addCase(fetchUser.rejected, (state) => {
-            state.status = 'failed';
+            state.status = 'rejected';
           })
           .addCase(deleteUser.pending, (state) => {
-            state.status = 'loading';
+            state.status = 'pending';
             state.isloading = true;
           })
           .addCase(deleteUser.fulfilled, (state, action) => {
             state.users = state.users.filter((user) => user._id !== action.payload);
-            state.status = 'success';
+            state.status = 'fulfilled';
           })
           .addCase(deleteUser.rejected, (state) => {
             state.haserror = true;
-            state.status = 'failed';
+            state.status = 'rejected';
           });
-          //   .addCase(updateUser.pending, (state) => {
-          //     state.status = 'loading';
-          //     state.isloading = true;
-          //   })
-          //   .addCase(updateUser.fulfilled, (state, action) => {
-          //     const index = state.users.findIndex((user) => user.id === action.payload.id);
-          //     if (index !== -1) {
-          //       state.users[index] = action.payload;
-          //     }
-          //     state.status = 'success';
-          //     state.isloading = false;
-          //   })
-          //   .addCase(updateUser.rejected, (state) => {
-          //     state.haserror = true;
-          //     state.status = 'failed';
-          //   })
       },
 })
 
