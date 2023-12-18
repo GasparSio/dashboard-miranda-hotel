@@ -4,7 +4,7 @@ import { Reviews } from "./Reviews";
 import styled from "styled-components";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { fetchContacts } from "../../features/contact/contactSlice";
-import { DotLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 
 interface WrapperDashboard {
     width: string;
@@ -34,7 +34,7 @@ export const Dashboard = () => {
             <StatsCards/>
             {isLoading && (
             <LoaderContainer>
-                <DotLoader color="#7884a3" />
+                <BarLoader color="#7884a3" />
             </LoaderContainer>
             )}
             <Reviews />

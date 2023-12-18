@@ -10,7 +10,7 @@ import { MdDelete } from 'react-icons/md';
 import { NavLink } from "react-router-dom";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { FilterButton, Input, SearchIcon, Select, WrapperButton, WrapperInput, Option } from '../StyledFilterButtons';
-import { ClimbingBoxLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 import { colors } from '../theme';
 import Swal from "sweetalert2";
 
@@ -309,7 +309,7 @@ if (selected === "Orderdate") {
         <Table cols={cols} data={finalFilteredBookings}/>
         {isLoading && (
           <LoaderContainer>
-              <ClimbingBoxLoader color="#7884a3" />
+              <BarLoader color="#7884a3" />
           </LoaderContainer>
         )}
       </Wrapperdashboardcontainer>

@@ -9,7 +9,7 @@ import { Available, Booked } from "./StatusButton";
 import { MdOutlineEuroSymbol } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
-import { ClimbingBoxLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 import { colors } from "../theme";
 import Swal from "sweetalert2";
 
@@ -235,7 +235,7 @@ const getRandomFacilities = (facilitiesArray: string[], count: number): string[]
           <Table cols={cols} data={filteredRooms}/>
           {isLoading && (
           <LoaderContainer>
-              <ClimbingBoxLoader color="#7884a3" />
+              <BarLoader color="#7884a3" />
           </LoaderContainer>
         )}
         </Wrapperdashboardcontainer>

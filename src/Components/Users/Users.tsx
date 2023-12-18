@@ -8,7 +8,7 @@ import { Active, Inactive } from "./StatusButton";
 import styled from "styled-components";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { WrapperButton, FilterButton, WrapperInput, SearchIcon, Input, Select, Option } from '../StyledFilterButtons';
-import { ClimbingBoxLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 import { colors } from '../theme';
 import Swal from "sweetalert2";
 
@@ -232,7 +232,7 @@ export const Users = () => {
           <Table cols={cols} data={finalFilteredUsers}/>
           {isLoading && (
           <LoaderContainer>
-              <ClimbingBoxLoader color="#7884a3" />
+              <BarLoader color="#7884a3" />
           </LoaderContainer>
         )}
         </Wrapperdashboardcontainer>

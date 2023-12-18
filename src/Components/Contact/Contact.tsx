@@ -9,7 +9,7 @@ import { CellContainer } from '../StyledTable';
 import { colors } from "../theme";
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redux/index';
 import { ToastContainer, toast } from 'react-toastify';
-import { ClimbingBoxLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const Contact = () => {
@@ -129,7 +129,7 @@ export const Contact = () => {
         <Table cols={cols} data={filteredContacts}/>
         {isLoading && (
           <LoaderContainer>
-              <ClimbingBoxLoader color="#7884a3" />
+              <BarLoader color="#7884a3" />
           </LoaderContainer>
         )}
       </Wrapperdashboardcontainer>
