@@ -189,8 +189,7 @@ const Hardpasscontainer = styled.section`
     margin: 0 auto;
 `;
 const Span = styled.span`
-    // color: ${colors.primaryGreen};
-    color: red;
+    color: ${colors.primaryGreen};
     margin-bottom: 10px;
     font-weight: 300;
     font-family: Poppins;
